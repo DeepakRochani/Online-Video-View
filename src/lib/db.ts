@@ -88,7 +88,79 @@ export * from "./project-types";
 export const DEFAULT_PHOTOGRAPHER_ID = "photographer-default";
 export const SUPER_ADMIN_PHOTOGRAPHER_ID = "photographer-super-admin";
 
-export const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), "data");
+function initDataDir(): string {
+  if (process.env.DATA_DIR) {
+    return process.env.DATA_DIR;
+  }
+  const isServerless = process.env.VERCEL === "1" || Boolean(process.env.AWS_LAMBDA_FUNCTION_NAME) || Boolean(process.env.VERCEL_ENV);
+  if (isServerless) {
+    const tmpData = path.join("/tmp", "data");
+    const sourceData = path.join(process.cwd(), "data");
+    try {
+      if (!fs.existsSync(tmpData)) {
+        fs.mkdirSync(tmpData, { recursive: true });
+      }
+      if (fs.existsSync(sourceData)) {
+        const files = fs.readdirSync(sourceData);
+        for (const file of files) {
+          if (file.endsWith(".json")) {
+            const dest = path.join(tmpData, file);
+            if (!fs.existsSync(dest)) {
+              try {
+                fs.copyFileSync(path.join(sourceData, file), dest);
+              } catch {
+                // ignore
+              }
+            }
+          }
+        }
+      }
+    } catch (err) {
+      console.warn("[Storage Warning] Could not initialize /tmp/data directory:", err);
+    }
+    return tmpData;
+  }
+  return path.join(process.cwd(), "data");
+}
+
+export const DATA_DIR = initDataDir();
+
+export function safeWriteFileSync(filePath: string, content: string): boolean {
+  try {
+    const dir = path.dirname(filePath);
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+    fs.writeFileSync(filePath, content, "utf-8");
+    return true;
+  } catch (err) {
+    console.warn(`[Storage Warning] Failed to write file ${filePath}:`, err);
+    return false;
+  }
+}
+
+export function safeReadJSON<T>(filePath: string, fallback: T): T {
+  try {
+    if (fs.existsSync(filePath)) {
+      const raw = fs.readFileSync(filePath, "utf-8");
+      return JSON.parse(raw) as T;
+    }
+    // Fallback check in process.cwd()/data
+    const basename = path.basename(filePath);
+    const sourcePath = path.join(process.cwd(), "data", basename);
+    if (fs.existsSync(sourcePath)) {
+      const raw = fs.readFileSync(sourcePath, "utf-8");
+      const data = JSON.parse(raw) as T;
+      safeWriteFileSync(filePath, raw);
+      return data;
+    }
+    return fallback;
+  } catch (err) {
+    console.warn(`[Storage Warning] Error reading ${filePath}:`, err);
+    return fallback;
+  }
+}
+
 const PROJECTS_FILE = path.join(DATA_DIR, "projects.json");
 const FAVORITES_FILE = path.join(DATA_DIR, "favorites.json");
 const SELECTIONS_FILE = path.join(DATA_DIR, "selections.json");
@@ -121,28 +193,32 @@ const BACKUPS_FILE = path.join(DATA_DIR, "backups.json");
 const COMMUNICATION_SETTINGS_FILE = path.join(DATA_DIR, "platform-communication-settings.json");
 const GALLERY_LIFECYCLE_SETTINGS_FILE = path.join(DATA_DIR, "platform-gallery-lifecycle-settings.json");
 
-// Ensure data dir exists
-if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
-if (!fs.existsSync(PROJECTS_FILE)) fs.writeFileSync(PROJECTS_FILE, "[]", "utf-8");
-if (!fs.existsSync(FAVORITES_FILE)) fs.writeFileSync(FAVORITES_FILE, "[]", "utf-8");
-if (!fs.existsSync(SELECTIONS_FILE)) fs.writeFileSync(SELECTIONS_FILE, "[]", "utf-8");
-if (!fs.existsSync(ACTIVITY_FILE)) fs.writeFileSync(ACTIVITY_FILE, "[]", "utf-8");
-if (!fs.existsSync(DOMAINS_FILE)) fs.writeFileSync(DOMAINS_FILE, "[]", "utf-8");
-if (!fs.existsSync(INVOICES_FILE)) fs.writeFileSync(INVOICES_FILE, "[]", "utf-8");
-if (!fs.existsSync(WEBHOOK_EVENTS_FILE)) fs.writeFileSync(WEBHOOK_EVENTS_FILE, "[]", "utf-8");
-if (!fs.existsSync(BILLING_EVENTS_FILE)) fs.writeFileSync(BILLING_EVENTS_FILE, "[]", "utf-8");
-if (!fs.existsSync(TEAM_MEMBERS_FILE)) fs.writeFileSync(TEAM_MEMBERS_FILE, "[]", "utf-8");
-if (!fs.existsSync(AUDIT_LOGS_FILE)) fs.writeFileSync(AUDIT_LOGS_FILE, "[]", "utf-8");
-if (!fs.existsSync(SUPPORT_NOTES_FILE)) fs.writeFileSync(SUPPORT_NOTES_FILE, "[]", "utf-8");
-if (!fs.existsSync(SUPPORT_TICKETS_FILE)) fs.writeFileSync(SUPPORT_TICKETS_FILE, "[]", "utf-8");
-if (!fs.existsSync(AD_OVERRIDES_FILE)) fs.writeFileSync(AD_OVERRIDES_FILE, "[]", "utf-8");
-if (!fs.existsSync(NOTIFICATIONS_FILE)) fs.writeFileSync(NOTIFICATIONS_FILE, "[]", "utf-8");
-if (!fs.existsSync(NOTIFICATION_PREFERENCES_FILE)) fs.writeFileSync(NOTIFICATION_PREFERENCES_FILE, "[]", "utf-8");
-if (!fs.existsSync(ERRORS_FILE)) fs.writeFileSync(ERRORS_FILE, "[]", "utf-8");
-if (!fs.existsSync(ALERTS_FILE)) fs.writeFileSync(ALERTS_FILE, "[]", "utf-8");
-if (!fs.existsSync(JOBS_FILE)) fs.writeFileSync(JOBS_FILE, "[]", "utf-8");
-if (!fs.existsSync(BACKUPS_FILE)) fs.writeFileSync(BACKUPS_FILE, "[]", "utf-8");
-if (!fs.existsSync(GALLERY_LIFECYCLE_SETTINGS_FILE)) fs.writeFileSync(GALLERY_LIFECYCLE_SETTINGS_FILE, "{}", "utf-8");
+// Safe initialization of data directory
+try {
+  if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+  if (!fs.existsSync(PROJECTS_FILE)) safeWriteFileSync(PROJECTS_FILE, "[]");
+  if (!fs.existsSync(FAVORITES_FILE)) safeWriteFileSync(FAVORITES_FILE, "[]");
+  if (!fs.existsSync(SELECTIONS_FILE)) safeWriteFileSync(SELECTIONS_FILE, "[]");
+  if (!fs.existsSync(ACTIVITY_FILE)) safeWriteFileSync(ACTIVITY_FILE, "[]");
+  if (!fs.existsSync(DOMAINS_FILE)) safeWriteFileSync(DOMAINS_FILE, "[]");
+  if (!fs.existsSync(INVOICES_FILE)) safeWriteFileSync(INVOICES_FILE, "[]");
+  if (!fs.existsSync(WEBHOOK_EVENTS_FILE)) safeWriteFileSync(WEBHOOK_EVENTS_FILE, "[]");
+  if (!fs.existsSync(BILLING_EVENTS_FILE)) safeWriteFileSync(BILLING_EVENTS_FILE, "[]");
+  if (!fs.existsSync(TEAM_MEMBERS_FILE)) safeWriteFileSync(TEAM_MEMBERS_FILE, "[]");
+  if (!fs.existsSync(AUDIT_LOGS_FILE)) safeWriteFileSync(AUDIT_LOGS_FILE, "[]");
+  if (!fs.existsSync(SUPPORT_NOTES_FILE)) safeWriteFileSync(SUPPORT_NOTES_FILE, "[]");
+  if (!fs.existsSync(SUPPORT_TICKETS_FILE)) safeWriteFileSync(SUPPORT_TICKETS_FILE, "[]");
+  if (!fs.existsSync(AD_OVERRIDES_FILE)) safeWriteFileSync(AD_OVERRIDES_FILE, "[]");
+  if (!fs.existsSync(NOTIFICATIONS_FILE)) safeWriteFileSync(NOTIFICATIONS_FILE, "[]");
+  if (!fs.existsSync(NOTIFICATION_PREFERENCES_FILE)) safeWriteFileSync(NOTIFICATION_PREFERENCES_FILE, "[]");
+  if (!fs.existsSync(ERRORS_FILE)) safeWriteFileSync(ERRORS_FILE, "[]");
+  if (!fs.existsSync(ALERTS_FILE)) safeWriteFileSync(ALERTS_FILE, "[]");
+  if (!fs.existsSync(JOBS_FILE)) safeWriteFileSync(JOBS_FILE, "[]");
+  if (!fs.existsSync(BACKUPS_FILE)) safeWriteFileSync(BACKUPS_FILE, "[]");
+  if (!fs.existsSync(GALLERY_LIFECYCLE_SETTINGS_FILE)) safeWriteFileSync(GALLERY_LIFECYCLE_SETTINGS_FILE, "{}");
+} catch (initErr) {
+  console.warn("[Storage Warning] Data directory bootstrap warning:", initErr);
+}
 
 // Seed initial Dynamic Plans if file does not exist
 if (!fs.existsSync(PLANS_FILE)) {
@@ -2890,9 +2966,7 @@ export function getProjectAnalyticsSummary(projectId: string) {
 // Photographers
 export function readPhotographers(): PhotographerAccount[] {
   try {
-    if (!fs.existsSync(PHOTOGRAPHERS_FILE)) return [];
-    const raw = fs.readFileSync(PHOTOGRAPHERS_FILE, "utf-8");
-    const photographers = JSON.parse(raw) as PhotographerAccount[];
+    const photographers = safeReadJSON<PhotographerAccount[]>(PHOTOGRAPHERS_FILE, []);
 
     // Ensure Super Admin account is present
     const superAdminEmail = (process.env.SUPER_ADMIN_EMAIL || process.env.ADMIN_EMAIL || "admin@drfilms.com").trim().toLowerCase();
@@ -2922,16 +2996,17 @@ export function readPhotographers(): PhotographerAccount[] {
         updatedAt: new Date().toISOString(),
       };
       photographers.unshift(superAdmin);
-      fs.writeFileSync(PHOTOGRAPHERS_FILE, JSON.stringify(photographers, null, 2), "utf-8");
+      safeWriteFileSync(PHOTOGRAPHERS_FILE, JSON.stringify(photographers, null, 2));
     }
     return photographers;
-  } catch {
+  } catch (err) {
+    console.warn("[Storage Warning] readPhotographers error:", err);
     return [];
   }
 }
 
 export function writePhotographers(photographers: PhotographerAccount[]): void {
-  fs.writeFileSync(PHOTOGRAPHERS_FILE, JSON.stringify(photographers, null, 2), "utf-8");
+  safeWriteFileSync(PHOTOGRAPHERS_FILE, JSON.stringify(photographers, null, 2));
 }
 
 /**

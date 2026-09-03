@@ -9,19 +9,24 @@ import {
   getPhotographerById,
   getSubscription,
   WeddingProject,
+  DATA_DIR,
+  safeWriteFileSync,
 } from "./db";
 import { SAAS_PLANS, getPlanDetails } from "./plans";
 import { SubscriptionPlanTier } from "./project-types";
 
-const DATA_DIR = path.join(process.cwd(), "data");
 const ANALYTICS_EVENTS_FILE = path.join(DATA_DIR, "analytics_events.json");
 
 // Ensure data directory and file exist
-if (!fs.existsSync(DATA_DIR)) {
-  fs.mkdirSync(DATA_DIR, { recursive: true });
-}
-if (!fs.existsSync(ANALYTICS_EVENTS_FILE)) {
-  fs.writeFileSync(ANALYTICS_EVENTS_FILE, "[]", "utf-8");
+try {
+  if (!fs.existsSync(DATA_DIR)) {
+    fs.mkdirSync(DATA_DIR, { recursive: true });
+  }
+  if (!fs.existsSync(ANALYTICS_EVENTS_FILE)) {
+    safeWriteFileSync(ANALYTICS_EVENTS_FILE, "[]");
+  }
+} catch (err) {
+  console.warn("[Storage Warning] Analytics bootstrap warning:", err);
 }
 
 export type AnalyticsEventType =
