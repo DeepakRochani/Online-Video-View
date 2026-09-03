@@ -30,8 +30,13 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+# env files
+.env
+.env.*
+.env.local
+.env.production
+!.env.example
+!php-app/.env.example
 
 # vercel
 .vercel
@@ -39,3 +44,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local logs and scratch files
+build_output.txt
+data_backup_*/
+data/backups/
+scratch/
+
+

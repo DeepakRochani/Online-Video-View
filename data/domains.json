@@ -1,0 +1,22 @@
+[
+  {
+    "id": "dom-cab9fe43-a616-4695-8d2e-f5cfdc63f4c9",
+    "photographerId": "photographer-tenant-a",
+    "projectId": "general",
+    "hostname": "gallery.alpha-studio.com",
+    "domain": "gallery.alpha-studio.com",
+    "normalizedDomain": "gallery.alpha-studio.com",
+    "type": "SUBDOMAIN",
+    "status": "PENDING",
+    "verificationStatus": "pending",
+    "verificationToken": "wvg-verify-a70021301bc264ec68e84473",
+    "verificationMethod": "CNAME",
+    "targetCname": "cname.drfilms.com",
+    "txtRecordName": "_wvg-verify.gallery.alpha-studio.com",
+    "txtRecordValue": "wvg-verify-a70021301bc264ec68e84473",
+    "sslStatus": "pending",
+    "isPrimary": true,
+    "createdAt": "2026-09-03T15:00:03.678Z",
+    "updatedAt": "2026-09-03T15:00:03.678Z"
+  }
+]

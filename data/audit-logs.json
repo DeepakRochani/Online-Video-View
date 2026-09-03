@@ -1,0 +1,5997 @@
+[
+  {
+    "id": "audit-1cbc3774-9468-40f3-811b-42aabbf3cc1a",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_GALLERY_LIFECYCLE_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_gallery_lifecycle_settings",
+    "targetName": "Platform Gallery Lifecycle Settings",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "defaultLifespanDays",
+        "warningThresholdDays"
+      ],
+      "changes": {
+        "defaultLifespanDays": {
+          "old": 120,
+          "new": 90
+        },
+        "warningThresholdDays": {
+          "old": 10,
+          "new": 7
+        }
+      }
+    },
+    "timestamp": "2026-09-03T16:37:48.513Z"
+  },
+  {
+    "id": "audit-ce45e6de-3ba5-44df-881d-1b2a364d70ad",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_GALLERY_LIFECYCLE_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_gallery_lifecycle_settings",
+    "targetName": "Platform Gallery Lifecycle Settings",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "defaultLifespanDays",
+        "warningThresholdDays"
+      ],
+      "changes": {
+        "defaultLifespanDays": {
+          "old": 90,
+          "new": 120
+        },
+        "warningThresholdDays": {
+          "old": 7,
+          "new": 10
+        }
+      }
+    },
+    "timestamp": "2026-09-03T16:37:48.512Z"
+  },
+  {
+    "id": "audit-9c7c4cfc-8c5a-4821-85b3-a91072cd3ce7",
+    "adminId": "lifecycle-test-1788453468448@example.com",
+    "adminEmail": "lifecycle-test-1788453468448@example.com",
+    "action": "GALLERY_RESTORED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788453468448",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "lifecycle-test-1788453468448@example.com",
+      "previousStatus": "expired",
+      "newStatus": "published",
+      "restoredFrom": "expired",
+      "expiresAt": "2026-11-02T16:37:48.459Z"
+    },
+    "timestamp": "2026-09-03T16:37:48.459Z"
+  },
+  {
+    "id": "audit-46bef6cc-d84a-4ee8-8d74-92c8cf4ebe98",
+    "adminId": "cron-gallery-lifecycle",
+    "adminEmail": "system-cron@drfilms.com",
+    "action": "GALLERY_EXPIRED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788453468448",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "lifecycle-test-1788453468448@example.com",
+      "expiresAt": "2026-09-01T16:37:48.455Z",
+      "expiredAt": "2026-09-03T16:37:48.456Z"
+    },
+    "timestamp": "2026-09-03T16:37:48.456Z"
+  },
+  {
+    "id": "audit-a389380b-7045-4abe-bfd3-e3f4450d2397",
+    "adminId": "lifecycle-test-1788453468448@example.com",
+    "adminEmail": "lifecycle-test-1788453468448@example.com",
+    "action": "GALLERY_DELETE_RESTORED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788453468448",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "lifecycle-test-1788453468448@example.com",
+      "status": "published"
+    },
+    "timestamp": "2026-09-03T16:37:48.455Z"
+  },
+  {
+    "id": "audit-21f5ef55-d8d2-4594-ba31-366aa712ff1d",
+    "adminId": "lifecycle-test-1788453468448@example.com",
+    "adminEmail": "lifecycle-test-1788453468448@example.com",
+    "action": "GALLERY_DELETED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788453468448",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "lifecycle-test-1788453468448@example.com",
+      "previousStatus": "published",
+      "softDeleted": true
+    },
+    "timestamp": "2026-09-03T16:37:48.454Z"
+  },
+  {
+    "id": "audit-3cfe1955-1515-41da-8196-a3b3d13794a3",
+    "adminId": "lifecycle-test-1788453468448@example.com",
+    "adminEmail": "lifecycle-test-1788453468448@example.com",
+    "action": "GALLERY_RESTORED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788453468448",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "lifecycle-test-1788453468448@example.com",
+      "previousStatus": "archived",
+      "newStatus": "published",
+      "restoredFrom": "archived"
+    },
+    "timestamp": "2026-09-03T16:37:48.453Z"
+  },
+  {
+    "id": "audit-a406bfa1-0ef8-4782-8f45-39a7a73ba7a4",
+    "adminId": "lifecycle-test-1788453468448@example.com",
+    "adminEmail": "lifecycle-test-1788453468448@example.com",
+    "action": "GALLERY_ARCHIVED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788453468448",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "lifecycle-test-1788453468448@example.com",
+      "previousStatus": "published",
+      "newStatus": "archived"
+    },
+    "timestamp": "2026-09-03T16:37:48.452Z"
+  },
+  {
+    "id": "audit-9c294258-e2cd-4818-8049-c3220f3a42d0",
+    "adminId": "lifecycle-test-1788453468448@example.com",
+    "adminEmail": "lifecycle-test-1788453468448@example.com",
+    "action": "GALLERY_EXPIRATION_EXTENDED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788453468448",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "lifecycle-test-1788453468448@example.com",
+      "previousExpiresAt": "2026-11-02T16:37:48.448Z",
+      "newExpiresAt": "2027-01-01T16:37:48.450Z",
+      "previousStatus": "published",
+      "newStatus": "published"
+    },
+    "timestamp": "2026-09-03T16:37:48.451Z"
+  },
+  {
+    "id": "audit-a2a36111-36ed-43e6-8cc8-8eb56a265f42",
+    "adminId": "lifecycle-test-1788453468448@example.com",
+    "adminEmail": "lifecycle-test-1788453468448@example.com",
+    "action": "GALLERY_PUBLISHED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788453468448",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "lifecycle-test-1788453468448@example.com",
+      "previousStatus": "draft",
+      "newStatus": "published",
+      "expiresAt": "2026-11-02T16:37:48.448Z"
+    },
+    "timestamp": "2026-09-03T16:37:48.450Z"
+  },
+  {
+    "id": "audit-16ccefa2-53fd-40e4-91d2-915bccec1ec9",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "allCommunicationsEnabled",
+        "globalEnabled"
+      ],
+      "changes": {
+        "allCommunicationsEnabled": {
+          "old": true,
+          "new": false
+        },
+        "globalEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": false,
+      "allCommunicationsEnabled": false
+    },
+    "timestamp": "2026-09-03T16:37:13.221Z"
+  },
+  {
+    "id": "audit-3c47795e-5dcf-4ac2-bd63-350861e421cf",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "galleryPublishedEnabled"
+      ],
+      "changes": {
+        "galleryPublishedEnabled": {
+          "old": false,
+          "new": true
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:37:13.216Z"
+  },
+  {
+    "id": "audit-7f3ee850-9a00-4c13-aec4-e1786d00cd0e",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "securityNotificationsEnabled"
+      ],
+      "changes": {
+        "securityNotificationsEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:37:13.216Z"
+  },
+  {
+    "id": "audit-cf96d82a-a87f-4a18-b0f2-82f790a03889",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "billingNotificationsEnabled"
+      ],
+      "changes": {
+        "billingNotificationsEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:37:13.215Z"
+  },
+  {
+    "id": "audit-ff6343f3-2954-45b2-9250-7f7003f2ef81",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "passwordResetEnabled"
+      ],
+      "changes": {
+        "passwordResetEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:37:13.215Z"
+  },
+  {
+    "id": "audit-73047dba-8ab3-4841-8543-859cbc197463",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "expiryReminderEnabled"
+      ],
+      "changes": {
+        "expiryReminderEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:37:13.214Z"
+  },
+  {
+    "id": "audit-1603a9e3-40e5-478d-be83-3848379c9aa8",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "selectionConfirmationEnabled"
+      ],
+      "changes": {
+        "selectionConfirmationEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:37:13.213Z"
+  },
+  {
+    "id": "audit-d867fa28-e4b9-454e-8235-8aaf029da43b",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "selectionSubmittedEnabled"
+      ],
+      "changes": {
+        "selectionSubmittedEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:37:13.213Z"
+  },
+  {
+    "id": "audit-ba256983-74a7-4892-b214-449a99f76192",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "whatsappEnabled",
+        "galleryPublishedEnabled"
+      ],
+      "changes": {
+        "whatsappEnabled": {
+          "old": false,
+          "new": true
+        },
+        "galleryPublishedEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:37:13.212Z"
+  },
+  {
+    "id": "audit-3be35147-1f53-4f98-850b-b410e3ac56c8",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "smsEnabled"
+      ],
+      "changes": {
+        "smsEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:37:13.211Z"
+  },
+  {
+    "id": "audit-51972863-b782-4a1d-b51e-ea33b1c2cabc",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "emailEnabled",
+        "whatsappEnabled"
+      ],
+      "changes": {
+        "emailEnabled": {
+          "old": false,
+          "new": true
+        },
+        "whatsappEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:37:13.210Z"
+  },
+  {
+    "id": "audit-0d8e5db8-08fc-4bed-99dd-1b13263666d2",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "emailEnabled",
+        "whatsappEnabled"
+      ],
+      "changes": {
+        "emailEnabled": {
+          "old": true,
+          "new": false
+        },
+        "whatsappEnabled": {
+          "old": false,
+          "new": true
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:37:13.210Z"
+  },
+  {
+    "id": "audit-9df4c332-88cc-4c52-a68f-6b429697258b",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "allCommunicationsEnabled",
+        "globalEnabled"
+      ],
+      "changes": {
+        "allCommunicationsEnabled": {
+          "old": false,
+          "new": true
+        },
+        "globalEnabled": {
+          "old": false,
+          "new": true
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:37:13.209Z"
+  },
+  {
+    "id": "audit-2856c4fc-7cb6-4c2e-aba1-df4158d3a8fc",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "allCommunicationsEnabled",
+        "globalEnabled"
+      ],
+      "changes": {
+        "allCommunicationsEnabled": {
+          "old": true,
+          "new": false
+        },
+        "globalEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": false,
+      "allCommunicationsEnabled": false
+    },
+    "timestamp": "2026-09-03T16:37:13.208Z"
+  },
+  {
+    "id": "audit-e03fd767-c916-471d-930d-8dddf3890934",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "allCommunicationsEnabled",
+        "whatsappEnabled",
+        "teamInvitationEnabled",
+        "globalEnabled"
+      ],
+      "changes": {
+        "allCommunicationsEnabled": {
+          "old": false,
+          "new": true
+        },
+        "whatsappEnabled": {
+          "old": true,
+          "new": false
+        },
+        "teamInvitationEnabled": {
+          "old": true,
+          "new": false
+        },
+        "globalEnabled": {
+          "old": false,
+          "new": true
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:37:13.207Z"
+  },
+  {
+    "id": "audit-97b8db74-1f07-4698-8922-2d1bec06ebf7",
+    "adminId": "admin-user-id",
+    "adminEmail": "admin",
+    "action": "SET_ENTITLEMENT_OVERRIDE",
+    "targetType": "subscription",
+    "targetId": "sub-test-19",
+    "metadata": {
+      "photographerId": "test-tenant-a-1788453431042",
+      "overrides": {
+        "features": {
+          "whiteLabel": true,
+          "aiFeatures": true
+        },
+        "limits": {
+          "maxProjects": 999
+        },
+        "grantedAt": "2026-09-03T16:37:11.050Z",
+        "grantedBy": "admin-user-id",
+        "reason": "Super Admin VIP VIP Upgrade"
+      }
+    },
+    "result": "success",
+    "timestamp": "2026-09-03T16:37:11.051Z"
+  },
+  {
+    "id": "audit-0700221b-4799-4aae-99c3-d4462bd1dcc9",
+    "adminId": "admin-user-id",
+    "adminEmail": "admin",
+    "action": "SET_ENTITLEMENT_OVERRIDE",
+    "targetType": "subscription",
+    "targetId": "sub-test-19",
+    "metadata": {
+      "photographerId": "test-tenant-a-1788453082566",
+      "overrides": {
+        "features": {
+          "whiteLabel": true,
+          "aiFeatures": true
+        },
+        "limits": {
+          "maxProjects": 999
+        },
+        "grantedAt": "2026-09-03T16:31:22.578Z",
+        "grantedBy": "admin-user-id",
+        "reason": "Super Admin VIP VIP Upgrade"
+      }
+    },
+    "result": "success",
+    "timestamp": "2026-09-03T16:31:22.579Z"
+  },
+  {
+    "id": "audit-65b6a37b-7ea9-4a1f-862a-a959871cacd7",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_GALLERY_LIFECYCLE_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_gallery_lifecycle_settings",
+    "targetName": "Platform Gallery Lifecycle Settings",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "defaultLifespanDays",
+        "warningThresholdDays"
+      ],
+      "changes": {
+        "defaultLifespanDays": {
+          "old": 120,
+          "new": 90
+        },
+        "warningThresholdDays": {
+          "old": 10,
+          "new": 7
+        }
+      }
+    },
+    "timestamp": "2026-09-03T16:25:53.366Z"
+  },
+  {
+    "id": "audit-5fad4505-3d67-4b4a-81aa-a2bb6089b52e",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_GALLERY_LIFECYCLE_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_gallery_lifecycle_settings",
+    "targetName": "Platform Gallery Lifecycle Settings",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "defaultLifespanDays",
+        "warningThresholdDays"
+      ],
+      "changes": {
+        "defaultLifespanDays": {
+          "old": 90,
+          "new": 120
+        },
+        "warningThresholdDays": {
+          "old": 7,
+          "new": 10
+        }
+      }
+    },
+    "timestamp": "2026-09-03T16:25:53.363Z"
+  },
+  {
+    "id": "audit-6c646ce0-588e-4956-8c2a-c171efb2020a",
+    "adminId": "lifecycle-test-1788452753170@example.com",
+    "adminEmail": "lifecycle-test-1788452753170@example.com",
+    "action": "GALLERY_RESTORED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788452753170",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "lifecycle-test-1788452753170@example.com",
+      "previousStatus": "expired",
+      "newStatus": "published",
+      "restoredFrom": "expired",
+      "expiresAt": "2026-11-02T16:25:53.204Z"
+    },
+    "timestamp": "2026-09-03T16:25:53.206Z"
+  },
+  {
+    "id": "audit-64f47562-80d7-4218-9788-9c3f0198bab9",
+    "adminId": "cron-gallery-lifecycle",
+    "adminEmail": "system-cron@drfilms.com",
+    "action": "GALLERY_EXPIRED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788452753170",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "lifecycle-test-1788452753170@example.com",
+      "expiresAt": "2026-09-01T16:25:53.201Z",
+      "expiredAt": "2026-09-03T16:25:53.202Z"
+    },
+    "timestamp": "2026-09-03T16:25:53.203Z"
+  },
+  {
+    "id": "audit-f2dd2133-1090-4d5a-97d0-597a9f4f11a1",
+    "adminId": "lifecycle-test-1788452753170@example.com",
+    "adminEmail": "lifecycle-test-1788452753170@example.com",
+    "action": "GALLERY_DELETE_RESTORED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788452753170",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "lifecycle-test-1788452753170@example.com",
+      "status": "published"
+    },
+    "timestamp": "2026-09-03T16:25:53.201Z"
+  },
+  {
+    "id": "audit-8ba4a85f-9606-4ebe-8907-ce4552477a42",
+    "adminId": "lifecycle-test-1788452753170@example.com",
+    "adminEmail": "lifecycle-test-1788452753170@example.com",
+    "action": "GALLERY_DELETED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788452753170",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "lifecycle-test-1788452753170@example.com",
+      "previousStatus": "published",
+      "softDeleted": true
+    },
+    "timestamp": "2026-09-03T16:25:53.197Z"
+  },
+  {
+    "id": "audit-05b6b227-a844-4687-ae41-df4e683d8052",
+    "adminId": "lifecycle-test-1788452753170@example.com",
+    "adminEmail": "lifecycle-test-1788452753170@example.com",
+    "action": "GALLERY_RESTORED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788452753170",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "lifecycle-test-1788452753170@example.com",
+      "previousStatus": "archived",
+      "newStatus": "published",
+      "restoredFrom": "archived"
+    },
+    "timestamp": "2026-09-03T16:25:53.190Z"
+  },
+  {
+    "id": "audit-f109d578-963d-43a6-8e63-784403d9ccc7",
+    "adminId": "lifecycle-test-1788452753170@example.com",
+    "adminEmail": "lifecycle-test-1788452753170@example.com",
+    "action": "GALLERY_ARCHIVED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788452753170",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "lifecycle-test-1788452753170@example.com",
+      "previousStatus": "published",
+      "newStatus": "archived"
+    },
+    "timestamp": "2026-09-03T16:25:53.186Z"
+  },
+  {
+    "id": "audit-c0133cd3-5b41-44d8-b2f6-517fbe0f896a",
+    "adminId": "lifecycle-test-1788452753170@example.com",
+    "adminEmail": "lifecycle-test-1788452753170@example.com",
+    "action": "GALLERY_EXPIRATION_EXTENDED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788452753170",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "lifecycle-test-1788452753170@example.com",
+      "previousExpiresAt": "2026-11-02T16:25:53.170Z",
+      "newExpiresAt": "2027-01-01T16:25:53.180Z",
+      "previousStatus": "published",
+      "newStatus": "published"
+    },
+    "timestamp": "2026-09-03T16:25:53.183Z"
+  },
+  {
+    "id": "audit-94dc773c-f300-44a6-a7e6-9f869591fe6e",
+    "adminId": "lifecycle-test-1788452753170@example.com",
+    "adminEmail": "lifecycle-test-1788452753170@example.com",
+    "action": "GALLERY_PUBLISHED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788452753170",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "lifecycle-test-1788452753170@example.com",
+      "previousStatus": "draft",
+      "newStatus": "published",
+      "expiresAt": "2026-11-02T16:25:53.170Z"
+    },
+    "timestamp": "2026-09-03T16:25:53.179Z"
+  },
+  {
+    "id": "audit-c838cc8c-8a1f-47e9-98c1-08362150075d",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "allCommunicationsEnabled",
+        "globalEnabled"
+      ],
+      "changes": {
+        "allCommunicationsEnabled": {
+          "old": true,
+          "new": false
+        },
+        "globalEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": false,
+      "allCommunicationsEnabled": false
+    },
+    "timestamp": "2026-09-03T16:25:47.395Z"
+  },
+  {
+    "id": "audit-d3f45b6e-b28c-4fd5-9769-b24fa99b730d",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "galleryPublishedEnabled"
+      ],
+      "changes": {
+        "galleryPublishedEnabled": {
+          "old": false,
+          "new": true
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:25:47.376Z"
+  },
+  {
+    "id": "audit-50fcbd51-63be-4cd5-9119-2d4accfd039f",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "securityNotificationsEnabled"
+      ],
+      "changes": {
+        "securityNotificationsEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:25:47.373Z"
+  },
+  {
+    "id": "audit-fa41393c-893a-4bfd-887c-6d7fa9682637",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "billingNotificationsEnabled"
+      ],
+      "changes": {
+        "billingNotificationsEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:25:47.369Z"
+  },
+  {
+    "id": "audit-d340893a-70e1-454e-98e6-917be783843a",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "passwordResetEnabled"
+      ],
+      "changes": {
+        "passwordResetEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:25:47.368Z"
+  },
+  {
+    "id": "audit-1510970a-0088-4ab9-884a-45ecfe90dbac",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "expiryReminderEnabled"
+      ],
+      "changes": {
+        "expiryReminderEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:25:47.367Z"
+  },
+  {
+    "id": "audit-fea09aba-8b46-41cd-864e-c890b8a11ed4",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "selectionConfirmationEnabled"
+      ],
+      "changes": {
+        "selectionConfirmationEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:25:47.366Z"
+  },
+  {
+    "id": "audit-4c443d02-be73-4c5a-9f3a-8cda2d949b5e",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "selectionSubmittedEnabled"
+      ],
+      "changes": {
+        "selectionSubmittedEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:25:47.365Z"
+  },
+  {
+    "id": "audit-e035c908-1ded-4bfb-9da5-375d94b97813",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "whatsappEnabled",
+        "galleryPublishedEnabled"
+      ],
+      "changes": {
+        "whatsappEnabled": {
+          "old": false,
+          "new": true
+        },
+        "galleryPublishedEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:25:47.365Z"
+  },
+  {
+    "id": "audit-29c3f833-718d-4313-b0a3-90bed26e3128",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "smsEnabled"
+      ],
+      "changes": {
+        "smsEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:25:47.364Z"
+  },
+  {
+    "id": "audit-09fa7ae2-f8c9-4cbf-99fb-6e057202d82a",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "emailEnabled",
+        "whatsappEnabled"
+      ],
+      "changes": {
+        "emailEnabled": {
+          "old": false,
+          "new": true
+        },
+        "whatsappEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:25:47.363Z"
+  },
+  {
+    "id": "audit-9e2d585b-7f4a-4187-8e10-b9442bae5811",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "emailEnabled",
+        "whatsappEnabled"
+      ],
+      "changes": {
+        "emailEnabled": {
+          "old": true,
+          "new": false
+        },
+        "whatsappEnabled": {
+          "old": false,
+          "new": true
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:25:47.363Z"
+  },
+  {
+    "id": "audit-b86af9f6-12f8-429c-8f36-81d32e80a396",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "allCommunicationsEnabled",
+        "globalEnabled"
+      ],
+      "changes": {
+        "allCommunicationsEnabled": {
+          "old": false,
+          "new": true
+        },
+        "globalEnabled": {
+          "old": false,
+          "new": true
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:25:47.362Z"
+  },
+  {
+    "id": "audit-d39d1dd7-b2ca-40ca-ada4-56eb9276a721",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "allCommunicationsEnabled",
+        "globalEnabled"
+      ],
+      "changes": {
+        "allCommunicationsEnabled": {
+          "old": true,
+          "new": false
+        },
+        "globalEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": false,
+      "allCommunicationsEnabled": false
+    },
+    "timestamp": "2026-09-03T16:25:47.361Z"
+  },
+  {
+    "id": "audit-8fa5b748-6862-4104-ab4d-734249af35d8",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "allCommunicationsEnabled",
+        "whatsappEnabled",
+        "teamInvitationEnabled",
+        "globalEnabled"
+      ],
+      "changes": {
+        "allCommunicationsEnabled": {
+          "old": false,
+          "new": true
+        },
+        "whatsappEnabled": {
+          "old": true,
+          "new": false
+        },
+        "teamInvitationEnabled": {
+          "old": true,
+          "new": false
+        },
+        "globalEnabled": {
+          "old": false,
+          "new": true
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:25:47.361Z"
+  },
+  {
+    "id": "audit-f5394f1e-8023-49bf-ad76-45ec0eabd96b",
+    "adminId": "admin-user-id",
+    "adminEmail": "admin",
+    "action": "SET_ENTITLEMENT_OVERRIDE",
+    "targetType": "subscription",
+    "targetId": "sub-test-19",
+    "metadata": {
+      "photographerId": "test-tenant-a-1788452744032",
+      "overrides": {
+        "features": {
+          "whiteLabel": true,
+          "aiFeatures": true
+        },
+        "limits": {
+          "maxProjects": 999
+        },
+        "grantedAt": "2026-09-03T16:25:44.045Z",
+        "grantedBy": "admin-user-id",
+        "reason": "Super Admin VIP VIP Upgrade"
+      }
+    },
+    "result": "success",
+    "timestamp": "2026-09-03T16:25:44.047Z"
+  },
+  {
+    "id": "audit-92734dbb-b482-4b4d-860d-d959bcd7eb98",
+    "adminId": "admin-user-id",
+    "adminEmail": "admin",
+    "action": "SET_ENTITLEMENT_OVERRIDE",
+    "targetType": "subscription",
+    "targetId": "sub-test-19",
+    "metadata": {
+      "photographerId": "test-tenant-a-1788452716383",
+      "overrides": {
+        "features": {
+          "whiteLabel": true,
+          "aiFeatures": true
+        },
+        "limits": {
+          "maxProjects": 999
+        },
+        "grantedAt": "2026-09-03T16:25:16.462Z",
+        "grantedBy": "admin-user-id",
+        "reason": "Super Admin VIP VIP Upgrade"
+      }
+    },
+    "result": "success",
+    "timestamp": "2026-09-03T16:25:16.466Z"
+  },
+  {
+    "id": "audit-1d9ced51-f701-4383-b2a7-c0dff2adbb35",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_GALLERY_LIFECYCLE_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_gallery_lifecycle_settings",
+    "targetName": "Platform Gallery Lifecycle Settings",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "defaultLifespanDays",
+        "warningThresholdDays"
+      ],
+      "changes": {
+        "defaultLifespanDays": {
+          "old": 120,
+          "new": 90
+        },
+        "warningThresholdDays": {
+          "old": 10,
+          "new": 7
+        }
+      }
+    },
+    "timestamp": "2026-09-03T16:16:31.856Z"
+  },
+  {
+    "id": "audit-f1010c41-ff6a-4e15-8b9e-968263628e89",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_GALLERY_LIFECYCLE_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_gallery_lifecycle_settings",
+    "targetName": "Platform Gallery Lifecycle Settings",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "defaultLifespanDays",
+        "warningThresholdDays"
+      ],
+      "changes": {
+        "defaultLifespanDays": {
+          "old": 90,
+          "new": 120
+        },
+        "warningThresholdDays": {
+          "old": 7,
+          "new": 10
+        }
+      }
+    },
+    "timestamp": "2026-09-03T16:16:31.854Z"
+  },
+  {
+    "id": "audit-85080e01-01b2-4fe7-a5d2-6af7851572c7",
+    "adminId": "lifecycle-test-1788452191801@example.com",
+    "adminEmail": "lifecycle-test-1788452191801@example.com",
+    "action": "GALLERY_RESTORED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788452191801",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "lifecycle-test-1788452191801@example.com",
+      "previousStatus": "expired",
+      "newStatus": "published",
+      "restoredFrom": "expired",
+      "expiresAt": "2026-11-02T16:16:31.815Z"
+    },
+    "timestamp": "2026-09-03T16:16:31.815Z"
+  },
+  {
+    "id": "audit-f71b153e-70a6-4733-b89f-30f613e5a3b4",
+    "adminId": "cron-gallery-lifecycle",
+    "adminEmail": "system-cron@drfilms.com",
+    "action": "GALLERY_EXPIRED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788452191801",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "lifecycle-test-1788452191801@example.com",
+      "expiresAt": "2026-09-01T16:16:31.812Z",
+      "expiredAt": "2026-09-03T16:16:31.813Z"
+    },
+    "timestamp": "2026-09-03T16:16:31.813Z"
+  },
+  {
+    "id": "audit-c53f8d90-55d2-44ff-acc0-be9c6839eee0",
+    "adminId": "lifecycle-test-1788452191801@example.com",
+    "adminEmail": "lifecycle-test-1788452191801@example.com",
+    "action": "GALLERY_DELETE_RESTORED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788452191801",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "lifecycle-test-1788452191801@example.com",
+      "status": "published"
+    },
+    "timestamp": "2026-09-03T16:16:31.812Z"
+  },
+  {
+    "id": "audit-d6e8d1e8-5a60-4254-baff-4e883c3bb894",
+    "adminId": "lifecycle-test-1788452191801@example.com",
+    "adminEmail": "lifecycle-test-1788452191801@example.com",
+    "action": "GALLERY_DELETED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788452191801",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "lifecycle-test-1788452191801@example.com",
+      "previousStatus": "published",
+      "softDeleted": true
+    },
+    "timestamp": "2026-09-03T16:16:31.811Z"
+  },
+  {
+    "id": "audit-e0e11628-ed32-4796-ba5b-cb502524e9ae",
+    "adminId": "lifecycle-test-1788452191801@example.com",
+    "adminEmail": "lifecycle-test-1788452191801@example.com",
+    "action": "GALLERY_RESTORED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788452191801",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "lifecycle-test-1788452191801@example.com",
+      "previousStatus": "archived",
+      "newStatus": "published",
+      "restoredFrom": "archived"
+    },
+    "timestamp": "2026-09-03T16:16:31.808Z"
+  },
+  {
+    "id": "audit-7d55769c-5ef7-46f7-8fd0-bd7670d664c5",
+    "adminId": "lifecycle-test-1788452191801@example.com",
+    "adminEmail": "lifecycle-test-1788452191801@example.com",
+    "action": "GALLERY_ARCHIVED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788452191801",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "lifecycle-test-1788452191801@example.com",
+      "previousStatus": "published",
+      "newStatus": "archived"
+    },
+    "timestamp": "2026-09-03T16:16:31.807Z"
+  },
+  {
+    "id": "audit-460a6f63-9b17-455a-a333-a86c60cfa41f",
+    "adminId": "lifecycle-test-1788452191801@example.com",
+    "adminEmail": "lifecycle-test-1788452191801@example.com",
+    "action": "GALLERY_EXPIRATION_EXTENDED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788452191801",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "lifecycle-test-1788452191801@example.com",
+      "previousExpiresAt": "2026-11-02T16:16:31.801Z",
+      "newExpiresAt": "2027-01-01T16:16:31.805Z",
+      "previousStatus": "published",
+      "newStatus": "published"
+    },
+    "timestamp": "2026-09-03T16:16:31.805Z"
+  },
+  {
+    "id": "audit-a8da0e9d-18bb-4b5d-9b43-96d2931715f7",
+    "adminId": "lifecycle-test-1788452191801@example.com",
+    "adminEmail": "lifecycle-test-1788452191801@example.com",
+    "action": "GALLERY_PUBLISHED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788452191801",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "lifecycle-test-1788452191801@example.com",
+      "previousStatus": "draft",
+      "newStatus": "published",
+      "expiresAt": "2026-11-02T16:16:31.801Z"
+    },
+    "timestamp": "2026-09-03T16:16:31.804Z"
+  },
+  {
+    "id": "audit-b43f27d3-1653-466a-9a3e-70501b3ff0f2",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "allCommunicationsEnabled",
+        "globalEnabled"
+      ],
+      "changes": {
+        "allCommunicationsEnabled": {
+          "old": true,
+          "new": false
+        },
+        "globalEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": false,
+      "allCommunicationsEnabled": false
+    },
+    "timestamp": "2026-09-03T16:15:58.726Z"
+  },
+  {
+    "id": "audit-6930908a-a912-42c6-b81f-53d4f7987575",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "galleryPublishedEnabled"
+      ],
+      "changes": {
+        "galleryPublishedEnabled": {
+          "old": false,
+          "new": true
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:15:58.716Z"
+  },
+  {
+    "id": "audit-1d65015a-55f2-47c2-b91b-9bc40ec54ffc",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "securityNotificationsEnabled"
+      ],
+      "changes": {
+        "securityNotificationsEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:15:58.714Z"
+  },
+  {
+    "id": "audit-835c5d72-4322-454a-8621-d6e5dfe3a832",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "billingNotificationsEnabled"
+      ],
+      "changes": {
+        "billingNotificationsEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:15:58.712Z"
+  },
+  {
+    "id": "audit-29596c78-b2f6-4caa-90bb-8925ee0aa434",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "passwordResetEnabled"
+      ],
+      "changes": {
+        "passwordResetEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:15:58.710Z"
+  },
+  {
+    "id": "audit-566ce18c-d3be-459d-bf2d-fc398fcfb5b4",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "expiryReminderEnabled"
+      ],
+      "changes": {
+        "expiryReminderEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:15:58.709Z"
+  },
+  {
+    "id": "audit-eee7e222-56ef-4bb1-b50e-002057d86a48",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "selectionConfirmationEnabled"
+      ],
+      "changes": {
+        "selectionConfirmationEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:15:58.708Z"
+  },
+  {
+    "id": "audit-0c946c76-c8c1-4673-84e1-4dc76d8aeaeb",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "selectionSubmittedEnabled"
+      ],
+      "changes": {
+        "selectionSubmittedEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:15:58.707Z"
+  },
+  {
+    "id": "audit-9940f280-23e1-433a-b484-fe41706b75ed",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "whatsappEnabled",
+        "galleryPublishedEnabled"
+      ],
+      "changes": {
+        "whatsappEnabled": {
+          "old": false,
+          "new": true
+        },
+        "galleryPublishedEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:15:58.706Z"
+  },
+  {
+    "id": "audit-b8388733-9fc9-4124-9483-a5e20707f76b",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "smsEnabled"
+      ],
+      "changes": {
+        "smsEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:15:58.703Z"
+  },
+  {
+    "id": "audit-dfbce115-d07d-4c07-acec-8e48b86842fc",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "emailEnabled",
+        "whatsappEnabled"
+      ],
+      "changes": {
+        "emailEnabled": {
+          "old": false,
+          "new": true
+        },
+        "whatsappEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:15:58.701Z"
+  },
+  {
+    "id": "audit-74ce4107-4473-4662-a13a-7ffc8fead72e",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "emailEnabled",
+        "whatsappEnabled"
+      ],
+      "changes": {
+        "emailEnabled": {
+          "old": true,
+          "new": false
+        },
+        "whatsappEnabled": {
+          "old": false,
+          "new": true
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:15:58.699Z"
+  },
+  {
+    "id": "audit-a6ec95db-6418-40f8-ab2f-bda7c6e4bc3d",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "allCommunicationsEnabled",
+        "globalEnabled"
+      ],
+      "changes": {
+        "allCommunicationsEnabled": {
+          "old": false,
+          "new": true
+        },
+        "globalEnabled": {
+          "old": false,
+          "new": true
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:15:58.698Z"
+  },
+  {
+    "id": "audit-2c5e6c15-974f-4c3a-a3b7-1220f091c723",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "allCommunicationsEnabled",
+        "globalEnabled"
+      ],
+      "changes": {
+        "allCommunicationsEnabled": {
+          "old": true,
+          "new": false
+        },
+        "globalEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": false,
+      "allCommunicationsEnabled": false
+    },
+    "timestamp": "2026-09-03T16:15:58.696Z"
+  },
+  {
+    "id": "audit-cc17a23b-8764-41fd-a317-078ad909e69e",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "allCommunicationsEnabled",
+        "whatsappEnabled",
+        "teamInvitationEnabled",
+        "globalEnabled"
+      ],
+      "changes": {
+        "allCommunicationsEnabled": {
+          "old": false,
+          "new": true
+        },
+        "whatsappEnabled": {
+          "old": true,
+          "new": false
+        },
+        "teamInvitationEnabled": {
+          "old": true,
+          "new": false
+        },
+        "globalEnabled": {
+          "old": false,
+          "new": true
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:15:58.694Z"
+  },
+  {
+    "id": "audit-7e51cf7f-2d34-4325-8df0-b27d2f4599c9",
+    "adminId": "super-admin-cleanup",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "emergencyKillSwitch",
+        "emailEnabled",
+        "whatsappEnabled",
+        "inAppEnabled"
+      ],
+      "changes": {
+        "emergencyKillSwitch": {
+          "old": true,
+          "new": false
+        },
+        "emailEnabled": {
+          "old": false,
+          "new": true
+        },
+        "whatsappEnabled": {
+          "old": false,
+          "new": true
+        },
+        "inAppEnabled": {
+          "old": false,
+          "new": true
+        }
+      },
+      "globalEnabled": false,
+      "allCommunicationsEnabled": false
+    },
+    "timestamp": "2026-09-03T16:15:54.853Z"
+  },
+  {
+    "id": "audit-6bbba585-d78c-4eac-8035-f9137141aec6",
+    "adminId": "super-admin-id",
+    "adminEmail": "superadmin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "emergencyKillSwitch",
+        "emailEnabled",
+        "whatsappEnabled",
+        "inAppEnabled"
+      ],
+      "changes": {
+        "emergencyKillSwitch": {
+          "old": false,
+          "new": true
+        },
+        "emailEnabled": {
+          "old": true,
+          "new": false
+        },
+        "whatsappEnabled": {
+          "old": true,
+          "new": false
+        },
+        "inAppEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": false,
+      "allCommunicationsEnabled": false
+    },
+    "timestamp": "2026-09-03T16:15:54.847Z"
+  },
+  {
+    "id": "audit-812fa44f-978c-4b7a-abec-36fb33f42023",
+    "adminId": "super-admin-cleanup",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "emergencyKillSwitch",
+        "emailEnabled",
+        "whatsappEnabled",
+        "inAppEnabled"
+      ],
+      "changes": {
+        "emergencyKillSwitch": {
+          "old": true,
+          "new": false
+        },
+        "emailEnabled": {
+          "old": false,
+          "new": true
+        },
+        "whatsappEnabled": {
+          "old": false,
+          "new": true
+        },
+        "inAppEnabled": {
+          "old": false,
+          "new": true
+        }
+      },
+      "globalEnabled": false,
+      "allCommunicationsEnabled": false
+    },
+    "timestamp": "2026-09-03T16:15:45.985Z"
+  },
+  {
+    "id": "audit-c7872bbb-cd14-4bd6-9a8e-fa9b0780cdfb",
+    "adminId": "super-admin-id",
+    "adminEmail": "superadmin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "emergencyKillSwitch",
+        "emailEnabled",
+        "whatsappEnabled",
+        "inAppEnabled"
+      ],
+      "changes": {
+        "emergencyKillSwitch": {
+          "old": false,
+          "new": true
+        },
+        "emailEnabled": {
+          "old": true,
+          "new": false
+        },
+        "whatsappEnabled": {
+          "old": true,
+          "new": false
+        },
+        "inAppEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": false,
+      "allCommunicationsEnabled": false
+    },
+    "timestamp": "2026-09-03T16:15:45.983Z"
+  },
+  {
+    "id": "audit-1eeff667-7305-4483-b7b6-332eae9a6594",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "globalEnabled",
+        "allCommunicationsEnabled"
+      ],
+      "changes": {
+        "globalEnabled": {
+          "old": false,
+          "new": true
+        },
+        "allCommunicationsEnabled": {
+          "old": false,
+          "new": true
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:15:35.325Z"
+  },
+  {
+    "id": "audit-e70b157b-073f-4e77-aca8-573b14dc0a1c",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "emailEnabled"
+      ],
+      "changes": {
+        "emailEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": false,
+      "allCommunicationsEnabled": false
+    },
+    "timestamp": "2026-09-03T16:15:35.324Z"
+  },
+  {
+    "id": "audit-bbbb1fb1-18fb-43e1-839e-e2cef6a177c0",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "globalEnabled",
+        "maintenanceNote",
+        "allCommunicationsEnabled"
+      ],
+      "changes": {
+        "globalEnabled": {
+          "old": true,
+          "new": false
+        },
+        "maintenanceNote": {
+          "old": "Platform maintenance active",
+          "new": "Automated test mute"
+        },
+        "allCommunicationsEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": false,
+      "allCommunicationsEnabled": false
+    },
+    "timestamp": "2026-09-03T16:15:35.321Z"
+  },
+  {
+    "id": "audit-5371ecc6-c45b-41b4-88d3-90068b13bf15",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "clientAllEnabled",
+        "marketingAllEnabled"
+      ],
+      "changes": {
+        "clientAllEnabled": {
+          "old": false,
+          "new": true
+        },
+        "marketingAllEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:15:35.321Z"
+  },
+  {
+    "id": "audit-4d305919-5b2a-429a-9b17-98f26e08f363",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "emailClientGalleries",
+        "clientAllEnabled"
+      ],
+      "changes": {
+        "emailClientGalleries": {
+          "old": false,
+          "new": true
+        },
+        "clientAllEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:15:35.320Z"
+  },
+  {
+    "id": "audit-a1a6519a-6cf9-4c75-b3b9-a4c6eb219d58",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "emailEnabled",
+        "emailClientGalleries"
+      ],
+      "changes": {
+        "emailEnabled": {
+          "old": false,
+          "new": true
+        },
+        "emailClientGalleries": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:15:35.320Z"
+  },
+  {
+    "id": "audit-dc39a734-edb0-446b-a3d0-260ba5e28866",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "globalEnabled",
+        "allCommunicationsEnabled"
+      ],
+      "changes": {
+        "globalEnabled": {
+          "old": false,
+          "new": true
+        },
+        "allCommunicationsEnabled": {
+          "old": false,
+          "new": true
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:15:35.319Z"
+  },
+  {
+    "id": "audit-7b4b05e3-557c-49c4-b241-96dede7c3c7c",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "emailEnabled"
+      ],
+      "changes": {
+        "emailEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": false,
+      "allCommunicationsEnabled": false
+    },
+    "timestamp": "2026-09-03T16:15:35.319Z"
+  },
+  {
+    "id": "audit-456cda5a-41c6-439b-99fe-e827add867e3",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "globalEnabled",
+        "maintenanceNote",
+        "allCommunicationsEnabled"
+      ],
+      "changes": {
+        "globalEnabled": {
+          "old": true,
+          "new": false
+        },
+        "maintenanceNote": {
+          "old": "Phase 19 Automated Test Run",
+          "new": "Platform maintenance active"
+        },
+        "allCommunicationsEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": false,
+      "allCommunicationsEnabled": false
+    },
+    "timestamp": "2026-09-03T16:15:35.318Z"
+  },
+  {
+    "id": "audit-65f6b807-eb4d-4ca6-b284-b1f2ce8680be",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "globalEnabled",
+        "allCommunicationsEnabled"
+      ],
+      "changes": {
+        "globalEnabled": {
+          "old": false,
+          "new": true
+        },
+        "allCommunicationsEnabled": {
+          "old": false,
+          "new": true
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:15:35.318Z"
+  },
+  {
+    "id": "audit-af5756f1-4f67-4fcd-b0b8-5cf8c61f2552",
+    "adminId": "test-admin-user",
+    "adminEmail": "127.0.0.1",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "maintenanceNote"
+      ],
+      "changes": {
+        "maintenanceNote": {
+          "old": "EMERGENCY OUTAGE TEST",
+          "new": "Phase 19 Automated Test Run"
+        }
+      },
+      "globalEnabled": false,
+      "allCommunicationsEnabled": false
+    },
+    "timestamp": "2026-09-03T16:15:35.317Z"
+  },
+  {
+    "id": "audit-b23d0078-ea94-4a83-8d6a-2ce0e7f808f2",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "globalEnabled",
+        "allCommunicationsEnabled"
+      ],
+      "changes": {
+        "globalEnabled": {
+          "old": false,
+          "new": true
+        },
+        "allCommunicationsEnabled": {
+          "old": false,
+          "new": true
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:15:22.632Z"
+  },
+  {
+    "id": "audit-0a83908a-72aa-4c53-acff-d88459d65636",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "emailEnabled"
+      ],
+      "changes": {
+        "emailEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": false,
+      "allCommunicationsEnabled": false
+    },
+    "timestamp": "2026-09-03T16:15:22.630Z"
+  },
+  {
+    "id": "audit-849c558a-dcfd-476a-9cec-3c76bb50c379",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "globalEnabled",
+        "maintenanceNote",
+        "allCommunicationsEnabled"
+      ],
+      "changes": {
+        "globalEnabled": {
+          "old": true,
+          "new": false
+        },
+        "maintenanceNote": {
+          "old": "Platform maintenance active",
+          "new": "Automated test mute"
+        },
+        "allCommunicationsEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": false,
+      "allCommunicationsEnabled": false
+    },
+    "timestamp": "2026-09-03T16:15:22.623Z"
+  },
+  {
+    "id": "audit-0d74e424-b69d-4fe3-8896-31b0bfa3206c",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "clientAllEnabled",
+        "marketingAllEnabled"
+      ],
+      "changes": {
+        "clientAllEnabled": {
+          "old": false,
+          "new": true
+        },
+        "marketingAllEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:15:22.620Z"
+  },
+  {
+    "id": "audit-742903f7-cb85-443d-b8a5-eaf67c6a4530",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "emailClientGalleries",
+        "clientAllEnabled"
+      ],
+      "changes": {
+        "emailClientGalleries": {
+          "old": false,
+          "new": true
+        },
+        "clientAllEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:15:22.617Z"
+  },
+  {
+    "id": "audit-57264afc-0d6a-49dc-a269-d13b3ce7ea7f",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "emailEnabled",
+        "emailClientGalleries"
+      ],
+      "changes": {
+        "emailEnabled": {
+          "old": false,
+          "new": true
+        },
+        "emailClientGalleries": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:15:22.615Z"
+  },
+  {
+    "id": "audit-96d556da-a0b5-4a5e-8c19-4bba86c72b26",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "globalEnabled",
+        "allCommunicationsEnabled"
+      ],
+      "changes": {
+        "globalEnabled": {
+          "old": false,
+          "new": true
+        },
+        "allCommunicationsEnabled": {
+          "old": false,
+          "new": true
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:15:22.612Z"
+  },
+  {
+    "id": "audit-dd89e8ab-9fc7-48a4-995d-0cefcc76920a",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "emailEnabled"
+      ],
+      "changes": {
+        "emailEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": false,
+      "allCommunicationsEnabled": false
+    },
+    "timestamp": "2026-09-03T16:15:22.609Z"
+  },
+  {
+    "id": "audit-ab405be7-9097-41ef-9025-ec1197a46294",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "globalEnabled",
+        "maintenanceNote",
+        "allCommunicationsEnabled"
+      ],
+      "changes": {
+        "globalEnabled": {
+          "old": true,
+          "new": false
+        },
+        "maintenanceNote": {
+          "old": "Phase 19 Automated Test Run",
+          "new": "Platform maintenance active"
+        },
+        "allCommunicationsEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": false,
+      "allCommunicationsEnabled": false
+    },
+    "timestamp": "2026-09-03T16:15:22.605Z"
+  },
+  {
+    "id": "audit-dd8a59b6-143e-463b-a87c-8d36a37214cb",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "globalEnabled",
+        "allCommunicationsEnabled"
+      ],
+      "changes": {
+        "globalEnabled": {
+          "old": false,
+          "new": true
+        },
+        "allCommunicationsEnabled": {
+          "old": false,
+          "new": true
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:15:22.602Z"
+  },
+  {
+    "id": "audit-bef30fc7-d9df-499d-8263-1892cf604063",
+    "adminId": "test-admin-user",
+    "adminEmail": "127.0.0.1",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "maintenanceNote"
+      ],
+      "changes": {
+        "maintenanceNote": {
+          "old": "EMERGENCY OUTAGE TEST",
+          "new": "Phase 19 Automated Test Run"
+        }
+      },
+      "globalEnabled": false,
+      "allCommunicationsEnabled": false
+    },
+    "timestamp": "2026-09-03T16:15:22.598Z"
+  },
+  {
+    "id": "audit-1f7e234a-b92e-4b32-9424-0306f447fddc",
+    "adminId": "super-admin-cleanup",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "emergencyKillSwitch",
+        "emailEnabled",
+        "whatsappEnabled",
+        "inAppEnabled"
+      ],
+      "changes": {
+        "emergencyKillSwitch": {
+          "old": true,
+          "new": false
+        },
+        "emailEnabled": {
+          "old": false,
+          "new": true
+        },
+        "whatsappEnabled": {
+          "old": false,
+          "new": true
+        },
+        "inAppEnabled": {
+          "old": false,
+          "new": true
+        }
+      },
+      "globalEnabled": false,
+      "allCommunicationsEnabled": false
+    },
+    "timestamp": "2026-09-03T16:14:56.325Z"
+  },
+  {
+    "id": "audit-0b2a227f-f649-4558-b28f-73d37daf35db",
+    "adminId": "super-admin-id",
+    "adminEmail": "superadmin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "emergencyKillSwitch",
+        "emailEnabled",
+        "whatsappEnabled",
+        "inAppEnabled",
+        "maintenanceNote"
+      ],
+      "changes": {
+        "emergencyKillSwitch": {
+          "old": false,
+          "new": true
+        },
+        "emailEnabled": {
+          "old": true,
+          "new": false
+        },
+        "whatsappEnabled": {
+          "old": true,
+          "new": false
+        },
+        "inAppEnabled": {
+          "old": true,
+          "new": false
+        },
+        "maintenanceNote": {
+          "new": "EMERGENCY OUTAGE TEST"
+        }
+      },
+      "globalEnabled": false,
+      "allCommunicationsEnabled": false
+    },
+    "timestamp": "2026-09-03T16:14:56.323Z"
+  },
+  {
+    "id": "audit-10103118-0f5a-40a8-8a64-ac6d51aabc5b",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "globalEnabled",
+        "allCommunicationsEnabled"
+      ],
+      "changes": {
+        "globalEnabled": {
+          "old": false,
+          "new": true
+        },
+        "allCommunicationsEnabled": {
+          "old": false,
+          "new": true
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:14:47.983Z"
+  },
+  {
+    "id": "audit-8ebe1d6a-7a56-42ef-ae1b-8aa2756fd623",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "emailEnabled"
+      ],
+      "changes": {
+        "emailEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": false,
+      "allCommunicationsEnabled": false
+    },
+    "timestamp": "2026-09-03T16:14:47.981Z"
+  },
+  {
+    "id": "audit-d89afee4-02b4-442b-83f7-58963decea1b",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "globalEnabled",
+        "maintenanceNote",
+        "allCommunicationsEnabled"
+      ],
+      "changes": {
+        "globalEnabled": {
+          "old": true,
+          "new": false
+        },
+        "maintenanceNote": {
+          "old": "Platform maintenance active",
+          "new": "Automated test mute"
+        },
+        "allCommunicationsEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": false,
+      "allCommunicationsEnabled": false
+    },
+    "timestamp": "2026-09-03T16:14:47.977Z"
+  },
+  {
+    "id": "audit-9b2ba8ea-dc9c-4614-bd18-2bf632b00a00",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "clientAllEnabled",
+        "marketingAllEnabled"
+      ],
+      "changes": {
+        "clientAllEnabled": {
+          "old": false,
+          "new": true
+        },
+        "marketingAllEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:14:47.975Z"
+  },
+  {
+    "id": "audit-cebeeb50-070e-418a-9cf9-e781fa412100",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "emailClientGalleries",
+        "clientAllEnabled"
+      ],
+      "changes": {
+        "emailClientGalleries": {
+          "old": false,
+          "new": true
+        },
+        "clientAllEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:14:47.974Z"
+  },
+  {
+    "id": "audit-165df10c-c2a0-4c3e-a6de-0f55cc6a82db",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "emailEnabled",
+        "emailClientGalleries"
+      ],
+      "changes": {
+        "emailEnabled": {
+          "old": false,
+          "new": true
+        },
+        "emailClientGalleries": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:14:47.973Z"
+  },
+  {
+    "id": "audit-39b5547d-25e3-4fe2-81c9-79a7caac406b",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "globalEnabled",
+        "allCommunicationsEnabled"
+      ],
+      "changes": {
+        "globalEnabled": {
+          "old": false,
+          "new": true
+        },
+        "allCommunicationsEnabled": {
+          "old": false,
+          "new": true
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:14:47.971Z"
+  },
+  {
+    "id": "audit-354f7530-bb5b-4cae-b92c-41dbd2ec82e0",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "emailEnabled"
+      ],
+      "changes": {
+        "emailEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": false,
+      "allCommunicationsEnabled": false
+    },
+    "timestamp": "2026-09-03T16:14:47.969Z"
+  },
+  {
+    "id": "audit-d0f79b3a-8bb6-4cbe-96ec-7aea5887eb44",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "globalEnabled",
+        "maintenanceNote",
+        "allCommunicationsEnabled"
+      ],
+      "changes": {
+        "globalEnabled": {
+          "old": true,
+          "new": false
+        },
+        "maintenanceNote": {
+          "old": "Phase 19 Automated Test Run",
+          "new": "Platform maintenance active"
+        },
+        "allCommunicationsEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": false,
+      "allCommunicationsEnabled": false
+    },
+    "timestamp": "2026-09-03T16:14:47.969Z"
+  },
+  {
+    "id": "audit-e62d8786-2858-4fad-9b57-753bffa4d4ab",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "globalEnabled",
+        "allCommunicationsEnabled"
+      ],
+      "changes": {
+        "globalEnabled": {
+          "old": false,
+          "new": true
+        },
+        "allCommunicationsEnabled": {
+          "old": false,
+          "new": true
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:14:47.968Z"
+  },
+  {
+    "id": "audit-a0f278c3-826b-4362-95a1-15d059d67f07",
+    "adminId": "test-admin-user",
+    "adminEmail": "127.0.0.1",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "maintenanceNote"
+      ],
+      "changes": {
+        "maintenanceNote": {
+          "new": "Phase 19 Automated Test Run"
+        }
+      },
+      "globalEnabled": false,
+      "allCommunicationsEnabled": false
+    },
+    "timestamp": "2026-09-03T16:14:47.967Z"
+  },
+  {
+    "id": "audit-8a83e168-3d1d-4a84-a3e1-cff6669d49d7",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "allCommunicationsEnabled",
+        "globalEnabled"
+      ],
+      "changes": {
+        "allCommunicationsEnabled": {
+          "old": true,
+          "new": false
+        },
+        "globalEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": false,
+      "allCommunicationsEnabled": false
+    },
+    "timestamp": "2026-09-03T16:14:45.405Z"
+  },
+  {
+    "id": "audit-9dbf77fd-d453-45ce-a2f7-9ba4aebf0f3d",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "galleryPublishedEnabled"
+      ],
+      "changes": {
+        "galleryPublishedEnabled": {
+          "old": false,
+          "new": true
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:14:45.400Z"
+  },
+  {
+    "id": "audit-568ae08c-a945-439b-903a-7d96e4f89800",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "securityNotificationsEnabled"
+      ],
+      "changes": {
+        "securityNotificationsEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:14:45.398Z"
+  },
+  {
+    "id": "audit-f6429a60-8e2f-400f-994b-12c27c3a4521",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "billingNotificationsEnabled"
+      ],
+      "changes": {
+        "billingNotificationsEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:14:45.398Z"
+  },
+  {
+    "id": "audit-77c2df5d-ff7d-4edb-b20a-806794c1297f",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "passwordResetEnabled"
+      ],
+      "changes": {
+        "passwordResetEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:14:45.397Z"
+  },
+  {
+    "id": "audit-30767185-aaa8-431f-b6ab-c727fee9468f",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "expiryReminderEnabled"
+      ],
+      "changes": {
+        "expiryReminderEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:14:45.396Z"
+  },
+  {
+    "id": "audit-9dfd7fb3-0d7c-44ee-aedd-eade55637282",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "selectionConfirmationEnabled"
+      ],
+      "changes": {
+        "selectionConfirmationEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:14:45.396Z"
+  },
+  {
+    "id": "audit-25f0152e-e097-467f-a88e-1826943afa57",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "selectionSubmittedEnabled"
+      ],
+      "changes": {
+        "selectionSubmittedEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:14:45.395Z"
+  },
+  {
+    "id": "audit-52846659-bba2-49d9-a663-696b13548709",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "whatsappEnabled",
+        "galleryPublishedEnabled"
+      ],
+      "changes": {
+        "whatsappEnabled": {
+          "old": false,
+          "new": true
+        },
+        "galleryPublishedEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:14:45.394Z"
+  },
+  {
+    "id": "audit-271ec6a3-dd48-45c0-b232-49c417226233",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "smsEnabled"
+      ],
+      "changes": {
+        "smsEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:14:45.393Z"
+  },
+  {
+    "id": "audit-8da756ef-0c65-49b4-8c04-81e48ba671bb",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "emailEnabled",
+        "whatsappEnabled"
+      ],
+      "changes": {
+        "emailEnabled": {
+          "old": false,
+          "new": true
+        },
+        "whatsappEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:14:45.393Z"
+  },
+  {
+    "id": "audit-bbf577ce-6043-4212-9e7f-cd81b64aea99",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "emailEnabled",
+        "whatsappEnabled"
+      ],
+      "changes": {
+        "emailEnabled": {
+          "old": true,
+          "new": false
+        },
+        "whatsappEnabled": {
+          "old": false,
+          "new": true
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:14:45.392Z"
+  },
+  {
+    "id": "audit-d2de1443-5cb2-494c-9616-36d5511bcac4",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "allCommunicationsEnabled",
+        "globalEnabled"
+      ],
+      "changes": {
+        "allCommunicationsEnabled": {
+          "old": false,
+          "new": true
+        },
+        "globalEnabled": {
+          "old": false,
+          "new": true
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:14:45.392Z"
+  },
+  {
+    "id": "audit-f20251e2-91ba-45d5-963d-8dbb57523363",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "allCommunicationsEnabled",
+        "globalEnabled"
+      ],
+      "changes": {
+        "allCommunicationsEnabled": {
+          "old": true,
+          "new": false
+        },
+        "globalEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": false,
+      "allCommunicationsEnabled": false
+    },
+    "timestamp": "2026-09-03T16:14:45.392Z"
+  },
+  {
+    "id": "audit-edc04732-d003-410e-9ee7-030c7a1b2f8d",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "allCommunicationsEnabled",
+        "whatsappEnabled",
+        "teamInvitationEnabled",
+        "globalEnabled"
+      ],
+      "changes": {
+        "allCommunicationsEnabled": {
+          "old": false,
+          "new": true
+        },
+        "whatsappEnabled": {
+          "old": true,
+          "new": false
+        },
+        "teamInvitationEnabled": {
+          "old": true,
+          "new": false
+        },
+        "globalEnabled": {
+          "old": false,
+          "new": true
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:14:45.391Z"
+  },
+  {
+    "id": "audit-51def91e-1a08-4d05-a12e-a338b103d2d0",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "allCommunicationsEnabled",
+        "globalEnabled"
+      ],
+      "changes": {
+        "allCommunicationsEnabled": {
+          "old": true,
+          "new": false
+        },
+        "globalEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": false,
+      "allCommunicationsEnabled": false
+    },
+    "timestamp": "2026-09-03T16:14:13.346Z"
+  },
+  {
+    "id": "audit-e01ebed8-1ad3-414c-9c5d-af2aec369bd1",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "galleryPublishedEnabled"
+      ],
+      "changes": {
+        "galleryPublishedEnabled": {
+          "old": false,
+          "new": true
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:14:13.341Z"
+  },
+  {
+    "id": "audit-7ab797bd-8e04-438b-8845-7526be4679ae",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "securityNotificationsEnabled"
+      ],
+      "changes": {
+        "securityNotificationsEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:14:13.341Z"
+  },
+  {
+    "id": "audit-30db5e33-c3b9-4285-9411-611c74549e1d",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "billingNotificationsEnabled"
+      ],
+      "changes": {
+        "billingNotificationsEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:14:13.341Z"
+  },
+  {
+    "id": "audit-c1e2f7bb-433d-41a5-b5e5-f09a9d020988",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "passwordResetEnabled"
+      ],
+      "changes": {
+        "passwordResetEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:14:13.340Z"
+  },
+  {
+    "id": "audit-8b432804-6f3c-4b75-a7c6-f2d9d7cd578b",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "expiryReminderEnabled"
+      ],
+      "changes": {
+        "expiryReminderEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:14:13.338Z"
+  },
+  {
+    "id": "audit-964d9b2d-8195-4494-83a9-0ccc27a5a5ee",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "selectionConfirmationEnabled"
+      ],
+      "changes": {
+        "selectionConfirmationEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:14:13.336Z"
+  },
+  {
+    "id": "audit-491d5dd9-d738-4e7c-a22d-3805fce5e815",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "selectionSubmittedEnabled"
+      ],
+      "changes": {
+        "selectionSubmittedEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:14:13.335Z"
+  },
+  {
+    "id": "audit-eb9bfa8a-68cb-45f7-aa37-f68abc333381",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "whatsappEnabled",
+        "galleryPublishedEnabled"
+      ],
+      "changes": {
+        "whatsappEnabled": {
+          "old": false,
+          "new": true
+        },
+        "galleryPublishedEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:14:13.334Z"
+  },
+  {
+    "id": "audit-905abb99-e56e-4735-9461-87b155adf362",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "smsEnabled"
+      ],
+      "changes": {
+        "smsEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:14:13.333Z"
+  },
+  {
+    "id": "audit-ada7572e-7a92-485c-a2c2-219e7c213cab",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "emailEnabled",
+        "whatsappEnabled"
+      ],
+      "changes": {
+        "emailEnabled": {
+          "old": false,
+          "new": true
+        },
+        "whatsappEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:14:13.333Z"
+  },
+  {
+    "id": "audit-25a8d6a2-fdef-4248-8b9c-a9962342d491",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "emailEnabled",
+        "whatsappEnabled"
+      ],
+      "changes": {
+        "emailEnabled": {
+          "old": true,
+          "new": false
+        },
+        "whatsappEnabled": {
+          "old": false,
+          "new": true
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:14:13.333Z"
+  },
+  {
+    "id": "audit-ee400105-aa38-452a-b8d8-ec5baa3c1048",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "allCommunicationsEnabled",
+        "globalEnabled"
+      ],
+      "changes": {
+        "allCommunicationsEnabled": {
+          "old": false,
+          "new": true
+        },
+        "globalEnabled": {
+          "old": false,
+          "new": true
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:14:13.332Z"
+  },
+  {
+    "id": "audit-40f09a06-f21d-487e-b206-477e32d71af7",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "allCommunicationsEnabled",
+        "globalEnabled"
+      ],
+      "changes": {
+        "allCommunicationsEnabled": {
+          "old": true,
+          "new": false
+        },
+        "globalEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": false,
+      "allCommunicationsEnabled": false
+    },
+    "timestamp": "2026-09-03T16:14:13.332Z"
+  },
+  {
+    "id": "audit-ca661ed6-b7ea-4f0e-bbcf-9dc6b89e1c5f",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "allCommunicationsEnabled",
+        "whatsappEnabled",
+        "teamInvitationEnabled",
+        "globalEnabled"
+      ],
+      "changes": {
+        "allCommunicationsEnabled": {
+          "old": false,
+          "new": true
+        },
+        "whatsappEnabled": {
+          "old": true,
+          "new": false
+        },
+        "teamInvitationEnabled": {
+          "old": true,
+          "new": false
+        },
+        "globalEnabled": {
+          "old": false,
+          "new": true
+        }
+      },
+      "globalEnabled": true,
+      "allCommunicationsEnabled": true
+    },
+    "timestamp": "2026-09-03T16:14:13.331Z"
+  },
+  {
+    "id": "audit-7861009f-3bd8-4ca5-a4ff-31c50eb9784c",
+    "adminId": "photographer-tenant-b",
+    "adminEmail": "beta@studio.com",
+    "action": "DOMAIN_DELETE",
+    "targetType": "domain",
+    "targetId": "dom-d8db7756-7a8b-4b7f-b91e-d048bf1521a3",
+    "targetName": "weddings.beta-photos.com",
+    "result": "success",
+    "timestamp": "2026-09-03T15:00:03.679Z"
+  },
+  {
+    "id": "audit-0c1be414-6456-4adb-ba9a-1b4de0c8eb46",
+    "adminId": "photographer-tenant-b",
+    "adminEmail": "beta@studio.com",
+    "action": "DOMAIN_CREATE",
+    "targetType": "domain",
+    "targetId": "dom-d8db7756-7a8b-4b7f-b91e-d048bf1521a3",
+    "targetName": "weddings.beta-photos.com",
+    "metadata": {
+      "type": "SUBDOMAIN",
+      "isPrimary": true
+    },
+    "result": "success",
+    "timestamp": "2026-09-03T15:00:03.678Z"
+  },
+  {
+    "id": "audit-7ac4dbf9-6a1d-4445-b70f-de78c52ddd86",
+    "adminId": "photographer-tenant-a",
+    "adminEmail": "alpha@studio.com",
+    "action": "DOMAIN_CREATE",
+    "targetType": "domain",
+    "targetId": "dom-cab9fe43-a616-4695-8d2e-f5cfdc63f4c9",
+    "targetName": "gallery.alpha-studio.com",
+    "metadata": {
+      "type": "SUBDOMAIN",
+      "isPrimary": true
+    },
+    "result": "success",
+    "timestamp": "2026-09-03T15:00:03.678Z"
+  },
+  {
+    "id": "audit-4aaafbb6-cc18-4f0d-ae47-39ab510dc446",
+    "adminId": "photographer-super-admin",
+    "adminEmail": "admin@drfilms.com",
+    "action": "GRANT_COMP_SUBSCRIPTION",
+    "targetType": "subscription",
+    "targetId": "sub-photog-p2-1788447602906",
+    "metadata": {
+      "photographerId": "photog-p2-1788447602906",
+      "plan": "studio",
+      "durationDays": 60,
+      "reason": "VIP Celebrity Wedding Grant"
+    },
+    "result": "success",
+    "timestamp": "2026-09-03T15:00:02.914Z"
+  },
+  {
+    "id": "audit-dee5a273-ee0c-4754-9c2d-80db299cabf4",
+    "adminId": "photographer-98155b0a-4392-481c-ae07-165f8c000897",
+    "adminEmail": "newphotog_1788447602159@studioapex.com",
+    "action": "PHOTOGRAPHER_REGISTERED",
+    "targetType": "photographer",
+    "targetId": "photographer-98155b0a-4392-481c-ae07-165f8c000897",
+    "targetName": "Aria Montgomery",
+    "result": "success",
+    "metadata": {
+      "studioName": "Apex Cinematic Weddings",
+      "email": "newphotog_1788447602159@studioapex.com"
+    },
+    "timestamp": "2026-09-03T15:00:02.226Z"
+  },
+  {
+    "id": "audit-02371980-8da7-4d90-a4b9-289a09951ba4",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_GALLERY_LIFECYCLE_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_gallery_lifecycle_settings",
+    "targetName": "Platform Gallery Lifecycle Settings",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "defaultLifespanDays",
+        "warningThresholdDays"
+      ],
+      "changes": {
+        "defaultLifespanDays": {
+          "old": 120,
+          "new": 90
+        },
+        "warningThresholdDays": {
+          "old": 10,
+          "new": 7
+        }
+      }
+    },
+    "timestamp": "2026-09-03T14:59:55.568Z"
+  },
+  {
+    "id": "audit-946c460f-074e-4bb5-bb4c-47ceaad7bb16",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_GALLERY_LIFECYCLE_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_gallery_lifecycle_settings",
+    "targetName": "Platform Gallery Lifecycle Settings",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "defaultLifespanDays",
+        "warningThresholdDays"
+      ],
+      "changes": {
+        "defaultLifespanDays": {
+          "old": 90,
+          "new": 120
+        },
+        "warningThresholdDays": {
+          "old": 7,
+          "new": 10
+        }
+      }
+    },
+    "timestamp": "2026-09-03T14:59:55.568Z"
+  },
+  {
+    "id": "audit-47bf35d6-1bd0-4c7d-a962-90f662889f7b",
+    "adminId": "lifecycle-test-1788447595547@example.com",
+    "adminEmail": "lifecycle-test-1788447595547@example.com",
+    "action": "GALLERY_RESTORED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447595547",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "previousStatus": "expired",
+      "newStatus": "published",
+      "restoredFrom": "expired",
+      "expiresAt": "2026-12-02T14:59:55.556Z"
+    },
+    "timestamp": "2026-09-03T14:59:55.556Z"
+  },
+  {
+    "id": "audit-a113d3ff-3a0d-4615-84ae-ced13eda11f8",
+    "adminId": "cron-gallery-lifecycle",
+    "adminEmail": "system-cron@drfilms.com",
+    "action": "GALLERY_EXPIRED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447595547",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "expiresAt": "2026-09-01T14:59:55.555Z",
+      "expiredAt": "2026-09-03T14:59:55.556Z"
+    },
+    "timestamp": "2026-09-03T14:59:55.556Z"
+  },
+  {
+    "id": "audit-578bf22f-e168-436d-a975-4502a6760e82",
+    "adminId": "lifecycle-test-1788447595547@example.com",
+    "adminEmail": "lifecycle-test-1788447595547@example.com",
+    "action": "GALLERY_DELETE_RESTORED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447595547",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "status": "published"
+    },
+    "timestamp": "2026-09-03T14:59:55.555Z"
+  },
+  {
+    "id": "audit-104b3151-e247-4f67-9cdf-328c0c79629a",
+    "adminId": "lifecycle-test-1788447595547@example.com",
+    "adminEmail": "lifecycle-test-1788447595547@example.com",
+    "action": "GALLERY_DELETED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447595547",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "previousStatus": "published",
+      "softDeleted": true
+    },
+    "timestamp": "2026-09-03T14:59:55.555Z"
+  },
+  {
+    "id": "audit-0ede294f-a7d8-4541-a1fb-f888fad3c9e5",
+    "adminId": "lifecycle-test-1788447595547@example.com",
+    "adminEmail": "lifecycle-test-1788447595547@example.com",
+    "action": "GALLERY_RESTORED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447595547",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "previousStatus": "archived",
+      "newStatus": "published",
+      "restoredFrom": "archived"
+    },
+    "timestamp": "2026-09-03T14:59:55.550Z"
+  },
+  {
+    "id": "audit-aa26bb76-3b3f-4000-809e-09f92e220f70",
+    "adminId": "lifecycle-test-1788447595547@example.com",
+    "adminEmail": "lifecycle-test-1788447595547@example.com",
+    "action": "GALLERY_ARCHIVED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447595547",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "previousStatus": "published",
+      "newStatus": "archived"
+    },
+    "timestamp": "2026-09-03T14:59:55.550Z"
+  },
+  {
+    "id": "audit-a211b6d6-4208-488c-a388-ff6b7576235f",
+    "adminId": "lifecycle-test-1788447595547@example.com",
+    "adminEmail": "lifecycle-test-1788447595547@example.com",
+    "action": "GALLERY_EXPIRATION_EXTENDED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447595547",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "previousExpiresAt": "2026-12-02T14:59:55.548Z",
+      "newExpiresAt": "2027-01-01T14:59:55.549Z",
+      "previousStatus": "published",
+      "newStatus": "published"
+    },
+    "timestamp": "2026-09-03T14:59:55.549Z"
+  },
+  {
+    "id": "audit-9ae05e3f-7466-4432-b272-95c2491a95d7",
+    "adminId": "lifecycle-test-1788447595547@example.com",
+    "adminEmail": "lifecycle-test-1788447595547@example.com",
+    "action": "GALLERY_PUBLISHED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447595547",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "previousStatus": "draft",
+      "newStatus": "published",
+      "expiresAt": "2026-12-02T14:59:55.548Z"
+    },
+    "timestamp": "2026-09-03T14:59:55.549Z"
+  },
+  {
+    "id": "audit-23c6ce59-7b4b-42cc-8a80-b87061544d48",
+    "adminId": "lifecycle-test-1788447579994@example.com",
+    "adminEmail": "lifecycle-test-1788447579994@example.com",
+    "action": "GALLERY_RESTORED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447579994",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "previousStatus": "expired",
+      "newStatus": "published",
+      "restoredFrom": "expired",
+      "expiresAt": "2026-12-02T14:59:40.003Z"
+    },
+    "timestamp": "2026-09-03T14:59:40.003Z"
+  },
+  {
+    "id": "audit-3576da7e-6a32-441a-9b62-dde846e3f38e",
+    "adminId": "cron-gallery-lifecycle",
+    "adminEmail": "system-cron@drfilms.com",
+    "action": "GALLERY_EXPIRED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447579994",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "expiresAt": "2026-09-01T14:59:40.000Z",
+      "expiredAt": "2026-09-03T14:59:40.002Z"
+    },
+    "timestamp": "2026-09-03T14:59:40.002Z"
+  },
+  {
+    "id": "audit-d1f7c070-d6b4-4449-9822-aa22358fa9e2",
+    "adminId": "lifecycle-test-1788447579994@example.com",
+    "adminEmail": "lifecycle-test-1788447579994@example.com",
+    "action": "GALLERY_DELETE_RESTORED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447579994",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "status": "published"
+    },
+    "timestamp": "2026-09-03T14:59:40.000Z"
+  },
+  {
+    "id": "audit-6b681aa3-e4c5-4d97-9d2e-a45bf236abf9",
+    "adminId": "lifecycle-test-1788447579994@example.com",
+    "adminEmail": "lifecycle-test-1788447579994@example.com",
+    "action": "GALLERY_DELETED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447579994",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "previousStatus": "published",
+      "softDeleted": true
+    },
+    "timestamp": "2026-09-03T14:59:39.999Z"
+  },
+  {
+    "id": "audit-42da955d-a934-4196-ac9e-615e5d69b23f",
+    "adminId": "lifecycle-test-1788447579994@example.com",
+    "adminEmail": "lifecycle-test-1788447579994@example.com",
+    "action": "GALLERY_RESTORED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447579994",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "previousStatus": "archived",
+      "newStatus": "published",
+      "restoredFrom": "archived"
+    },
+    "timestamp": "2026-09-03T14:59:39.998Z"
+  },
+  {
+    "id": "audit-c38146a9-b2a2-4c3a-b5a4-148b455533f0",
+    "adminId": "lifecycle-test-1788447579994@example.com",
+    "adminEmail": "lifecycle-test-1788447579994@example.com",
+    "action": "GALLERY_ARCHIVED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447579994",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "previousStatus": "published",
+      "newStatus": "archived"
+    },
+    "timestamp": "2026-09-03T14:59:39.998Z"
+  },
+  {
+    "id": "audit-412df4b8-ae27-40d5-8652-b89eb49ff55c",
+    "adminId": "lifecycle-test-1788447579994@example.com",
+    "adminEmail": "lifecycle-test-1788447579994@example.com",
+    "action": "GALLERY_EXPIRATION_EXTENDED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447579994",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "previousExpiresAt": "2026-12-02T14:59:39.995Z",
+      "newExpiresAt": "2027-01-01T14:59:39.997Z",
+      "previousStatus": "published",
+      "newStatus": "published"
+    },
+    "timestamp": "2026-09-03T14:59:39.997Z"
+  },
+  {
+    "id": "audit-b5d57536-b9a4-4563-b2ec-7a491ac77307",
+    "adminId": "lifecycle-test-1788447579994@example.com",
+    "adminEmail": "lifecycle-test-1788447579994@example.com",
+    "action": "GALLERY_PUBLISHED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447579994",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "previousStatus": "draft",
+      "newStatus": "published",
+      "expiresAt": "2026-12-02T14:59:39.995Z"
+    },
+    "timestamp": "2026-09-03T14:59:39.997Z"
+  },
+  {
+    "id": "audit-3269a1bb-2a57-4c03-aeaf-b24da2c3985b",
+    "adminId": "lifecycle-test-1788447567055@example.com",
+    "adminEmail": "lifecycle-test-1788447567055@example.com",
+    "action": "GALLERY_RESTORED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447567055",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "previousStatus": "expired",
+      "newStatus": "published",
+      "restoredFrom": "expired",
+      "expiresAt": "2026-12-02T14:59:27.061Z"
+    },
+    "timestamp": "2026-09-03T14:59:27.061Z"
+  },
+  {
+    "id": "audit-68d4b23b-37cc-472e-abb9-d906026ce482",
+    "adminId": "cron-gallery-lifecycle",
+    "adminEmail": "system-cron@drfilms.com",
+    "action": "GALLERY_EXPIRED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447567055",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "expiresAt": "2026-09-01T14:59:27.060Z",
+      "expiredAt": "2026-09-03T14:59:27.060Z"
+    },
+    "timestamp": "2026-09-03T14:59:27.060Z"
+  },
+  {
+    "id": "audit-2b3a70df-61cb-45e2-ab50-09cef673d4ea",
+    "adminId": "lifecycle-test-1788447567055@example.com",
+    "adminEmail": "lifecycle-test-1788447567055@example.com",
+    "action": "GALLERY_DELETE_RESTORED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447567055",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "status": "published"
+    },
+    "timestamp": "2026-09-03T14:59:27.059Z"
+  },
+  {
+    "id": "audit-3a74b932-e60b-4fc5-a709-51247583a26b",
+    "adminId": "lifecycle-test-1788447567055@example.com",
+    "adminEmail": "lifecycle-test-1788447567055@example.com",
+    "action": "GALLERY_DELETED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447567055",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "previousStatus": "published",
+      "softDeleted": true
+    },
+    "timestamp": "2026-09-03T14:59:27.059Z"
+  },
+  {
+    "id": "audit-09f786c4-4663-4878-af30-6ce991f83b43",
+    "adminId": "lifecycle-test-1788447567055@example.com",
+    "adminEmail": "lifecycle-test-1788447567055@example.com",
+    "action": "GALLERY_RESTORED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447567055",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "previousStatus": "archived",
+      "newStatus": "published",
+      "restoredFrom": "archived"
+    },
+    "timestamp": "2026-09-03T14:59:27.058Z"
+  },
+  {
+    "id": "audit-458cc170-fc42-41a7-9660-0d3b27ee18d1",
+    "adminId": "lifecycle-test-1788447567055@example.com",
+    "adminEmail": "lifecycle-test-1788447567055@example.com",
+    "action": "GALLERY_ARCHIVED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447567055",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "previousStatus": "published",
+      "newStatus": "archived"
+    },
+    "timestamp": "2026-09-03T14:59:27.057Z"
+  },
+  {
+    "id": "audit-482a7475-3d33-4f80-bdbb-cb0c9b423ff3",
+    "adminId": "lifecycle-test-1788447567055@example.com",
+    "adminEmail": "lifecycle-test-1788447567055@example.com",
+    "action": "GALLERY_EXPIRATION_EXTENDED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447567055",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "previousExpiresAt": "2026-12-02T14:59:27.056Z",
+      "newExpiresAt": "2027-01-01T14:59:27.056Z",
+      "previousStatus": "published",
+      "newStatus": "published"
+    },
+    "timestamp": "2026-09-03T14:59:27.057Z"
+  },
+  {
+    "id": "audit-20944ce3-b633-4472-85b5-8970835ea9a5",
+    "adminId": "lifecycle-test-1788447567055@example.com",
+    "adminEmail": "lifecycle-test-1788447567055@example.com",
+    "action": "GALLERY_PUBLISHED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447567055",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "previousStatus": "draft",
+      "newStatus": "published",
+      "expiresAt": "2026-12-02T14:59:27.056Z"
+    },
+    "timestamp": "2026-09-03T14:59:27.056Z"
+  },
+  {
+    "id": "audit-7638a87e-fc29-412f-99d4-556e3e4e00fa",
+    "adminId": "lifecycle-test-1788447551568@example.com",
+    "adminEmail": "lifecycle-test-1788447551568@example.com",
+    "action": "GALLERY_RESTORED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447551568",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "previousStatus": "expired",
+      "newStatus": "published",
+      "restoredFrom": "expired",
+      "expiresAt": "2026-12-02T14:59:11.573Z"
+    },
+    "timestamp": "2026-09-03T14:59:11.573Z"
+  },
+  {
+    "id": "audit-64b66e0c-0dc3-43b3-87be-63eba92af391",
+    "adminId": "cron-gallery-lifecycle",
+    "adminEmail": "system-cron@drfilms.com",
+    "action": "GALLERY_EXPIRED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447551568",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "expiresAt": "2026-09-01T14:59:11.572Z",
+      "expiredAt": "2026-09-03T14:59:11.572Z"
+    },
+    "timestamp": "2026-09-03T14:59:11.572Z"
+  },
+  {
+    "id": "audit-c73bba41-4a69-4d08-bb2d-b59177e591df",
+    "adminId": "lifecycle-test-1788447551568@example.com",
+    "adminEmail": "lifecycle-test-1788447551568@example.com",
+    "action": "GALLERY_DELETE_RESTORED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447551568",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "status": "published"
+    },
+    "timestamp": "2026-09-03T14:59:11.572Z"
+  },
+  {
+    "id": "audit-76c7b0f6-b74d-4961-8be5-c01ec137d42d",
+    "adminId": "lifecycle-test-1788447551568@example.com",
+    "adminEmail": "lifecycle-test-1788447551568@example.com",
+    "action": "GALLERY_DELETED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447551568",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "previousStatus": "published",
+      "softDeleted": true
+    },
+    "timestamp": "2026-09-03T14:59:11.571Z"
+  },
+  {
+    "id": "audit-ecaeca81-d894-447b-bc53-02c3691bcfef",
+    "adminId": "lifecycle-test-1788447551568@example.com",
+    "adminEmail": "lifecycle-test-1788447551568@example.com",
+    "action": "GALLERY_RESTORED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447551568",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "previousStatus": "archived",
+      "newStatus": "published",
+      "restoredFrom": "archived"
+    },
+    "timestamp": "2026-09-03T14:59:11.570Z"
+  },
+  {
+    "id": "audit-a7aa14d2-dde6-44e0-8b24-9b6da952250c",
+    "adminId": "lifecycle-test-1788447551568@example.com",
+    "adminEmail": "lifecycle-test-1788447551568@example.com",
+    "action": "GALLERY_ARCHIVED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447551568",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "previousStatus": "published",
+      "newStatus": "archived"
+    },
+    "timestamp": "2026-09-03T14:59:11.570Z"
+  },
+  {
+    "id": "audit-ff18a486-21db-4392-8553-891e0c1d9714",
+    "adminId": "lifecycle-test-1788447551568@example.com",
+    "adminEmail": "lifecycle-test-1788447551568@example.com",
+    "action": "GALLERY_EXPIRATION_EXTENDED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447551568",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "previousExpiresAt": "2026-12-02T14:59:11.568Z",
+      "newExpiresAt": "2027-01-01T14:59:11.569Z",
+      "previousStatus": "published",
+      "newStatus": "published"
+    },
+    "timestamp": "2026-09-03T14:59:11.570Z"
+  },
+  {
+    "id": "audit-a7a5010d-9648-4553-a87c-f417ca4af755",
+    "adminId": "lifecycle-test-1788447551568@example.com",
+    "adminEmail": "lifecycle-test-1788447551568@example.com",
+    "action": "GALLERY_PUBLISHED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447551568",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "previousStatus": "draft",
+      "newStatus": "published",
+      "expiresAt": "2026-12-02T14:59:11.568Z"
+    },
+    "timestamp": "2026-09-03T14:59:11.569Z"
+  },
+  {
+    "id": "audit-a7c2a7b0-d49a-422b-a87b-1eef26c8a371",
+    "adminId": "cron-gallery-lifecycle",
+    "adminEmail": "system-cron@drfilms.com",
+    "action": "GALLERY_EXPIRED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447541728",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "expiresAt": "2026-09-01T14:59:01.739Z",
+      "expiredAt": "2026-09-03T14:59:01.739Z"
+    },
+    "timestamp": "2026-09-03T14:59:01.739Z"
+  },
+  {
+    "id": "audit-7d762ffd-c00c-49c1-822e-dd005637f407",
+    "adminId": "lifecycle-test-1788447541728@example.com",
+    "adminEmail": "lifecycle-test-1788447541728@example.com",
+    "action": "GALLERY_DELETE_RESTORED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447541728",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "status": "published"
+    },
+    "timestamp": "2026-09-03T14:59:01.739Z"
+  },
+  {
+    "id": "audit-0965905c-6eb8-4a48-9869-a6cd422ee1c2",
+    "adminId": "lifecycle-test-1788447541728@example.com",
+    "adminEmail": "lifecycle-test-1788447541728@example.com",
+    "action": "GALLERY_DELETED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447541728",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "previousStatus": "published",
+      "softDeleted": true
+    },
+    "timestamp": "2026-09-03T14:59:01.733Z"
+  },
+  {
+    "id": "audit-9ee3e01e-c6cd-4c8c-be18-cab2cc52885f",
+    "adminId": "lifecycle-test-1788447541728@example.com",
+    "adminEmail": "lifecycle-test-1788447541728@example.com",
+    "action": "GALLERY_RESTORED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447541728",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "previousStatus": "archived",
+      "newStatus": "published",
+      "restoredFrom": "archived"
+    },
+    "timestamp": "2026-09-03T14:59:01.733Z"
+  },
+  {
+    "id": "audit-2caaf548-9b10-4935-a4f7-9076b1dfdca7",
+    "adminId": "lifecycle-test-1788447541728@example.com",
+    "adminEmail": "lifecycle-test-1788447541728@example.com",
+    "action": "GALLERY_ARCHIVED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447541728",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "previousStatus": "published",
+      "newStatus": "archived"
+    },
+    "timestamp": "2026-09-03T14:59:01.732Z"
+  },
+  {
+    "id": "audit-81f64b1e-0294-470d-b723-921e5292a083",
+    "adminId": "lifecycle-test-1788447541728@example.com",
+    "adminEmail": "lifecycle-test-1788447541728@example.com",
+    "action": "GALLERY_EXPIRATION_EXTENDED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447541728",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "previousExpiresAt": "2026-12-02T14:59:01.729Z",
+      "newExpiresAt": "2027-01-01T14:59:01.731Z",
+      "previousStatus": "published",
+      "newStatus": "published"
+    },
+    "timestamp": "2026-09-03T14:59:01.731Z"
+  },
+  {
+    "id": "audit-c825602c-b7af-4f01-be73-f17cb4d458da",
+    "adminId": "lifecycle-test-1788447541728@example.com",
+    "adminEmail": "lifecycle-test-1788447541728@example.com",
+    "action": "GALLERY_PUBLISHED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447541728",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "previousStatus": "draft",
+      "newStatus": "published",
+      "expiresAt": "2026-12-02T14:59:01.729Z"
+    },
+    "timestamp": "2026-09-03T14:59:01.731Z"
+  },
+  {
+    "id": "audit-d380876a-2623-435d-bca7-07113c3a0d79",
+    "adminId": "system",
+    "adminEmail": "system@drfilms.com",
+    "action": "GALLERY_DELETED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447489008",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "previousStatus": "published",
+      "softDeleted": true
+    },
+    "timestamp": "2026-09-03T14:58:09.020Z"
+  },
+  {
+    "id": "audit-376d33b2-be51-4bde-b2a9-9a2ee22f5c33",
+    "adminId": "system",
+    "adminEmail": "system@drfilms.com",
+    "action": "GALLERY_RESTORED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447489008",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "previousStatus": "archived",
+      "newStatus": "published",
+      "restoredFrom": "archived"
+    },
+    "timestamp": "2026-09-03T14:58:09.019Z"
+  },
+  {
+    "id": "audit-dce5a8c0-5471-441a-b5a8-bad90c5b7606",
+    "adminId": "system",
+    "adminEmail": "system@drfilms.com",
+    "action": "GALLERY_ARCHIVED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447489008",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "previousStatus": "published",
+      "newStatus": "archived"
+    },
+    "timestamp": "2026-09-03T14:58:09.018Z"
+  },
+  {
+    "id": "audit-9de1f267-e6f3-45d5-aa35-d4cb12d38ebc",
+    "adminId": "system",
+    "adminEmail": "system@drfilms.com",
+    "action": "GALLERY_EXPIRATION_EXTENDED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447489008",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "previousExpiresAt": "2026-12-02T14:58:09.011Z",
+      "newExpiresAt": "2027-01-01T14:58:09.016Z",
+      "previousStatus": "published",
+      "newStatus": "published"
+    },
+    "timestamp": "2026-09-03T14:58:09.017Z"
+  },
+  {
+    "id": "audit-d74f3954-a99e-4cf0-bf07-4b7b32f00811",
+    "adminId": "system",
+    "adminEmail": "system@drfilms.com",
+    "action": "GALLERY_PUBLISHED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447489008",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "previousStatus": "draft",
+      "newStatus": "published",
+      "expiresAt": "2026-12-02T14:58:09.011Z"
+    },
+    "timestamp": "2026-09-03T14:58:09.016Z"
+  },
+  {
+    "id": "audit-de320485-9391-4752-8b91-4c2e2c21bafb",
+    "adminId": "system",
+    "adminEmail": "system@drfilms.com",
+    "action": "GALLERY_PUBLISHED",
+    "targetType": "project",
+    "targetId": "test-lifecycle-proj-1788447450047",
+    "targetName": "Test Couple Lifecycle",
+    "result": "success",
+    "metadata": {
+      "photographerId": "photographer-default",
+      "previousStatus": "draft",
+      "newStatus": "published"
+    },
+    "timestamp": "2026-09-03T14:57:30.049Z"
+  },
+  {
+    "id": "audit-a25616d8-a112-4800-8e69-e80c15bcd3fb",
+    "adminId": "photographer-super-admin",
+    "adminEmail": "admin@drfilms.com",
+    "action": "SUPER_ADMIN_LOGIN_SUCCESS",
+    "targetType": "system",
+    "targetId": "photographer-super-admin",
+    "targetName": "Platform Owner",
+    "result": "success",
+    "metadata": {},
+    "ipAddress": "::1",
+    "timestamp": "2026-09-03T14:27:10.971Z"
+  },
+  {
+    "id": "audit-ad0e3507-1144-4ad3-baf0-5c840d284e95",
+    "adminId": "photographer-super-admin",
+    "adminEmail": "admin@drfilms.com",
+    "action": "SUPER_ADMIN_LOGOUT",
+    "targetType": "system",
+    "targetId": "photographer-super-admin",
+    "targetName": "Super Admin",
+    "result": "success",
+    "timestamp": "2026-09-03T13:54:39.027Z"
+  },
+  {
+    "id": "audit-b8afbe8d-b721-46b3-bf0f-19d952fb4e92",
+    "adminId": "photographer-super-admin",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "globalEnabled"
+      ],
+      "changes": {
+        "globalEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": false
+    },
+    "timestamp": "2026-09-03T12:12:09.687Z"
+  },
+  {
+    "id": "audit-2c8008f9-fa10-4503-be66-89cd7dd29b52",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "globalEnabled"
+      ],
+      "changes": {
+        "globalEnabled": {
+          "old": false,
+          "new": true
+        }
+      },
+      "globalEnabled": true
+    },
+    "timestamp": "2026-09-03T12:04:54.148Z"
+  },
+  {
+    "id": "audit-be604901-62e6-4ab4-9ce2-33250e992e47",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "emailEnabled"
+      ],
+      "changes": {
+        "emailEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": false
+    },
+    "timestamp": "2026-09-03T12:04:54.148Z"
+  },
+  {
+    "id": "audit-add07a1e-b5f2-4c1d-93e6-92bf8a1305fc",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "globalEnabled",
+        "maintenanceNote"
+      ],
+      "changes": {
+        "globalEnabled": {
+          "old": true,
+          "new": false
+        },
+        "maintenanceNote": {
+          "old": "Platform maintenance active",
+          "new": "Automated test mute"
+        }
+      },
+      "globalEnabled": false
+    },
+    "timestamp": "2026-09-03T12:04:54.147Z"
+  },
+  {
+    "id": "audit-4e040a9d-425c-4a99-bcf3-4a0f3670a219",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "clientAllEnabled",
+        "marketingAllEnabled"
+      ],
+      "changes": {
+        "clientAllEnabled": {
+          "old": false,
+          "new": true
+        },
+        "marketingAllEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true
+    },
+    "timestamp": "2026-09-03T12:04:54.147Z"
+  },
+  {
+    "id": "audit-f5402b99-dbb0-4126-b60b-46871e0829c5",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "emailClientGalleries",
+        "clientAllEnabled"
+      ],
+      "changes": {
+        "emailClientGalleries": {
+          "old": false,
+          "new": true
+        },
+        "clientAllEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true
+    },
+    "timestamp": "2026-09-03T12:04:54.146Z"
+  },
+  {
+    "id": "audit-31a78ffa-16e9-47b1-85e3-f6fb9b74fa53",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "emailEnabled",
+        "emailClientGalleries"
+      ],
+      "changes": {
+        "emailEnabled": {
+          "old": false,
+          "new": true
+        },
+        "emailClientGalleries": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true
+    },
+    "timestamp": "2026-09-03T12:04:54.146Z"
+  },
+  {
+    "id": "audit-16cf8374-f48f-4d8c-b0fd-bdc43a134aed",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "globalEnabled"
+      ],
+      "changes": {
+        "globalEnabled": {
+          "old": false,
+          "new": true
+        }
+      },
+      "globalEnabled": true
+    },
+    "timestamp": "2026-09-03T12:04:54.146Z"
+  },
+  {
+    "id": "audit-745690b5-5ddd-4fbe-beb7-ed798942e8b9",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "emailEnabled"
+      ],
+      "changes": {
+        "emailEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": false
+    },
+    "timestamp": "2026-09-03T12:04:54.146Z"
+  },
+  {
+    "id": "audit-dc09e2d4-5f1c-4072-a66d-2640fb43fd78",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "globalEnabled",
+        "maintenanceNote"
+      ],
+      "changes": {
+        "globalEnabled": {
+          "old": true,
+          "new": false
+        },
+        "maintenanceNote": {
+          "old": "Phase 19 Automated Test Run",
+          "new": "Platform maintenance active"
+        }
+      },
+      "globalEnabled": false
+    },
+    "timestamp": "2026-09-03T12:04:54.145Z"
+  },
+  {
+    "id": "audit-3cac0790-2708-40a9-86eb-6b4052bc041f",
+    "adminId": "test-admin-user",
+    "adminEmail": "127.0.0.1",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "maintenanceNote"
+      ],
+      "changes": {
+        "maintenanceNote": {
+          "new": "Phase 19 Automated Test Run"
+        }
+      },
+      "globalEnabled": true
+    },
+    "timestamp": "2026-09-03T12:04:54.145Z"
+  },
+  {
+    "id": "audit-7f6521f0-0341-431e-bd31-33ef1e04170c",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "globalEnabled"
+      ],
+      "changes": {
+        "globalEnabled": {
+          "old": false,
+          "new": true
+        }
+      },
+      "globalEnabled": true
+    },
+    "timestamp": "2026-09-03T12:04:33.808Z"
+  },
+  {
+    "id": "audit-9a7a1b01-537e-4784-bbc7-bed778711a68",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "emailEnabled"
+      ],
+      "changes": {
+        "emailEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": false
+    },
+    "timestamp": "2026-09-03T12:04:33.808Z"
+  },
+  {
+    "id": "audit-a465a1ac-c9a8-45af-b9ed-cc704d48b724",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "globalEnabled",
+        "maintenanceNote"
+      ],
+      "changes": {
+        "globalEnabled": {
+          "old": true,
+          "new": false
+        },
+        "maintenanceNote": {
+          "old": "Platform maintenance active",
+          "new": "Automated test mute"
+        }
+      },
+      "globalEnabled": false
+    },
+    "timestamp": "2026-09-03T12:04:33.801Z"
+  },
+  {
+    "id": "audit-af422d28-821c-40eb-8f49-023cdad7c916",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "clientAllEnabled",
+        "marketingAllEnabled"
+      ],
+      "changes": {
+        "clientAllEnabled": {
+          "old": false,
+          "new": true
+        },
+        "marketingAllEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true
+    },
+    "timestamp": "2026-09-03T12:04:33.793Z"
+  },
+  {
+    "id": "audit-cde491e7-53f6-4f8f-8a46-b4ff9bde08f1",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "emailClientGalleries",
+        "clientAllEnabled"
+      ],
+      "changes": {
+        "emailClientGalleries": {
+          "old": false,
+          "new": true
+        },
+        "clientAllEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true
+    },
+    "timestamp": "2026-09-03T12:04:33.789Z"
+  },
+  {
+    "id": "audit-895a3450-aa92-4b3b-81aa-95522817338e",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "emailEnabled",
+        "emailClientGalleries"
+      ],
+      "changes": {
+        "emailEnabled": {
+          "old": false,
+          "new": true
+        },
+        "emailClientGalleries": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": true
+    },
+    "timestamp": "2026-09-03T12:04:33.788Z"
+  },
+  {
+    "id": "audit-1614ee94-2d4c-4122-bb80-1f370a348cf7",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "globalEnabled"
+      ],
+      "changes": {
+        "globalEnabled": {
+          "old": false,
+          "new": true
+        }
+      },
+      "globalEnabled": true
+    },
+    "timestamp": "2026-09-03T12:04:33.783Z"
+  },
+  {
+    "id": "audit-424547f7-935e-40f1-8f03-be44ec1c9fc8",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "emailEnabled"
+      ],
+      "changes": {
+        "emailEnabled": {
+          "old": true,
+          "new": false
+        }
+      },
+      "globalEnabled": false
+    },
+    "timestamp": "2026-09-03T12:04:33.781Z"
+  },
+  {
+    "id": "audit-35cdf774-5851-4710-991a-bdf0ea710780",
+    "adminId": "admin-system",
+    "adminEmail": "admin@drfilms.com",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "globalEnabled",
+        "maintenanceNote"
+      ],
+      "changes": {
+        "globalEnabled": {
+          "old": true,
+          "new": false
+        },
+        "maintenanceNote": {
+          "old": "Phase 19 Automated Test Run",
+          "new": "Platform maintenance active"
+        }
+      },
+      "globalEnabled": false
+    },
+    "timestamp": "2026-09-03T12:04:33.781Z"
+  },
+  {
+    "id": "audit-5098d6b4-0386-4277-bf30-98c477bb107d",
+    "adminId": "test-admin-user",
+    "adminEmail": "127.0.0.1",
+    "action": "PLATFORM_COMMUNICATIONS_UPDATED",
+    "targetType": "system",
+    "targetId": "platform_communication_settings",
+    "targetName": "Platform Communication Controls",
+    "result": "success",
+    "metadata": {
+      "changedKeys": [
+        "maintenanceNote"
+      ],
+      "changes": {
+        "maintenanceNote": {
+          "new": "Phase 19 Automated Test Run"
+        }
+      },
+      "globalEnabled": true
+    },
+    "timestamp": "2026-09-03T12:04:33.779Z"
+  },
+  {
+    "id": "audit-89dbc933-a4af-477c-978a-ebb0788b0618",
+    "adminId": "photographer-super-admin",
+    "adminEmail": "admin@drfilms.com",
+    "action": "SUPER_ADMIN_LOGIN_SUCCESS",
+    "targetType": "system",
+    "targetId": "photographer-super-admin",
+    "targetName": "Platform Owner",
+    "result": "success",
+    "metadata": {},
+    "ipAddress": "::1",
+    "timestamp": "2026-09-03T12:00:49.774Z"
+  },
+  {
+    "id": "audit-0c6c0d8e-f28c-4061-a440-b6b251d7cd43",
+    "adminId": "photographer-super-admin",
+    "adminEmail": "admin@drfilms.com",
+    "action": "SUPER_ADMIN_LOGIN_FAILED",
+    "targetType": "system",
+    "targetId": "photographer-super-admin",
+    "targetName": "Platform Owner",
+    "result": "failed",
+    "metadata": {
+      "reason": "Invalid password"
+    },
+    "ipAddress": "::1",
+    "timestamp": "2026-09-03T12:00:41.863Z"
+  },
+  {
+    "id": "audit-4eaf4c9d-3233-4e41-8d7c-91a9d42e354c",
+    "adminId": "photographer-default",
+    "adminEmail": "drfilms@weddingcinema.com",
+    "action": "SUPER_ADMIN_LOGIN_FAILED",
+    "targetType": "system",
+    "targetId": "photographer-default",
+    "targetName": "DR Films Wedding Cinema",
+    "result": "failed",
+    "metadata": {
+      "reason": "Insufficient role: owner"
+    },
+    "ipAddress": "::1",
+    "timestamp": "2026-09-03T11:59:59.314Z"
+  },
+  {
+    "id": "audit-901e7b5d-2e7a-4bfd-b7ae-502118cd3a4e",
+    "adminId": "photographer-default",
+    "adminEmail": "drfilms@weddingcinema.com",
+    "action": "DOMAIN_DELETE",
+    "targetType": "domain",
+    "targetId": "dom-751e4e54-73b4-439b-b4a1-c31bab218824",
+    "targetName": "gallery.giftvale.com",
+    "result": "success",
+    "timestamp": "2026-09-03T10:31:29.886Z"
+  },
+  {
+    "id": "audit-7304e9e4-546b-4470-9ee6-307246f68021",
+    "adminId": "photographer-default",
+    "adminEmail": "drfilms@weddingcinema.com",
+    "action": "DOMAIN_CREATE",
+    "targetType": "domain",
+    "targetId": "dom-751e4e54-73b4-439b-b4a1-c31bab218824",
+    "targetName": "gallery.giftvale.com",
+    "metadata": {
+      "type": "SUBDOMAIN",
+      "isPrimary": false
+    },
+    "result": "success",
+    "timestamp": "2026-09-03T10:30:51.461Z"
+  },
+  {
+    "id": "audit-352e64f9-5fc8-4098-a5a6-8c20c23a844d",
+    "adminId": "photographer-default",
+    "adminEmail": "drfilms@weddingcinema.com",
+    "action": "DOMAIN_DELETE",
+    "targetType": "domain",
+    "targetId": "dom-d2195440-0777-4a3c-861a-784469569b06",
+    "targetName": "gallery.www.giftvale.com",
+    "result": "success",
+    "timestamp": "2026-09-03T10:30:43.224Z"
+  },
+  {
+    "id": "audit-0d48ecb7-7e34-4d1d-95d6-94f8cab4b7ae",
+    "adminId": "photographer-default",
+    "adminEmail": "drfilms@weddingcinema.com",
+    "action": "DOMAIN_CREATE",
+    "targetType": "domain",
+    "targetId": "dom-d2195440-0777-4a3c-861a-784469569b06",
+    "targetName": "gallery.www.giftvale.com",
+    "metadata": {
+      "type": "SUBDOMAIN",
+      "isPrimary": false
+    },
+    "result": "success",
+    "timestamp": "2026-09-03T10:29:53.518Z"
+  },
+  {
+    "id": "audit-72e59ee3-c6f2-4cd9-9e2b-e43bc489795d",
+    "adminId": "photographer-default",
+    "adminEmail": "drfilms@weddingcinema.com",
+    "action": "DOMAIN_DELETE",
+    "targetType": "domain",
+    "targetId": "dom-4ef874b2-28e7-472e-8028-c19394989f9c",
+    "targetName": "www.giftvale.com",
+    "result": "success",
+    "timestamp": "2026-09-03T10:29:42.070Z"
+  },
+  {
+    "id": "audit-b3f3b6b7-50c9-4b45-8170-3d6485f4f84c",
+    "adminId": "photographer-default",
+    "adminEmail": "drfilms@weddingcinema.com",
+    "action": "DOMAIN_VERIFY_FAILED",
+    "targetType": "domain",
+    "targetId": "dom-4ef874b2-28e7-472e-8028-c19394989f9c",
+    "targetName": "www.giftvale.com",
+    "result": "failed",
+    "timestamp": "2026-09-03T10:29:06.496Z"
+  },
+  {
+    "id": "audit-d9a59dc1-e8d1-4f88-ad49-1130984160e8",
+    "adminId": "photographer-default",
+    "adminEmail": "drfilms@weddingcinema.com",
+    "action": "DOMAIN_VERIFY_FAILED",
+    "targetType": "domain",
+    "targetId": "dom-4ef874b2-28e7-472e-8028-c19394989f9c",
+    "targetName": "www.giftvale.com",
+    "result": "failed",
+    "timestamp": "2026-09-03T10:29:06.230Z"
+  },
+  {
+    "id": "audit-37fa7f31-62ad-48fc-a84d-b8c9f3a0c8b9",
+    "adminId": "photographer-default",
+    "adminEmail": "drfilms@weddingcinema.com",
+    "action": "DOMAIN_VERIFY_FAILED",
+    "targetType": "domain",
+    "targetId": "dom-4ef874b2-28e7-472e-8028-c19394989f9c",
+    "targetName": "www.giftvale.com",
+    "result": "failed",
+    "timestamp": "2026-09-03T10:29:06.030Z"
+  },
+  {
+    "id": "audit-0d500dd5-d5ef-4136-8c88-beaaa64347e0",
+    "adminId": "photographer-default",
+    "adminEmail": "drfilms@weddingcinema.com",
+    "action": "DOMAIN_VERIFY_FAILED",
+    "targetType": "domain",
+    "targetId": "dom-4ef874b2-28e7-472e-8028-c19394989f9c",
+    "targetName": "www.giftvale.com",
+    "result": "failed",
+    "timestamp": "2026-09-03T10:29:05.834Z"
+  },
+  {
+    "id": "audit-77ea5656-6929-4081-84f7-6c77ff6a6ea7",
+    "adminId": "photographer-default",
+    "adminEmail": "drfilms@weddingcinema.com",
+    "action": "DOMAIN_VERIFY_FAILED",
+    "targetType": "domain",
+    "targetId": "dom-4ef874b2-28e7-472e-8028-c19394989f9c",
+    "targetName": "www.giftvale.com",
+    "result": "failed",
+    "timestamp": "2026-09-03T10:29:05.707Z"
+  },
+  {
+    "id": "audit-6ebc1366-0114-4b9c-8f0c-f02863845320",
+    "adminId": "photographer-default",
+    "adminEmail": "drfilms@weddingcinema.com",
+    "action": "DOMAIN_VERIFY_FAILED",
+    "targetType": "domain",
+    "targetId": "dom-4ef874b2-28e7-472e-8028-c19394989f9c",
+    "targetName": "www.giftvale.com",
+    "result": "failed",
+    "timestamp": "2026-09-03T10:29:04.779Z"
+  },
+  {
+    "id": "audit-f11534f6-fa68-4055-b953-24910092b718",
+    "adminId": "photographer-default",
+    "adminEmail": "drfilms@weddingcinema.com",
+    "action": "DOMAIN_VERIFY_FAILED",
+    "targetType": "domain",
+    "targetId": "dom-4ef874b2-28e7-472e-8028-c19394989f9c",
+    "targetName": "www.giftvale.com",
+    "result": "failed",
+    "timestamp": "2026-09-03T10:29:04.363Z"
+  },
+  {
+    "id": "audit-b763671f-f37a-4b45-ac16-da5e3ae92ff4",
+    "adminId": "photographer-default",
+    "adminEmail": "drfilms@weddingcinema.com",
+    "action": "DOMAIN_VERIFY_FAILED",
+    "targetType": "domain",
+    "targetId": "dom-4ef874b2-28e7-472e-8028-c19394989f9c",
+    "targetName": "www.giftvale.com",
+    "result": "failed",
+    "timestamp": "2026-09-03T10:29:03.770Z"
+  },
+  {
+    "id": "audit-0552a16b-0169-423b-9d68-5b60069b3f50",
+    "adminId": "photographer-default",
+    "adminEmail": "drfilms@weddingcinema.com",
+    "action": "DOMAIN_VERIFY_FAILED",
+    "targetType": "domain",
+    "targetId": "dom-4ef874b2-28e7-472e-8028-c19394989f9c",
+    "targetName": "www.giftvale.com",
+    "result": "failed",
+    "timestamp": "2026-09-03T10:29:03.169Z"
+  },
+  {
+    "id": "audit-f8f2dfb6-94f0-4c79-b52a-50a86aad6e9c",
+    "adminId": "photographer-default",
+    "adminEmail": "drfilms@weddingcinema.com",
+    "action": "DOMAIN_VERIFY_FAILED",
+    "targetType": "domain",
+    "targetId": "dom-4ef874b2-28e7-472e-8028-c19394989f9c",
+    "targetName": "www.giftvale.com",
+    "result": "failed",
+    "timestamp": "2026-09-03T10:29:01.471Z"
+  },
+  {
+    "id": "audit-24c81939-8255-4a1a-af0f-a92c09d7a86b",
+    "adminId": "photographer-default",
+    "adminEmail": "drfilms@weddingcinema.com",
+    "action": "DOMAIN_VERIFY_FAILED",
+    "targetType": "domain",
+    "targetId": "dom-4ef874b2-28e7-472e-8028-c19394989f9c",
+    "targetName": "www.giftvale.com",
+    "result": "failed",
+    "timestamp": "2026-09-03T10:28:22.803Z"
+  },
+  {
+    "id": "audit-3643516f-41d9-4467-a298-0ece0e569215",
+    "adminId": "photographer-default",
+    "adminEmail": "drfilms@weddingcinema.com",
+    "action": "DOMAIN_CREATE",
+    "targetType": "domain",
+    "targetId": "dom-4ef874b2-28e7-472e-8028-c19394989f9c",
+    "targetName": "www.giftvale.com",
+    "metadata": {
+      "type": "SUBDOMAIN",
+      "isPrimary": false
+    },
+    "result": "success",
+    "timestamp": "2026-09-03T10:28:19.917Z"
+  },
+  {
+    "id": "audit-1efd4cd3-c987-43d3-9181-2df036467edb",
+    "adminId": "photographer-super-admin",
+    "adminEmail": "admin@drfilms.com",
+    "action": "SUPER_ADMIN_LOGIN_SUCCESS",
+    "targetType": "system",
+    "targetId": "photographer-super-admin",
+    "targetName": "Platform Owner",
+    "result": "success",
+    "metadata": {},
+    "ipAddress": "::1",
+    "timestamp": "2026-09-03T09:39:42.253Z"
+  },
+  {
+    "id": "audit-98ba50cb-1d14-4bc1-a402-55680d6ae37c",
+    "adminId": "photographer-super-admin",
+    "adminEmail": "admin@drfilms.com",
+    "action": "SUPER_ADMIN_LOGOUT",
+    "targetType": "system",
+    "targetId": "photographer-super-admin",
+    "targetName": "Super Admin",
+    "result": "success",
+    "timestamp": "2026-09-03T09:38:45.279Z"
+  },
+  {
+    "id": "audit-5c7a641a-26a3-4619-ad1a-78986c4ddd02",
+    "adminId": "photographer-super-admin",
+    "adminEmail": "admin@drfilms.com",
+    "action": "SUPER_ADMIN_LOGIN_SUCCESS",
+    "targetType": "system",
+    "targetId": "photographer-super-admin",
+    "targetName": "Platform Owner",
+    "result": "success",
+    "metadata": {},
+    "ipAddress": "::1",
+    "timestamp": "2026-09-03T09:13:46.901Z"
+  },
+  {
+    "id": "audit-ea0277f0-b746-4c42-821a-68bee5bf0aff",
+    "adminId": "photographer-super-admin",
+    "adminEmail": "admin@drfilms.com",
+    "action": "SUPER_ADMIN_LOGOUT",
+    "targetType": "system",
+    "targetId": "photographer-super-admin",
+    "targetName": "Super Admin",
+    "result": "success",
+    "timestamp": "2026-09-03T09:12:08.407Z"
+  },
+  {
+    "id": "audit-84352b71-2af3-40d0-9fd8-f514cb70b03b",
+    "adminId": "photographer-default",
+    "adminEmail": "drfilms@weddingcinema.com",
+    "action": "SUPER_ADMIN_LOGIN_FAILED",
+    "targetType": "system",
+    "targetId": "photographer-default",
+    "targetName": "DR Films Wedding Cinema",
+    "result": "failed",
+    "metadata": {
+      "reason": "Insufficient role: owner"
+    },
+    "ipAddress": "::1",
+    "timestamp": "2026-09-03T09:12:08.158Z"
+  },
+  {
+    "id": "audit-5fd5697c-a2cc-4ef5-ad30-5579c7ebebd1",
+    "adminId": "photographer-super-admin",
+    "adminEmail": "admin@drfilms.com",
+    "action": "SUPER_ADMIN_LOGIN_FAILED",
+    "targetType": "system",
+    "targetId": "photographer-super-admin",
+    "targetName": "Platform Owner",
+    "result": "failed",
+    "metadata": {
+      "reason": "Invalid password"
+    },
+    "ipAddress": "::1",
+    "timestamp": "2026-09-03T09:12:08.050Z"
+  },
+  {
+    "id": "audit-ae9218ec-9988-4d1a-b43e-00bbf1ecec31",
+    "adminId": "photographer-super-admin",
+    "adminEmail": "admin@drfilms.com",
+    "action": "SUPER_ADMIN_LOGIN_SUCCESS",
+    "targetType": "system",
+    "targetId": "photographer-super-admin",
+    "targetName": "Platform Owner",
+    "result": "success",
+    "metadata": {},
+    "ipAddress": "::1",
+    "timestamp": "2026-09-03T09:12:07.889Z"
+  },
+  {
+    "id": "audit-c1735d00-7dd2-4d55-9ee7-1d78ce8f17d5",
+    "adminId": "photographer-super-admin",
+    "adminEmail": "admin@drfilms.com",
+    "action": "SUPER_ADMIN_LOGIN_SUCCESS",
+    "targetType": "system",
+    "targetId": "photographer-super-admin",
+    "targetName": "Platform Owner",
+    "result": "success",
+    "metadata": {},
+    "ipAddress": "::1",
+    "timestamp": "2026-09-03T09:01:18.999Z"
+  },
+  {
+    "id": "audit-644c8832-1f85-4d4d-be87-e05731c3084f",
+    "adminId": "photographer-super-admin",
+    "adminEmail": "admin@drfilms.com",
+    "action": "ADMIN_IMPERSONATION_EXIT",
+    "targetType": "photographer",
+    "targetId": "photographer-super-admin",
+    "targetName": "Platform Owner",
+    "metadata": {
+      "impersonatedPhotographerId": "photographer-super-admin"
+    },
+    "result": "success",
+    "timestamp": "2026-09-03T09:01:16.140Z"
+  },
+  {
+    "id": "audit-c0f49380-83a9-49d5-a37c-51f363a10713",
+    "adminId": "photographer-super-admin",
+    "adminEmail": "admin@drfilms.com",
+    "action": "ADMIN_IMPERSONATION_START",
+    "targetType": "photographer",
+    "targetId": "photographer-super-admin",
+    "targetName": "Platform Owner",
+    "metadata": {
+      "targetEmail": "admin@drfilms.com",
+      "targetStudio": "DR Films Platform Control Center"
+    },
+    "result": "success",
+    "timestamp": "2026-09-03T09:00:09.367Z"
+  },
+  {
+    "id": "audit-3ebc13b6-7fd3-47a0-857c-af03e3cca7db",
+    "adminId": "photographer-super-admin",
+    "adminEmail": "admin@drfilms.com",
+    "action": "SUPER_ADMIN_LOGIN_SUCCESS",
+    "targetType": "system",
+    "targetId": "photographer-super-admin",
+    "targetName": "Platform Owner",
+    "result": "success",
+    "metadata": {},
+    "ipAddress": "::1",
+    "timestamp": "2026-09-03T08:59:36.175Z"
+  },
+  {
+    "id": "audit-87d6fd2b-bc30-40ab-9ea3-4396cf508b2c",
+    "adminId": "photographer-super-admin",
+    "adminEmail": "admin@drfilms.com",
+    "action": "SUPER_ADMIN_LOGOUT",
+    "targetType": "system",
+    "targetId": "photographer-super-admin",
+    "targetName": "Super Admin",
+    "result": "success",
+    "timestamp": "2026-09-03T08:57:12.862Z"
+  },
+  {
+    "id": "audit-e5e8b227-8c21-4c33-a216-ea48e68e21ff",
+    "adminId": "photographer-default",
+    "adminEmail": "drfilms@weddingcinema.com",
+    "action": "SUPER_ADMIN_LOGIN_FAILED",
+    "targetType": "system",
+    "targetId": "photographer-default",
+    "targetName": "DR Films Wedding Cinema",
+    "result": "failed",
+    "metadata": {
+      "reason": "Insufficient role: owner"
+    },
+    "ipAddress": "::1",
+    "timestamp": "2026-09-03T08:57:12.723Z"
+  },
+  {
+    "id": "audit-29358a20-10b2-4d28-8556-20a3652c39df",
+    "adminId": "photographer-super-admin",
+    "adminEmail": "admin@drfilms.com",
+    "action": "SUPER_ADMIN_LOGIN_FAILED",
+    "targetType": "system",
+    "targetId": "photographer-super-admin",
+    "targetName": "Platform Owner",
+    "result": "failed",
+    "metadata": {
+      "reason": "Invalid password"
+    },
+    "ipAddress": "::1",
+    "timestamp": "2026-09-03T08:57:12.603Z"
+  },
+  {
+    "id": "audit-ee095d13-a212-488e-bfd9-d1caae58373d",
+    "adminId": "photographer-super-admin",
+    "adminEmail": "admin@drfilms.com",
+    "action": "SUPER_ADMIN_LOGIN_SUCCESS",
+    "targetType": "system",
+    "targetId": "photographer-super-admin",
+    "targetName": "Platform Owner",
+    "result": "success",
+    "metadata": {},
+    "ipAddress": "::1",
+    "timestamp": "2026-09-03T08:57:12.416Z"
+  },
+  {
+    "id": "audit-a88dded5-856c-47ee-8a0b-a9f534662121",
+    "adminId": "photographer-default",
+    "adminEmail": "drfilms@weddingcinema.com",
+    "action": "SUPER_ADMIN_LOGIN_FAILED",
+    "targetType": "system",
+    "targetId": "photographer-default",
+    "targetName": "DR Films Wedding Cinema",
+    "result": "failed",
+    "metadata": {
+      "reason": "Insufficient role: owner"
+    },
+    "ipAddress": "::1",
+    "timestamp": "2026-09-03T08:56:16.416Z"
+  },
+  {
+    "id": "audit-b54c38aa-d9a9-4577-a17f-54a02b2d4bf8",
+    "adminId": "photographer-super-admin",
+    "adminEmail": "admin@drfilms.com",
+    "action": "SUPER_ADMIN_LOGIN_SUCCESS",
+    "targetType": "system",
+    "targetId": "photographer-super-admin",
+    "targetName": "Platform Owner",
+    "result": "success",
+    "metadata": {},
+    "ipAddress": "::1",
+    "timestamp": "2026-09-03T08:55:22.264Z"
+  },
+  {
+    "id": "audit-c76d0d44-63e9-4536-83d7-9355cc3973b4",
+    "adminId": "photographer-super-admin",
+    "adminEmail": "admin@drfilms.com",
+    "action": "SUPER_ADMIN_LOGOUT",
+    "targetType": "system",
+    "targetId": "photographer-super-admin",
+    "targetName": "Super Admin",
+    "result": "success",
+    "timestamp": "2026-09-02T16:24:18.684Z"
+  },
+  {
+    "id": "audit-1d28035e-ea99-427f-99f0-1e79464e5ea2",
+    "adminId": "photographer-super-admin",
+    "adminEmail": "admin@drfilms.com",
+    "action": "SUPER_ADMIN_LOGIN_SUCCESS",
+    "targetType": "system",
+    "targetId": "photographer-super-admin",
+    "targetName": "Platform Owner",
+    "result": "success",
+    "metadata": {},
+    "ipAddress": "::1",
+    "timestamp": "2026-09-02T16:13:02.908Z"
+  },
+  {
+    "id": "audit-18c9fc7c-61c1-4054-aeb4-0c8affaef6be",
+    "adminId": "photographer-super-admin",
+    "adminEmail": "admin@drfilms.com",
+    "action": "SUPER_ADMIN_LOGOUT",
+    "targetType": "system",
+    "targetId": "photographer-super-admin",
+    "targetName": "Super Admin",
+    "result": "success",
+    "timestamp": "2026-09-02T16:01:21.899Z"
+  },
+  {
+    "id": "audit-76ae59c8-597e-4d12-8607-36b922cae76b",
+    "adminId": "photographer-default",
+    "adminEmail": "drfilms@weddingcinema.com",
+    "action": "SUPER_ADMIN_LOGIN_FAILED",
+    "targetType": "system",
+    "targetId": "photographer-default",
+    "targetName": "DR Films Wedding Cinema",
+    "result": "failed",
+    "metadata": {
+      "reason": "Insufficient role: owner"
+    },
+    "ipAddress": "::1",
+    "timestamp": "2026-09-02T16:01:21.659Z"
+  },
+  {
+    "id": "audit-de8656bc-18d4-4308-8803-01bc9abaadca",
+    "adminId": "photographer-super-admin",
+    "adminEmail": "admin@drfilms.com",
+    "action": "SUPER_ADMIN_LOGIN_FAILED",
+    "targetType": "system",
+    "targetId": "photographer-super-admin",
+    "targetName": "Platform Owner",
+    "result": "failed",
+    "metadata": {
+      "reason": "Invalid password"
+    },
+    "ipAddress": "::1",
+    "timestamp": "2026-09-02T16:01:21.495Z"
+  },
+  {
+    "id": "audit-e777734a-3aba-4f87-a561-b7c9aa02ef38",
+    "adminId": "photographer-super-admin",
+    "adminEmail": "admin@drfilms.com",
+    "action": "SUPER_ADMIN_LOGIN_SUCCESS",
+    "targetType": "system",
+    "targetId": "photographer-super-admin",
+    "targetName": "Platform Owner",
+    "result": "success",
+    "metadata": {},
+    "ipAddress": "::1",
+    "timestamp": "2026-09-02T16:01:21.261Z"
+  },
+  {
+    "id": "audit-0ce40ada-da10-432a-88a2-d15e77d66217",
+    "adminId": "photographer-super-admin",
+    "adminEmail": "admin@drfilms.com",
+    "action": "SUPER_ADMIN_LOGOUT",
+    "targetType": "system",
+    "targetId": "photographer-super-admin",
+    "targetName": "Super Admin",
+    "result": "success",
+    "timestamp": "2026-09-02T16:00:54.324Z"
+  },
+  {
+    "id": "audit-4e9392aa-7af4-4922-8faf-b5b90b90c2d0",
+    "adminId": "photographer-default",
+    "adminEmail": "drfilms@weddingcinema.com",
+    "action": "SUPER_ADMIN_LOGIN_FAILED",
+    "targetType": "system",
+    "targetId": "photographer-default",
+    "targetName": "DR Films Wedding Cinema",
+    "result": "failed",
+    "metadata": {
+      "reason": "Insufficient role: owner"
+    },
+    "ipAddress": "::1",
+    "timestamp": "2026-09-02T16:00:53.809Z"
+  },
+  {
+    "id": "audit-b80e7bd7-45a8-4fca-90ce-2ad0733b741f",
+    "adminId": "photographer-super-admin",
+    "adminEmail": "admin@drfilms.com",
+    "action": "SUPER_ADMIN_LOGIN_FAILED",
+    "targetType": "system",
+    "targetId": "photographer-super-admin",
+    "targetName": "Platform Owner",
+    "result": "failed",
+    "metadata": {
+      "reason": "Invalid password"
+    },
+    "ipAddress": "::1",
+    "timestamp": "2026-09-02T16:00:53.617Z"
+  },
+  {
+    "id": "audit-e7fc3c2b-67b7-4708-bc92-7eb1babf4f73",
+    "adminId": "photographer-super-admin",
+    "adminEmail": "admin@drfilms.com",
+    "action": "SUPER_ADMIN_LOGIN_SUCCESS",
+    "targetType": "system",
+    "targetId": "photographer-super-admin",
+    "targetName": "Platform Owner",
+    "result": "success",
+    "metadata": {},
+    "ipAddress": "::1",
+    "timestamp": "2026-09-02T16:00:53.252Z"
+  },
+  {
+    "id": "audit-41e99207-711b-4741-bd9f-7022d96ce6a9",
+    "adminId": "photographer-super-admin",
+    "adminEmail": "admin@drfilms.com",
+    "action": "SUPER_ADMIN_LOGOUT",
+    "targetType": "system",
+    "targetId": "photographer-super-admin",
+    "targetName": "Super Admin",
+    "result": "success",
+    "timestamp": "2026-09-02T16:00:34.835Z"
+  },
+  {
+    "id": "audit-dc695876-49dc-4485-8c26-57b3c21b9835",
+    "adminId": "photographer-default",
+    "adminEmail": "drfilms@weddingcinema.com",
+    "action": "SUPER_ADMIN_LOGIN_FAILED",
+    "targetType": "system",
+    "targetId": "photographer-default",
+    "targetName": "DR Films Wedding Cinema",
+    "result": "failed",
+    "metadata": {
+      "reason": "Insufficient role: owner"
+    },
+    "ipAddress": "::1",
+    "timestamp": "2026-09-02T16:00:34.231Z"
+  },
+  {
+    "id": "audit-4007fa66-078d-435b-9462-32f4bb6d9725",
+    "adminId": "photographer-super-admin",
+    "adminEmail": "admin@drfilms.com",
+    "action": "SUPER_ADMIN_LOGIN_FAILED",
+    "targetType": "system",
+    "targetId": "photographer-super-admin",
+    "targetName": "Platform Owner",
+    "result": "failed",
+    "metadata": {
+      "reason": "Invalid password"
+    },
+    "ipAddress": "::1",
+    "timestamp": "2026-09-02T16:00:34.032Z"
+  },
+  {
+    "id": "audit-ce6c4d6d-07e3-45a8-b266-c498f9471a19",
+    "adminId": "photographer-super-admin",
+    "adminEmail": "admin@drfilms.com",
+    "action": "SUPER_ADMIN_LOGIN_SUCCESS",
+    "targetType": "system",
+    "targetId": "photographer-super-admin",
+    "targetName": "Platform Owner",
+    "result": "success",
+    "metadata": {},
+    "ipAddress": "::1",
+    "timestamp": "2026-09-02T16:00:33.762Z"
+  },
+  {
+    "id": "audit-9e35a7e5-cddf-4796-a3f0-061d858a86a8",
+    "adminId": "photographer-super-admin",
+    "adminEmail": "admin@drfilms.com",
+    "action": "SUPER_ADMIN_LOGIN_SUCCESS",
+    "targetType": "system",
+    "targetId": "photographer-super-admin",
+    "targetName": "Platform Owner",
+    "result": "success",
+    "metadata": {},
+    "ipAddress": "::1",
+    "timestamp": "2026-09-02T16:00:22.964Z"
+  },
+  {
+    "id": "audit-66b62b88-a944-414a-af2e-f28c7c0deb68",
+    "adminId": "photographer-super-admin",
+    "adminEmail": "admin@drfilms.com",
+    "action": "SUPER_ADMIN_LOGIN",
+    "targetType": "system",
+    "targetId": "photographer-super-admin",
+    "targetName": "Platform Owner",
+    "result": "success",
+    "timestamp": "2026-09-02T15:51:41.113Z"
+  },
+  {
+    "id": "audit-8a0107bd-b643-4f0c-9ffd-ccbf58e626da",
+    "adminId": "photographer-super-admin",
+    "adminEmail": "admin@drfilms.com",
+    "action": "SUPER_ADMIN_LOGIN",
+    "targetType": "system",
+    "targetId": "photographer-super-admin",
+    "targetName": "Platform Owner",
+    "result": "success",
+    "timestamp": "2026-09-02T15:44:38.296Z"
+  },
+  {
+    "id": "audit-b5c8f34f-09f0-438f-b30d-84fbc0c03073",
+    "adminId": "photographer-super-admin",
+    "adminEmail": "admin@drfilms.com",
+    "action": "SUPER_ADMIN_LOGIN",
+    "targetType": "system",
+    "targetId": "photographer-super-admin",
+    "targetName": "Platform Owner",
+    "result": "success",
+    "timestamp": "2026-09-02T13:59:13.937Z"
+  }
+]

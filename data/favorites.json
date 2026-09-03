@@ -1,0 +1,29 @@
+[
+  {
+    "id": "fa73714e-e72d-417d-ace9-b030f858d755",
+    "projectId": "f38a0c25-9c6f-41a4-abcb-0f34769bc799",
+    "accessCode": "4JSCXV94",
+    "mediaId": "photo_wedding_06",
+    "mediaType": "PHOTO",
+    "sessionId": "ae89b1b6-6c47-465c-931c-8853f0048ecc",
+    "createdAt": "2026-09-01T14:05:47.868Z"
+  },
+  {
+    "id": "1214ee78-5514-4586-b183-27fc79f4ff98",
+    "projectId": "f38a0c25-9c6f-41a4-abcb-0f34769bc799",
+    "accessCode": "4JSCXV94",
+    "mediaId": "1Wv4zwGtaH-ZXWWj6Z7GJAuJU3b4EvJqd",
+    "mediaType": "VIDEO",
+    "sessionId": "50242999-7bb4-4807-acad-0e61d2213a9b",
+    "createdAt": "2026-09-01T14:06:58.822Z"
+  },
+  {
+    "id": "e5e0e5da-428b-4aa6-b497-1fa6180522d8",
+    "projectId": "d031f7ea-d01a-4320-8bd9-8c3a218d3209",
+    "accessCode": "E7TJBNE7",
+    "mediaId": "media-a-photo-1",
+    "mediaType": "PHOTO",
+    "sessionId": "sess_client_a_123",
+    "createdAt": "2026-09-03T15:00:03.683Z"
+  }
+]

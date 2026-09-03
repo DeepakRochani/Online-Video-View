@@ -1,0 +1,104 @@
+[
+  {
+    "id": "place-photographer-dashboard-top",
+    "name": "Photographer Dashboard Top Banner",
+    "placementKey": "PHOTOGRAPHER_DASHBOARD_TOP",
+    "pageRule": "/dashboard",
+    "adUnitId": "unit-dashboard-top",
+    "enabled": true,
+    "allowedRoles": [
+      "PHOTOGRAPHER"
+    ],
+    "planRule": "ADS_ENABLED_ONLY",
+    "description": "Subtle top banner above wedding project management for ad-supported plans.",
+    "createdAt": "2026-09-02T14:53:47.017Z",
+    "updatedAt": "2026-09-02T14:53:47.017Z"
+  },
+  {
+    "id": "place-photographer-dashboard-bottom",
+    "name": "Photographer Dashboard Bottom Banner",
+    "placementKey": "PHOTOGRAPHER_DASHBOARD_BOTTOM",
+    "pageRule": "/dashboard",
+    "adUnitId": "unit-dashboard-bottom",
+    "enabled": true,
+    "allowedRoles": [
+      "PHOTOGRAPHER"
+    ],
+    "planRule": "ADS_ENABLED_ONLY",
+    "description": "Lower banner above system footer.",
+    "createdAt": "2026-09-02T14:53:47.017Z",
+    "updatedAt": "2026-09-02T14:53:47.017Z"
+  },
+  {
+    "id": "place-public-home",
+    "name": "Public Landing Page Footer",
+    "placementKey": "PUBLIC_HOME",
+    "pageRule": "/",
+    "adUnitId": "unit-marketing-footer",
+    "enabled": true,
+    "allowedRoles": [
+      "GUEST",
+      "PHOTOGRAPHER"
+    ],
+    "planRule": "ALL",
+    "description": "Discreet sponsor slot in public landing page footer.",
+    "createdAt": "2026-09-02T14:53:47.017Z",
+    "updatedAt": "2026-09-02T14:53:47.017Z"
+  },
+  {
+    "id": "place-pricing-page",
+    "name": "Pricing Comparison Page",
+    "placementKey": "PRICING_PAGE",
+    "pageRule": "/pricing",
+    "adUnitId": "unit-pricing-banner",
+    "enabled": false,
+    "allowedRoles": [
+      "GUEST",
+      "PHOTOGRAPHER"
+    ],
+    "planRule": "ALL",
+    "description": "Conversion page banner (disabled by default to protect conversions).",
+    "createdAt": "2026-09-02T14:53:47.017Z",
+    "updatedAt": "2026-09-02T14:53:47.017Z"
+  },
+  {
+    "id": "place-help",
+    "name": "Help & Documentation Portal",
+    "placementKey": "HELP",
+    "pageRule": "/help",
+    "adUnitId": "unit-help-sidebar",
+    "enabled": true,
+    "allowedRoles": [
+      "GUEST",
+      "PHOTOGRAPHER"
+    ],
+    "planRule": "ALL",
+    "description": "Sidebar sponsor unit for public guides and tutorials.",
+    "createdAt": "2026-09-02T14:53:47.017Z",
+    "updatedAt": "2026-09-02T14:53:47.017Z"
+  },
+  {
+    "id": "place-client-gallery",
+    "name": "Client Wedding Galleries",
+    "placementKey": "CLIENT_GALLERY_DISABLED",
+    "pageRule": "/gallery/*",
+    "enabled": false,
+    "allowedRoles": [],
+    "planRule": "EXCLUDE_PAID",
+    "description": "Hard-isolated luxury client delivery experience — strictly ad-free.",
+    "createdAt": "2026-09-02T14:53:47.017Z",
+    "updatedAt": "2026-09-02T14:53:47.017Z"
+  },
+  {
+    "id": "place-admin-panel",
+    "name": "Super Admin Platform Engine",
+    "placementKey": "ADMIN_DISABLED",
+    "pageRule": "/admin/*",
+    "enabled": false,
+    "allowedRoles": [],
+    "planRule": "EXCLUDE_PAID",
+    "description": "SaaS administrative infrastructure — permanently excluded from all ad serving.",
+    "createdAt": "2026-09-02T14:53:47.017Z",
+    "updatedAt": "2026-09-02T14:53:47.017Z"
+  }
+]

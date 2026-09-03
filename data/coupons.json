@@ -1,0 +1,56 @@
+[
+  {
+    "id": "coupon-welcome20",
+    "code": "WELCOME20",
+    "discountType": "PERCENT",
+    "discountValue": 20,
+    "applicableCycles": [
+      "MONTHLY",
+      "YEARLY"
+    ],
+    "maxRedemptions": 500,
+    "redemptionCount": 9,
+    "expiresAt": "2027-03-01T14:14:02.583Z",
+    "isActive": true,
+    "createdAt": "2026-09-02T14:14:02.583Z",
+    "timesRedeemed": 9,
+    "allowedPlans": [],
+    "applicablePlans": []
+  },
+  {
+    "id": "coupon-yearly25",
+    "code": "YEARLY25",
+    "discountType": "PERCENT",
+    "discountValue": 25,
+    "applicableCycles": [
+      "YEARLY"
+    ],
+    "maxRedemptions": 200,
+    "redemptionCount": 0,
+    "expiresAt": "2027-09-02T14:14:02.583Z",
+    "isActive": true,
+    "createdAt": "2026-09-02T14:14:02.583Z",
+    "timesRedeemed": 0,
+    "allowedPlans": [],
+    "applicablePlans": []
+  },
+  {
+    "id": "coupon-launch50",
+    "code": "LAUNCH50",
+    "discountType": "PERCENT",
+    "discountValue": 50,
+    "currency": "INR",
+    "applicableCycles": [
+      "MONTHLY",
+      "YEARLY"
+    ],
+    "maxRedemptions": 50,
+    "redemptionCount": 0,
+    "expiresAt": "2026-11-01T14:14:02.583Z",
+    "isActive": true,
+    "createdAt": "2026-09-02T14:14:02.583Z",
+    "timesRedeemed": 0,
+    "allowedPlans": [],
+    "applicablePlans": []
+  }
+]

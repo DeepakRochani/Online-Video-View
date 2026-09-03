@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Middleware;
+
+use App\Core\Auth;
+use App\Core\Request;
+use App\Core\Response;
+
+class AuthMiddleware
+{
+    public function handle(Request $request): bool
+    {
+        if (!Auth::check()) {
+            if ($request->isJson()) {
+                Response::json(['success' => false, 'error' => 'Unauthenticated photographer session'], 401);
+                return false;
+            }
+            Response::redirect('/admin/login');
+            return false;
+        }
+        return true;
+    }
+}

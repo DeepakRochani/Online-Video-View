@@ -1,0 +1,14 @@
+[
+  {
+    "id": "job-1788453803549-cd8c5ff3",
+    "name": "BACKUP_SNAPSHOT",
+    "jobType": "BACKUP_SNAPSHOT",
+    "status": "RUNNING",
+    "startedAt": "2026-09-03T16:43:23.549Z",
+    "attempts": 1,
+    "maxAttempts": 3,
+    "metadata": {
+      "label": "pre-launch-test"
+    }
+  }
+]

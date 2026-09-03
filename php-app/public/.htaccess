@@ -1,0 +1,11 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Stop processing if already in the /public directory or is a direct file
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # Rewrite all other requests to index.php
+    RewriteRule ^ index.php [QSA,L]
+</IfModule>

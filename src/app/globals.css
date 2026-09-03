@@ -1,26 +1,452 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ── Animated gradient background ── */
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatGentle {
+  0%, 100% { transform: translateY(0px); }
+  50%      { transform: translateY(-8px); }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  background: #0b0c10;
+  font-family: var(--font-sans, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+  color: #f1f5f9;
+  overflow-x: hidden;
 }
+
+/* ── Wedding Luxury Accents ── */
+.wedding-bg {
+  background: radial-gradient(circle at 50% -20%, var(--gallery-glow-1, rgba(212, 175, 55, 0.12)) 0%, transparent 60%),
+              radial-gradient(circle at 100% 40%, var(--gallery-glow-2, rgba(224, 169, 109, 0.08)) 0%, transparent 50%),
+              linear-gradient(180deg, var(--gallery-bg-start, #090a0f) 0%, var(--gallery-bg-mid, #12131a) 50%, var(--gallery-bg-end, #08090d) 100%);
+  background-size: 100% 100%;
+  background-color: var(--gallery-bg, #090a0f);
+}
+
+.wedding-gold-gradient {
+  background: linear-gradient(135deg, #fce0ad 0%, #dfba73 50%, #c49746 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.wedding-gold-border {
+  border: 1px solid rgba(223, 186, 115, 0.3);
+}
+
+.wedding-gold-border:hover {
+  border-color: rgba(223, 186, 115, 0.6);
+  box-shadow: 0 0 25px rgba(223, 186, 115, 0.2);
+}
+
+.wedding-gold-btn {
+  background: linear-gradient(135deg, #dfba73, #b88628);
+  color: #1a1200;
+  font-weight: 700;
+  border-radius: 9999px;
+  padding: 0.75rem 1.75rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(184, 134, 40, 0.35);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.wedding-gold-btn:hover {
+  background: linear-gradient(135deg, #ebd094, #c99532);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(223, 186, 115, 0.5);
+  color: #0d0900;
+}
+
+.wedding-gold-btn:active {
+  transform: translateY(0);
+}
+
+/* ── Glass panel ── */
+.glass-panel {
+  background: rgba(18, 20, 29, 0.65);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.25rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.glass-panel:hover {
+  border-color: rgba(223, 186, 115, 0.3);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6), 0 0 20px rgba(223, 186, 115, 0.1);
+}
+
+/* ── Glass button ── */
+.glass-button {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.75rem;
+  color: #e2e8f0;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.6rem 1.2rem;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.glass-button:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(223, 186, 115, 0.5);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.glass-button:active {
+  transform: translateY(0);
+}
+
+.glass-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ── Accent button (primary CTA) ── */
+.accent-button {
+  background: linear-gradient(135deg, #dfba73, #c49746);
+  border: none;
+  border-radius: 0.75rem;
+  color: #1a1200;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  box-shadow: 0 4px 18px rgba(196, 151, 70, 0.35);
+}
+
+.accent-button:hover {
+  background: linear-gradient(135deg, #edd193, #d4a755);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(196, 151, 70, 0.5);
+}
+
+.accent-button:active  { transform: translateY(0); }
+.accent-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ── Input ── */
+.glass-input {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.75rem;
+  color: #f1f5f9;
+  outline: none;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.glass-input::placeholder { color: rgba(148, 163, 184, 0.5); }
+
+.glass-input:focus {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(223, 186, 115, 0.6);
+  box-shadow: 0 0 0 3px rgba(223, 186, 115, 0.15);
+}
+
+/* ── Speed/quality chip ── */
+.chip {
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(203, 213, 225, 0.8);
+  transition: all 0.2s ease;
+}
+
+.chip:hover {
+  background: rgba(223, 186, 115, 0.15);
+  border-color: rgba(223, 186, 115, 0.4);
+  color: #dfba73;
+}
+
+.chip.active {
+  background: linear-gradient(135deg, rgba(223, 186, 115, 0.3), rgba(184, 134, 40, 0.3));
+  border-color: rgba(223, 186, 115, 0.7);
+  color: #fce0ad;
+  box-shadow: 0 2px 10px rgba(223, 186, 115, 0.2);
+}
+
+/* ── Animations ── */
+.fade-in { animation: fadeIn 0.5s ease forwards; }
+.float-gentle { animation: floatGentle 6s ease-in-out infinite; }
+
+/* ── Custom video controls ── */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.2);
+  outline: none;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #dfba73;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(223, 186, 115, 0.8);
+  transition: transform 0.15s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.3); }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(223, 186, 115, 0.3); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(223, 186, 115, 0.6); }
+
+/* ── Spinner ── */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loader-spin {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,0.35);
+  border-top-color: #dfba73;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+/* ── Typography Presets ── */
+.font-preset-serif-elegant,
+.font-preset-playfair,
+.font-preset-cormorant,
+.font-serif-elegant,
+.font-playfair {
+  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+}
+
+.font-preset-sans-modern,
+.font-preset-outfit,
+.font-sans-modern,
+.font-outfit {
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.font-preset-editorial,
+.font-preset-bodoni,
+.font-editorial,
+.font-bodoni {
+  font-family: 'Bodoni Moda', 'Playfair Display', Georgia, serif;
+}
+
+.font-preset-classic,
+.font-preset-cinzel,
+.font-classic,
+.font-cinzel {
+  font-family: 'Cinzel', 'Playfair Display', 'Times New Roman', serif;
+}
+
+/* ── Gallery Themes Atmosphere ── */
+.gallery-theme-luxury,
+.theme-luxury {
+  --gallery-bg: #09070c;
+  --gallery-bg-start: #0c0812;
+  --gallery-bg-mid: #15101b;
+  --gallery-bg-end: #07050a;
+  --gallery-glow-1: rgba(229, 193, 88, 0.16);
+  --gallery-glow-2: rgba(212, 175, 55, 0.10);
+  --gallery-accent: #e5c158;
+}
+
+.gallery-theme-cinematic,
+.theme-cinematic {
+  --gallery-bg: #07080c;
+  --gallery-bg-start: #08090f;
+  --gallery-bg-mid: #10131d;
+  --gallery-bg-end: #050609;
+  --gallery-glow-1: rgba(245, 158, 11, 0.15);
+  --gallery-glow-2: rgba(217, 119, 6, 0.08);
+  --gallery-accent: #f59e0b;
+}
+
+.gallery-theme-classic,
+.theme-classic {
+  --gallery-bg: #0b0c10;
+  --gallery-bg-start: #0e1017;
+  --gallery-bg-mid: #161822;
+  --gallery-bg-end: #090a0e;
+  --gallery-glow-1: rgba(241, 245, 249, 0.08);
+  --gallery-glow-2: rgba(203, 213, 225, 0.05);
+  --gallery-accent: #f1f5f9;
+}
+
+.gallery-theme-minimal,
+.theme-minimal {
+  --gallery-bg: #040406;
+  --gallery-bg-start: #050507;
+  --gallery-bg-mid: #0a0a0d;
+  --gallery-bg-end: #030304;
+  --gallery-glow-1: rgba(255, 255, 255, 0.04);
+  --gallery-glow-2: rgba(255, 255, 255, 0.02);
+  --gallery-accent: #ffffff;
+}
+
+/* ── Gallery Templates Atmosphere ── */
+.gallery-template-classic,
+.template-classic {
+  --gallery-bg: #0d0e12;
+  --gallery-card: rgba(18, 20, 28, 0.7);
+  --gallery-accent: #d4af37;
+}
+
+.gallery-template-editorial,
+.template-editorial {
+  --gallery-bg: #08090d;
+  --gallery-bg-start: #090a0f;
+  --gallery-bg-mid: #12131b;
+  --gallery-bg-end: #06070a;
+  --gallery-card: rgba(15, 17, 24, 0.85);
+  --gallery-accent: #f5f2eb;
+}
+
+.gallery-template-minimal,
+.template-minimal {
+  --gallery-bg: #040406;
+  --gallery-bg-start: #040406;
+  --gallery-bg-mid: #09090c;
+  --gallery-bg-end: #030304;
+  --gallery-glow-1: rgba(255, 255, 255, 0.03);
+  --gallery-glow-2: rgba(255, 255, 255, 0.02);
+  --gallery-card: rgba(12, 12, 16, 0.65);
+  --gallery-accent: #ffffff;
+}
+
+.gallery-template-cinematic,
+.template-cinematic {
+  --gallery-bg: #07070a;
+  --gallery-bg-start: #08090e;
+  --gallery-bg-mid: #10121a;
+  --gallery-bg-end: #050608;
+  --gallery-card: rgba(16, 17, 24, 0.8);
+  --gallery-accent: #f59e0b;
+}
+
+.gallery-template-luxury,
+.template-luxury {
+  --gallery-bg: #080709;
+  --gallery-bg-start: #0d0912;
+  --gallery-bg-mid: #171120;
+  --gallery-bg-end: #060508;
+  --gallery-glow-1: rgba(229, 193, 88, 0.18);
+  --gallery-glow-2: rgba(212, 175, 55, 0.12);
+  --gallery-card: rgba(24, 20, 26, 0.8);
+  --gallery-accent: #e5c158;
+}
+
+.gallery-template-story,
+.template-story {
+  --gallery-bg: #0a0a0e;
+  --gallery-card: rgba(19, 21, 30, 0.75);
+  --gallery-accent: #dfba73;
+}
+
+/* ── Safe Area Inset Helpers (iOS Safari & Android Chrome Navigation) ── */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.safe-top {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+.safe-pb-margin {
+  margin-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.safe-floating-bar {
+  bottom: max(env(safe-area-inset-bottom, 0px), 1rem);
+}
+
+/* ── Mobile Touch Targets (Minimum 44px for primary interactions) ── */
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* ── Prevent iOS input auto-zoom on mobile focus ── */
+@media screen and (max-width: 768px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"],
+  input[type="tel"],
+  input[type="url"],
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* ── Accessibility & Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Focus Visible Ring ── */
+:focus-visible {
+  outline: 2px solid rgba(223, 186, 115, 0.7);
+  outline-offset: 2px;
+}
+
+

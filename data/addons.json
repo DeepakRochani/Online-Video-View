@@ -1,0 +1,59 @@
+[
+  {
+    "id": "addon-extra-weddings",
+    "slug": "extra-10-weddings",
+    "name": "Extra 10 Weddings Package",
+    "description": "Add 10 additional active wedding project slots to your current plan.",
+    "priceMonthlyInPaise": 49900,
+    "priceYearlyInPaise": 499000,
+    "currency": "INR",
+    "limitBonus": {
+      "maxProjects": 10,
+      "maxActiveProjects": 10
+    },
+    "isActive": true,
+    "createdAt": "2026-09-02T14:14:02.583Z"
+  },
+  {
+    "id": "addon-extra-storage",
+    "slug": "extra-500gb-storage",
+    "name": "500 GB High-Speed Cloud Storage",
+    "description": "Expand your studio media capacity with 500 GB additional quota.",
+    "priceMonthlyInPaise": 39900,
+    "priceYearlyInPaise": 399000,
+    "currency": "INR",
+    "limitBonus": {
+      "maxStorageGb": 500
+    },
+    "isActive": true,
+    "createdAt": "2026-09-02T14:14:02.583Z"
+  },
+  {
+    "id": "addon-extra-domains",
+    "slug": "extra-5-domains",
+    "name": "5 Additional Custom Domains",
+    "description": "Map up to 5 more custom white-label subdomains.",
+    "priceMonthlyInPaise": 29900,
+    "priceYearlyInPaise": 299000,
+    "currency": "INR",
+    "limitBonus": {
+      "maxCustomDomains": 5
+    },
+    "isActive": true,
+    "createdAt": "2026-09-02T14:14:02.583Z"
+  },
+  {
+    "id": "addon-ai-credits",
+    "slug": "extra-1000-ai-credits",
+    "name": "1,000 AI Curation Credits",
+    "description": "Batch AI face matching and highlights generation credits.",
+    "priceMonthlyInPaise": 19900,
+    "priceYearlyInPaise": 199000,
+    "currency": "INR",
+    "limitBonus": {
+      "maxAiCredits": 1000
+    },
+    "isActive": true,
+    "createdAt": "2026-09-02T14:14:02.583Z"
+  }
+]

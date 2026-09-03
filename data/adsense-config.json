@@ -1,0 +1,13 @@
+{
+  "publisherId": "",
+  "enabled": false,
+  "testMode": false,
+  "autoAdsEnabled": false,
+  "manualAdsEnabled": true,
+  "safetyMode": false,
+  "maxAdsPerPage": 3,
+  "minSpacingPx": 300,
+  "reportingConnected": false,
+  "updatedAt": "2026-09-02T15:20:27.798Z",
+  "updatedBy": "admin@drfilms.com"
+}

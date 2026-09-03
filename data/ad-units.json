@@ -1,0 +1,67 @@
+[
+  {
+    "id": "unit-dashboard-top",
+    "name": "Dashboard Header Leaderboard",
+    "key": "dashboard_top",
+    "slotId": "1234567890",
+    "format": "horizontal",
+    "placement": "PHOTOGRAPHER_DASHBOARD_TOP",
+    "active": true,
+    "priority": 10,
+    "responsive": true,
+    "createdAt": "2026-09-02T14:53:47.017Z",
+    "updatedAt": "2026-09-02T14:53:47.017Z"
+  },
+  {
+    "id": "unit-dashboard-bottom",
+    "name": "Dashboard Footer Banner",
+    "key": "dashboard_bottom",
+    "slotId": "2345678901",
+    "format": "horizontal",
+    "placement": "PHOTOGRAPHER_DASHBOARD_BOTTOM",
+    "active": true,
+    "priority": 5,
+    "responsive": true,
+    "createdAt": "2026-09-02T14:53:47.017Z",
+    "updatedAt": "2026-09-02T14:53:47.017Z"
+  },
+  {
+    "id": "unit-pricing-banner",
+    "name": "Pricing Page Promotion Banner",
+    "key": "pricing_banner",
+    "slotId": "3456789012",
+    "format": "horizontal",
+    "placement": "PRICING_PAGE",
+    "active": false,
+    "priority": 1,
+    "responsive": true,
+    "createdAt": "2026-09-02T14:53:47.017Z",
+    "updatedAt": "2026-09-02T14:53:47.017Z"
+  },
+  {
+    "id": "unit-marketing-footer",
+    "name": "Public Homepage Footer",
+    "key": "marketing_footer",
+    "slotId": "4567890123",
+    "format": "horizontal",
+    "placement": "PUBLIC_HOME",
+    "active": true,
+    "priority": 5,
+    "responsive": true,
+    "createdAt": "2026-09-02T14:53:47.017Z",
+    "updatedAt": "2026-09-02T14:53:47.017Z"
+  },
+  {
+    "id": "unit-help-sidebar",
+    "name": "Help & Docs Sidebar",
+    "key": "help_sidebar",
+    "slotId": "5678901234",
+    "format": "rectangle",
+    "placement": "HELP",
+    "active": true,
+    "priority": 5,
+    "responsive": true,
+    "createdAt": "2026-09-02T14:53:47.017Z",
+    "updatedAt": "2026-09-02T14:53:47.017Z"
+  }
+]

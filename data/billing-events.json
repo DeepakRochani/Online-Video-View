@@ -1,0 +1,51 @@
+[
+  {
+    "providerEventId": "evt_real_verify_1788453431052",
+    "photographerId": "test-tenant-a-1788453431042",
+    "eventType": "payment.captured",
+    "provider": "razorpay",
+    "status": "processed",
+    "payload": {
+      "amount": 199900,
+      "currency": "INR"
+    },
+    "id": "be-67e7d5f4-71e8-4020-a9d6-08670b729009",
+    "processedAt": "2026-09-03T16:37:11.052Z"
+  },
+  {
+    "providerEventId": "evt_real_verify_1788453082581",
+    "photographerId": "test-tenant-a-1788453082566",
+    "eventType": "payment.captured",
+    "provider": "razorpay",
+    "status": "processed",
+    "payload": {
+      "amount": 199900,
+      "currency": "INR"
+    },
+    "id": "be-9d590d96-2eac-4528-96ec-557ea9d79152",
+    "processedAt": "2026-09-03T16:31:22.581Z"
+  },
+  {
+    "providerEventId": "evt_real_verify_1788452744049",
+    "photographerId": "test-tenant-a-1788452744032",
+    "type": "PAYMENT_SUCCESS",
+    "provider": "razorpay",
+    "status": "processed",
+    "amount": 199900,
+    "currency": "INR",
+    "createdAt": "2026-09-03T16:25:44.049Z",
+    "id": "be-1f257066-0c00-4608-b347-0ce3e55dcee5",
+    "processedAt": "2026-09-03T16:25:44.050Z"
+  },
+  {
+    "id": "be-81ab2365-c630-44e3-9f8f-c757216f2ac5",
+    "photographerId": "test-tenant-a-1788452716383",
+    "type": "PAYMENT_SUCCESS",
+    "provider": "razorpay",
+    "status": "COMPLETED",
+    "amount": 199900,
+    "currency": "INR",
+    "createdAt": "2026-09-03T16:25:16.468Z",
+    "processedAt": "2026-09-03T16:25:16.469Z"
+  }
+]

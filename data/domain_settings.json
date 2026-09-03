@@ -1,0 +1,13 @@
+{
+  "id": "platform_domain_settings",
+  "customDomainsEnabled": true,
+  "maxDomainsPerPhotographer": 1,
+  "allowSubdomains": true,
+  "allowApexDomains": true,
+  "cnameTarget": "cname.drfilms.com",
+  "maintenanceNotice": "Custom domains are currently disabled by the platform administrator.",
+  "lastUpdated": "2026-01-01T00:00:00.000Z",
+  "createdAt": "2026-01-01T00:00:00.000Z",
+  "updatedAt": "2026-01-01T00:00:00.000Z",
+  "updatedBy": "SYSTEM"
+}
