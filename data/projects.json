@@ -341,7 +341,7 @@
       "useStudioDefaults": false
     },
     "analytics": {
-      "views": 110,
+      "views": 116,
       "plays": 7,
       "completions": 0,
       "favorites": 0,
@@ -563,7 +563,7 @@
     "lastScanned": "2026-09-02T09:30:38.609Z",
     "lastSyncStatus": "✓ Synced",
     "createdAt": "2026-09-02T09:30:38.609Z",
-    "updatedAt": "2026-09-05T11:46:51.929Z",
+    "updatedAt": "2026-09-05T11:54:41.754Z",
     "template": "editorial",
     "photographerId": "photographer-default"
   },
