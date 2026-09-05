@@ -8,6 +8,7 @@ import {
   ChevronRight, 
   Download, 
   Maximize, 
+  Minimize,
   Volume2, 
   VolumeX, 
   Play, 
@@ -17,7 +18,8 @@ import {
   RefreshCw, 
   Heart, 
   Clock,
-  ExternalLink,
+  RotateCcw,
+  RotateCw,
   Share2
 } from "lucide-react";
 
@@ -44,6 +46,8 @@ interface VideoModalProps {
   onShare?: (video: DriveVideoFile) => void;
 }
 
+const SPEEDS = [0.5, 1, 1.25, 1.5, 2];
+
 export default function VideoModal({
   videos,
   currentIndex,
@@ -58,25 +62,43 @@ export default function VideoModal({
 }: VideoModalProps) {
   const currentVideo = videos[currentIndex];
   const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const slowTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const hideControlsTimerRef = useRef<NodeJS.Timeout | null>(null);
   const activeTokenRef = useRef<number>(0);
   const hasRecordedPlayRef = useRef<boolean>(false);
   const hasRecordedCompleteRef = useRef<boolean>(false);
-  const autoRetryCountRef = useRef<number>(0);
 
   const [playerState, setPlayerState] = useState<PlayerState>("loading");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [isSlowLoading, setIsSlowLoading] = useState(false);
-  const [usePreviewFallback, setUsePreviewFallback] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
+  const [volume, setVolume] = useState(1);
   const [progress, setProgress] = useState(0);
+  const [bufferedPct, setBufferedPct] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [playbackRate, setPlaybackRate] = useState(1);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [showControls, setShowControls] = useState(true);
   const [retryKey, setRetryKey] = useState(0);
 
   const hasPrev = currentIndex > 0;
   const hasNext = currentIndex < videos.length - 1;
+
+  const scheduleHideControls = useCallback(() => {
+    if (hideControlsTimerRef.current) clearTimeout(hideControlsTimerRef.current);
+    hideControlsTimerRef.current = setTimeout(() => {
+      setShowControls(false);
+    }, 3000);
+  }, []);
+
+  const handleMouseMove = useCallback(() => {
+    setShowControls(true);
+    if (playerState === "playing") {
+      scheduleHideControls();
+    }
+  }, [playerState, scheduleHideControls]);
 
   const reportAnalytics = useCallback((eventType: "play" | "completion") => {
     if (!accessCode || !currentVideo) return;
@@ -98,23 +120,31 @@ export default function VideoModal({
     if (videoRef.current.paused) {
       videoRef.current.play().then(() => {
         setPlayerState("playing");
+        scheduleHideControls();
       }).catch((err) => {
         if (process.env.NODE_ENV !== "production") {
           console.warn("[Video] Play action prevented:", err);
         }
         setPlayerState("paused");
+        setShowControls(true);
       });
     } else {
       videoRef.current.pause();
       setPlayerState("paused");
+      setShowControls(true);
+      if (hideControlsTimerRef.current) clearTimeout(hideControlsTimerRef.current);
     }
-  }, []);
+  }, [scheduleHideControls]);
 
   const handleClose = useCallback(() => {
     activeTokenRef.current += 1;
     if (slowTimerRef.current) {
       clearTimeout(slowTimerRef.current);
       slowTimerRef.current = null;
+    }
+    if (hideControlsTimerRef.current) {
+      clearTimeout(hideControlsTimerRef.current);
+      hideControlsTimerRef.current = null;
     }
     const vid = videoRef.current;
     if (vid) {
@@ -129,23 +159,48 @@ export default function VideoModal({
     onClose();
   }, [onClose]);
 
+  // Fullscreen change listener
+  useEffect(() => {
+    const onFSChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+    document.addEventListener("fullscreenchange", onFSChange);
+    return () => document.removeEventListener("fullscreenchange", onFSChange);
+  }, []);
+
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        handleClose();
-      } else if (e.key === "ArrowLeft" && hasPrev) {
-        onSelectIndex(currentIndex - 1);
-      } else if (e.key === "ArrowRight" && hasNext) {
-        onSelectIndex(currentIndex + 1);
+        if (document.fullscreenElement) {
+          document.exitFullscreen().catch(() => {});
+        } else {
+          handleClose();
+        }
+      } else if (e.key === "ArrowLeft") {
+        if (e.shiftKey) {
+          skipBy(-10);
+        } else if (hasPrev) {
+          onSelectIndex(currentIndex - 1);
+        }
+      } else if (e.key === "ArrowRight") {
+        if (e.shiftKey) {
+          skipBy(10);
+        } else if (hasNext) {
+          onSelectIndex(currentIndex + 1);
+        }
       } else if (e.key === " " && e.target === document.body) {
         e.preventDefault();
         togglePlay();
+      } else if (e.key === "f" || e.key === "F") {
+        if (allowFullscreen) toggleFullscreen();
+      } else if (e.key === "m" || e.key === "M") {
+        toggleMute();
       }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [currentIndex, hasPrev, hasNext, handleClose, onSelectIndex, togglePlay]);
+  }, [currentIndex, hasPrev, hasNext, handleClose, onSelectIndex, togglePlay, allowFullscreen]);
 
   // Clean up video media resources on unmount
   useEffect(() => {
@@ -163,6 +218,10 @@ export default function VideoModal({
         clearTimeout(slowTimerRef.current);
         slowTimerRef.current = null;
       }
+      if (hideControlsTimerRef.current) {
+        clearTimeout(hideControlsTimerRef.current);
+        hideControlsTimerRef.current = null;
+      }
     };
   }, []);
 
@@ -174,16 +233,15 @@ export default function VideoModal({
     setPlayerState("loading");
     setErrorMessage("");
     setProgress(0);
+    setBufferedPct(0);
     setCurrentTime(0);
     setDuration(0);
     setIsSlowLoading(false);
-    setUsePreviewFallback(false);
+    setShowControls(true);
     hasRecordedPlayRef.current = false;
     hasRecordedCompleteRef.current = false;
-    autoRetryCountRef.current = 0;
 
     // Slow loading watchdog: informational notice after 10s.
-    // NEVER forces playerState to "error" or "stalled" - stream continues in background!
     if (slowTimerRef.current) clearTimeout(slowTimerRef.current);
     slowTimerRef.current = setTimeout(() => {
       if (activeTokenRef.current === currentToken) {
@@ -201,8 +259,23 @@ export default function VideoModal({
 
   const toggleMute = () => {
     if (!videoRef.current) return;
-    videoRef.current.muted = !videoRef.current.muted;
-    setIsMuted(videoRef.current.muted);
+    const nextMuted = !videoRef.current.muted;
+    videoRef.current.muted = nextMuted;
+    setIsMuted(nextMuted);
+    if (!nextMuted && volume === 0) {
+      videoRef.current.volume = 0.5;
+      setVolume(0.5);
+    }
+  };
+
+  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = parseFloat(e.target.value);
+    setVolume(val);
+    if (videoRef.current) {
+      videoRef.current.volume = val;
+      videoRef.current.muted = val === 0;
+      setIsMuted(val === 0);
+    }
   };
 
   const handleTimeUpdate = () => {
@@ -213,6 +286,20 @@ export default function VideoModal({
     if (dur && dur > 0) {
       const pct = (cur / dur) * 100;
       setProgress(pct);
+
+      // Calculate buffer progress
+      try {
+        const buffered = videoRef.current.buffered;
+        if (buffered.length > 0) {
+          for (let i = buffered.length - 1; i >= 0; i--) {
+            if (buffered.start(i) <= cur) {
+              setBufferedPct((buffered.end(i) / dur) * 100);
+              break;
+            }
+          }
+        }
+      } catch {}
+
       // Track completion at 90%
       if (pct >= 90 && !hasRecordedCompleteRef.current) {
         hasRecordedCompleteRef.current = true;
@@ -226,23 +313,39 @@ export default function VideoModal({
     const seekTo = (parseFloat(e.target.value) / 100) * videoRef.current.duration;
     videoRef.current.currentTime = seekTo;
     setProgress(parseFloat(e.target.value));
+    setCurrentTime(seekTo);
   };
 
-  const toggleFullscreen = () => {
+  const skipBy = (secs: number) => {
     if (!videoRef.current) return;
+    const dur = videoRef.current.duration || 0;
+    const nextTime = Math.min(Math.max(0, videoRef.current.currentTime + secs), dur || 999999);
+    videoRef.current.currentTime = nextTime;
+    setCurrentTime(nextTime);
+    if (dur > 0) setProgress((nextTime / dur) * 100);
+  };
+
+  const toggleFullscreen = async () => {
+    const target = containerRef.current || videoRef.current;
+    if (!target) return;
     if (document.fullscreenElement) {
-      document.exitFullscreen();
+      await document.exitFullscreen().catch(() => {});
     } else {
-      videoRef.current.requestFullscreen();
+      await target.requestFullscreen().catch(() => {});
+    }
+  };
+
+  const handleSpeedChange = (speed: number) => {
+    setPlaybackRate(speed);
+    if (videoRef.current) {
+      videoRef.current.playbackRate = speed;
     }
   };
 
   const handleRetry = () => {
     activeTokenRef.current += 1;
-    autoRetryCountRef.current = 0;
     setErrorMessage("");
     setIsSlowLoading(false);
-    setUsePreviewFallback(false);
     setPlayerState("loading");
     setRetryKey((prev) => prev + 1);
   };
@@ -250,8 +353,12 @@ export default function VideoModal({
   const formatTime = (secs: number, isCurrent = false) => {
     if (isNaN(secs) || secs < 0) return "--:--";
     if (secs === 0 && !isCurrent) return "--:--";
-    const m = Math.floor(secs / 60);
+    const h = Math.floor(secs / 3600);
+    const m = Math.floor((secs % 3600) / 60);
     const s = Math.floor(secs % 60);
+    if (h > 0) {
+      return `${h}:${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
+    }
     return `${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
   };
 
@@ -280,9 +387,18 @@ export default function VideoModal({
   const cleanTitle = currentVideo.name.replace(/\.[^/.]+$/, "").replace(/[-_]/g, " ");
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-xl animate-in fade-in duration-300 select-none">
+    <div 
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={() => playerState === "playing" && scheduleHideControls()}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-xl animate-in fade-in duration-300 select-none"
+    >
       {/* ── Top Bar Header ── */}
-      <div className="absolute top-0 inset-x-0 p-4 sm:p-6 safe-top flex items-center justify-between z-30 bg-gradient-to-b from-black/90 via-black/50 to-transparent">
+      <div 
+        className={`absolute top-0 inset-x-0 p-4 sm:p-6 safe-top flex items-center justify-between z-30 bg-gradient-to-b from-black/90 via-black/50 to-transparent transition-opacity duration-300 ${
+          showControls || playerState !== "playing" ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+      >
         <div className="flex items-center gap-3 min-w-0 pr-4">
           <div className="p-2 rounded-xl bg-amber-500/15 text-amber-300 border border-amber-500/25 flex-shrink-0">
             <Film className="w-5 h-5" />
@@ -371,7 +487,9 @@ export default function VideoModal({
         {hasPrev && (
           <button
             onClick={() => onSelectIndex(currentIndex - 1)}
-            className="absolute left-2 sm:left-6 z-30 p-3 rounded-full bg-black/70 hover:bg-amber-400 hover:text-black text-white backdrop-blur-md border border-white/20 transition-all shadow-2xl hover:scale-110 cursor-pointer"
+            className={`absolute left-2 sm:left-6 z-30 p-3 rounded-full bg-black/70 hover:bg-amber-400 hover:text-black text-white backdrop-blur-md border border-white/20 transition-all shadow-2xl hover:scale-110 cursor-pointer ${
+              showControls || playerState !== "playing" ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+            }`}
             title="Previous film (Left arrow)"
             aria-label="Previous film"
           >
@@ -383,7 +501,9 @@ export default function VideoModal({
         {hasNext && (
           <button
             onClick={() => onSelectIndex(currentIndex + 1)}
-            className="absolute right-2 sm:right-6 z-30 p-3 rounded-full bg-black/70 hover:bg-amber-400 hover:text-black text-white backdrop-blur-md border border-white/20 transition-all shadow-2xl hover:scale-110 cursor-pointer"
+            className={`absolute right-2 sm:right-6 z-30 p-3 rounded-full bg-black/70 hover:bg-amber-400 hover:text-black text-white backdrop-blur-md border border-white/20 transition-all shadow-2xl hover:scale-110 cursor-pointer ${
+              showControls || playerState !== "playing" ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+            }`}
             title="Next film (Right arrow)"
             aria-label="Next film"
           >
@@ -400,11 +520,11 @@ export default function VideoModal({
               <span className="text-xs text-amber-200/90 font-serif tracking-widest uppercase">
                 {playerState === "metadata" ? "Initializing film..." : "Loading film..."}
               </span>
-              {/* Informational slow-load indicator - non-blocking, video keeps loading */}
+              {/* Informational slow-load indicator */}
               {isSlowLoading && (
                 <div className="mt-2 px-3.5 py-1.5 rounded-full bg-black/70 border border-amber-500/30 flex items-center gap-2 text-[11px] text-amber-300/90 backdrop-blur-md animate-in fade-in">
                   <Clock className="w-3.5 h-3.5 animate-pulse text-amber-400" />
-                  <span>Connecting to Google Drive stream... Still loading</span>
+                  <span>Streaming media... Still loading</span>
                   <button
                     type="button"
                     onClick={handleRetry}
@@ -432,9 +552,9 @@ export default function VideoModal({
                 <AlertCircle className="w-6 h-6" />
               </div>
               <div>
-                <h3 className="text-white font-bold text-base">Unable to play this video.</h3>
+                <h3 className="text-white font-bold text-base">Unable to play this video</h3>
                 <p className="text-xs text-slate-400 mt-1 max-w-sm">
-                  {errorMessage || "The video could not be loaded. Please click Retry."}
+                  {errorMessage || "The video stream could not be loaded. Please click Retry."}
                 </p>
               </div>
 
@@ -446,31 +566,19 @@ export default function VideoModal({
                   <RefreshCw className="w-3.5 h-3.5" />
                   <span>Retry Stream</span>
                 </button>
-
-                {currentVideo.webViewLink && (
-                  <a
-                    href={currentVideo.webViewLink}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="glass-button text-xs px-4 py-2.5 flex items-center gap-2"
-                  >
-                    <ExternalLink className="w-3.5 h-3.5 text-amber-400" />
-                    <span>Open in Google Drive</span>
-                  </a>
-                )}
               </div>
             </div>
           )}
 
-          {!usePreviewFallback && (
-            <video
-              ref={videoRef}
-              key={`${currentVideo.id || currentVideo.driveFileId}-${retryKey}`}
-              src={streamUrl}
-              className="w-full h-full object-contain cursor-pointer"
-              playsInline
-              preload="auto"
-              autoPlay
+          {/* ── Direct Native HTML5 Video Element ── */}
+          <video
+            ref={videoRef}
+            key={`${currentVideo.id || currentVideo.driveFileId}-${retryKey}`}
+            src={streamUrl}
+            className="w-full h-full object-contain cursor-pointer"
+            playsInline
+            preload="metadata"
+            autoPlay
             onLoadStart={() => {
               if (process.env.NODE_ENV !== "production") {
                 console.log("[Video] loadstart", streamUrl);
@@ -501,9 +609,6 @@ export default function VideoModal({
             }}
             onCanPlay={() => {
               const token = activeTokenRef.current;
-              if (process.env.NODE_ENV !== "production") {
-                console.log("[Video] canplay", { readyState: videoRef.current?.readyState });
-              }
               setIsSlowLoading(false);
 
               if (videoRef.current && !videoRef.current.paused) {
@@ -518,6 +623,7 @@ export default function VideoModal({
                         hasRecordedPlayRef.current = true;
                         reportAnalytics("play");
                       }
+                      scheduleHideControls();
                     }
                   })
                   .catch((err) => {
@@ -526,58 +632,36 @@ export default function VideoModal({
                     }
                     if (activeTokenRef.current === token) {
                       setPlayerState("paused");
+                      setShowControls(true);
                     }
                   });
               }
             }}
-            onCanPlayThrough={() => {
-              if (process.env.NODE_ENV !== "production") {
-                console.log("[Video] canplaythrough");
-              }
-            }}
             onPlay={() => {
-              if (process.env.NODE_ENV !== "production") {
-                console.log("[Video] play");
-              }
+              setPlayerState("playing");
+              scheduleHideControls();
             }}
             onPlaying={() => {
-              if (process.env.NODE_ENV !== "production") {
-                console.log("[Video] playing");
-              }
               setIsSlowLoading(false);
               setPlayerState("playing");
               if (!hasRecordedPlayRef.current) {
                 hasRecordedPlayRef.current = true;
                 reportAnalytics("play");
               }
+              scheduleHideControls();
             }}
             onWaiting={() => {
-              if (process.env.NODE_ENV !== "production") {
-                console.log("[Video] waiting");
-              }
               setPlayerState((prev) => (prev === "playing" ? "buffering" : prev));
             }}
             onStalled={() => {
-              if (process.env.NODE_ENV !== "production") {
-                console.log("[Video] stalled");
-              }
-              // A slow Google Drive stream is still a valid loading state. Never switch to error.
               setPlayerState((prev) => (prev === "playing" ? "buffering" : prev));
-            }}
-            onProgress={() => {
-              // Video is actively downloading data from stream
             }}
             onTimeUpdate={handleTimeUpdate}
             onPause={() => {
-              if (process.env.NODE_ENV !== "production") {
-                console.log("[Video] pause");
-              }
               setPlayerState((prev) => (prev === "playing" || prev === "ready" ? "paused" : prev));
+              setShowControls(true);
             }}
             onEnded={() => {
-              if (process.env.NODE_ENV !== "production") {
-                console.log("[Video] ended");
-              }
               if (!hasRecordedCompleteRef.current) {
                 hasRecordedCompleteRef.current = true;
                 reportAnalytics("completion");
@@ -586,36 +670,9 @@ export default function VideoModal({
                 onSelectIndex(currentIndex + 1);
               }
             }}
-            onAbort={() => {
-              if (process.env.NODE_ENV !== "production") {
-                console.log("[Video] abort");
-              }
-            }}
-            onEmptied={() => {
-              if (process.env.NODE_ENV !== "production") {
-                console.log("[Video] emptied");
-              }
-            }}
             onError={(e) => {
-              const video = e.currentTarget;
-              const mediaErr = video.error;
-
-              // If aborted (code 1), do not show error screen
-              if (mediaErr?.code === 1) {
-                return;
-              }
-
-              // If stream failed with format/server error (e.g. 502 Bad Gateway due to Drive anonymous quota),
-              // fall back to Google Drive's official embedded preview player inside the modal canvas
-              const driveId = currentVideo.driveFileId || currentVideo.id;
-              if (driveId && (mediaErr?.code === 4 || mediaErr?.code === 2)) {
-                if (process.env.NODE_ENV !== "production") {
-                  console.warn("[Video] Direct binary stream failed. Seamlessly activating Google Drive preview stream...");
-                }
-                setUsePreviewFallback(true);
-                setPlayerState("ready");
-                return;
-              }
+              const mediaErr = e.currentTarget.error;
+              if (mediaErr?.code === 1) return; // Aborted cleanly
 
               let clientMessage = "Unable to play this video.";
               if (mediaErr?.code === 2) {
@@ -631,25 +688,22 @@ export default function VideoModal({
             }}
             onClick={togglePlay}
           />
-          )}
-
-          {usePreviewFallback && (
-            <iframe
-              src={`https://drive.google.com/file/d/${currentVideo.driveFileId || currentVideo.id}/preview`}
-              className="w-full h-full border-0 rounded-2xl sm:rounded-3xl bg-black"
-              allow="autoplay; encrypted-media; fullscreen"
-              allowFullScreen
-              title={cleanTitle}
-            />
-          )}
         </div>
       </div>
 
-      {/* ── Bottom Custom Controller Bar (Only shown for HTML5 stream, iframe has native controls) ── */}
-      {!usePreviewFallback && (
-        <div className="absolute bottom-4 inset-x-4 max-w-4xl mx-auto z-30 glass-panel p-3 sm:p-4 border border-white/15 shadow-2xl safe-pb-margin">
-          {/* Progress Timeline Scrubber */}
-          <div className="relative flex items-center mb-3 group">
+      {/* ── Bottom Custom Controller Bar ── */}
+      <div 
+        className={`absolute bottom-4 inset-x-4 max-w-4xl mx-auto z-30 glass-panel p-3 sm:p-4 border border-white/15 shadow-2xl safe-pb-margin transition-opacity duration-300 ${
+          showControls || playerState !== "playing" ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+      >
+        {/* Progress Timeline Scrubber */}
+        <div className="relative flex items-center mb-3 group">
+          {/* Buffer Bar */}
+          <div 
+            className="absolute left-0 top-1/2 -translate-y-1/2 h-1.5 sm:h-2 bg-white/20 rounded-lg pointer-events-none"
+            style={{ width: `${bufferedPct}%` }}
+          />
           <input
             type="range"
             min="0"
@@ -657,13 +711,18 @@ export default function VideoModal({
             step="0.1"
             value={progress}
             onChange={handleSeek}
-            className="w-full h-1.5 sm:h-2 bg-white/20 rounded-lg appearance-none cursor-pointer accent-amber-400 focus:outline-none"
+            className="w-full h-1.5 sm:h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-amber-400 focus:outline-none relative z-10"
+            style={{
+              background: `linear-gradient(to right, #f59e0b ${progress}%, transparent ${progress}%)`,
+            }}
+            aria-label="Seek timeline"
           />
         </div>
 
         {/* Video Control Bar Buttons */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
+        <div className="flex items-center justify-between gap-2">
+          {/* Left: Play/Pause, -10s, +10s, Volume & Timestamp */}
+          <div className="flex items-center gap-2 sm:gap-3">
             {/* Play/Pause */}
             <button
               onClick={togglePlay}
@@ -678,31 +737,61 @@ export default function VideoModal({
               )}
             </button>
 
-            {/* Mute/Unmute */}
+            {/* Skip -10s */}
             <button
-              onClick={toggleMute}
-              className="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-slate-200 transition-all cursor-pointer"
-              title={isMuted ? "Unmute" : "Mute"}
-              aria-label={isMuted ? "Unmute" : "Mute"}
+              onClick={() => skipBy(-10)}
+              className="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-slate-200 hover:text-white transition-all cursor-pointer hidden xs:flex items-center justify-center"
+              title="Skip backward 10s (Shift + Left Arrow)"
+              aria-label="Skip backward 10s"
             >
-              {isMuted ? <VolumeX className="w-4 h-4 text-rose-400" /> : <Volume2 className="w-4 h-4" />}
+              <RotateCcw className="w-4 h-4" />
             </button>
 
-            {/* Time Stamp: prevents misleading 00:00 / 00:00 while metadata is loading */}
+            {/* Skip +10s */}
+            <button
+              onClick={() => skipBy(10)}
+              className="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-slate-200 hover:text-white transition-all cursor-pointer hidden xs:flex items-center justify-center"
+              title="Skip forward 10s (Shift + Right Arrow)"
+              aria-label="Skip forward 10s"
+            >
+              <RotateCw className="w-4 h-4" />
+            </button>
+
+            {/* Volume Control */}
+            <div className="flex items-center gap-1.5">
+              <button
+                onClick={toggleMute}
+                className="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-slate-200 transition-all cursor-pointer"
+                title={isMuted ? "Unmute (M)" : "Mute (M)"}
+                aria-label={isMuted ? "Unmute" : "Mute"}
+              >
+                {isMuted || volume === 0 ? <VolumeX className="w-4 h-4 text-rose-400" /> : <Volume2 className="w-4 h-4" />}
+              </button>
+              <input
+                type="range"
+                min="0"
+                max="1"
+                step="0.05"
+                value={isMuted ? 0 : volume}
+                onChange={handleVolumeChange}
+                className="w-14 sm:w-20 h-1.5 bg-white/20 rounded-lg appearance-none cursor-pointer accent-amber-400 focus:outline-none hidden sm:inline-block"
+                aria-label="Volume level"
+              />
+            </div>
+
+            {/* Time Stamp */}
             <span className="text-[11px] sm:text-xs font-mono text-slate-300">
               {formatTime(currentTime, true)} / {formatTime(duration, false)}
             </span>
           </div>
 
+          {/* Right: Speed & Fullscreen */}
           <div className="flex items-center gap-1.5 sm:gap-2">
             {/* Speed selection */}
-            {[1, 1.25, 1.5, 2].map((speed) => (
+            {SPEEDS.map((speed) => (
               <button
                 key={speed}
-                onClick={() => {
-                  setPlaybackRate(speed);
-                  if (videoRef.current) videoRef.current.playbackRate = speed;
-                }}
+                onClick={() => handleSpeedChange(speed)}
                 className={`px-2 py-1 rounded-lg text-[10px] sm:text-[11px] font-mono transition-all cursor-pointer ${
                   playbackRate === speed
                     ? "bg-amber-400 text-black font-bold"
@@ -718,17 +807,16 @@ export default function VideoModal({
             {allowFullscreen && (
               <button
                 onClick={toggleFullscreen}
-                className="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-slate-200 transition-all cursor-pointer"
-                title="Fullscreen"
+                className="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-slate-200 hover:text-white transition-all cursor-pointer"
+                title={isFullscreen ? "Exit Fullscreen (F)" : "Fullscreen (F)"}
                 aria-label="Toggle Fullscreen"
               >
-                <Maximize className="w-4 h-4" />
+                {isFullscreen ? <Minimize className="w-4 h-4" /> : <Maximize className="w-4 h-4" />}
               </button>
             )}
           </div>
         </div>
       </div>
-      )}
     </div>
   );
 }

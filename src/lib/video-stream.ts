@@ -75,9 +75,16 @@ async function fetchGoogleDriveStream(
     try {
       const authClient = driveClientResult.drive.context?._options?.auth;
       let accessToken: string | null = null;
-      if (authClient && typeof authClient.getAccessToken === "function") {
-        const tokenRes = await authClient.getAccessToken();
-        accessToken = typeof tokenRes === "string" ? tokenRes : tokenRes?.token || null;
+      if (authClient) {
+        if (typeof authClient.getAccessToken === "function") {
+          const tokenRes = await authClient.getAccessToken();
+          accessToken = typeof tokenRes === "string" ? tokenRes : tokenRes?.token || null;
+        } else if (typeof authClient.authorize === "function") {
+          const authCreds = await authClient.authorize();
+          accessToken = authCreds?.access_token || null;
+        } else if (authClient.credentials?.access_token) {
+          accessToken = authClient.credentials.access_token;
+        }
       }
 
       if (accessToken) {
@@ -95,7 +102,7 @@ async function fetchGoogleDriveStream(
           stageTiming["tier1_api"] = Date.now() - apiStart;
 
           const apiType = apiRes.headers.get("content-type") || "";
-          if (apiRes.ok && !apiType.includes("text/html")) {
+          if ((apiRes.ok || apiRes.status === 206) && !apiType.includes("text/html")) {
             return { response: apiRes, stageTiming };
           }
         } catch (e) {
