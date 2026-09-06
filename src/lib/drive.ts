@@ -101,6 +101,101 @@ export function getDriveClient(photographerId?: string): { drive: any; authType:
 }
 
 /**
+ * Retrieves a valid, non-expired Google OAuth or Service Account access token.
+ * Proactively refreshes tokens if within 5 minutes of expiration (< 300s) and persists
+ * the refreshed credentials directly to the photographer database.
+ */
+export async function getValidAccessToken(photographerId?: string): Promise<{ token: string | null; authType: string }> {
+  const clientId = process.env.GOOGLE_CLIENT_ID?.trim();
+  const clientSecret = process.env.GOOGLE_CLIENT_SECRET?.trim();
+  const redirectUri = process.env.GOOGLE_DRIVE_REDIRECT_URI || process.env.GOOGLE_REDIRECT_URI || "http://localhost:3000/api/drive/callback";
+
+  // 0. Photographer-specific OAuth2
+  if (photographerId && clientId && clientSecret) {
+    const photographer = getPhotographerById(photographerId);
+    if (photographer?.googleDriveTokens) {
+      const tokens = photographer.googleDriveTokens;
+      if (tokens.refreshToken || tokens.accessToken) {
+        const oauth2Client = new google.auth.OAuth2(clientId, clientSecret, redirectUri);
+        oauth2Client.setCredentials({
+          access_token: tokens.accessToken,
+          refresh_token: tokens.refreshToken,
+          expiry_date: tokens.expiryDate,
+        });
+
+        // Check if token is expired or expiring within 5 minutes (300,000 ms)
+        const now = Date.now();
+        const isExpiringSoon = !tokens.accessToken || !tokens.expiryDate || (now + 5 * 60 * 1000 >= tokens.expiryDate);
+
+        if (isExpiringSoon && tokens.refreshToken) {
+          try {
+            console.log(`[Google Auth] Proactively refreshing expiring token for photographer: ${photographer.email}`);
+            const refreshRes = await oauth2Client.refreshAccessToken();
+            const newCreds = refreshRes.credentials;
+            if (newCreds.access_token) {
+              const updatedTokens = {
+                ...tokens,
+                accessToken: newCreds.access_token,
+                refreshToken: newCreds.refresh_token || tokens.refreshToken,
+                expiryDate: newCreds.expiry_date || (now + 3600 * 1000),
+                scope: newCreds.scope || tokens.scope,
+                tokenType: newCreds.token_type || tokens.tokenType,
+              };
+              saveGoogleDriveTokens(photographerId, updatedTokens, photographer.email);
+              console.log(`[Google Auth] Access token successfully refreshed and saved for ${photographer.email}`);
+              return { token: newCreds.access_token, authType: `Photographer OAuth2 (${photographer.email})` };
+            }
+          } catch (refreshErr: any) {
+            console.error(`[Google Auth] Token refresh failed for photographer ${photographer.email}:`, refreshErr.message);
+          }
+        }
+
+        if (tokens.accessToken) {
+          return { token: tokens.accessToken, authType: `Photographer OAuth2 (${photographer.email})` };
+        }
+      }
+    }
+  }
+
+  // 1. Service Account JWT (High reliability server-side token)
+  const saEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL?.trim();
+  const saKey = process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY?.replace(/\\n/g, "\n");
+  if (saEmail && saKey) {
+    try {
+      const jwtClient = new google.auth.JWT({
+        email: saEmail,
+        key: saKey,
+        scopes: ["https://www.googleapis.com/auth/drive.readonly"],
+      });
+      const creds = await jwtClient.authorize();
+      if (creds?.access_token) {
+        return { token: creds.access_token, authType: `Service Account JWT (${saEmail})` };
+      }
+    } catch (e: any) {
+      console.warn("[Google Auth] Service Account JWT authorization error:", e.message);
+    }
+  }
+
+  // 2. Global OAuth2 Refresh Token from Env
+  const globalRefreshToken = process.env.GOOGLE_REFRESH_TOKEN?.trim();
+  if (clientId && clientSecret && globalRefreshToken) {
+    try {
+      const oauth2Client = new google.auth.OAuth2(clientId, clientSecret, redirectUri);
+      oauth2Client.setCredentials({ refresh_token: globalRefreshToken });
+      const tokenRes = await oauth2Client.getAccessToken();
+      const token = typeof tokenRes === "string" ? tokenRes : tokenRes?.token || null;
+      if (token) {
+        return { token, authType: "Global OAuth2 Refresh Token" };
+      }
+    } catch (e: any) {
+      console.warn("[Google Auth] Global refresh token error:", e.message);
+    }
+  }
+
+  return { token: null, authType: "None" };
+}
+
+/**
  * Public Initial View Data (IVD) extractor for public link-shared Google Drive folders
  */
 async function scanPublicDriveFolder(

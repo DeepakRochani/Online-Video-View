@@ -1,6 +1,6 @@
 import { NextRequest } from "next/server";
 import { getVideoRecord, isProjectExpired } from "./db";
-import { getDriveClient } from "./drive";
+import { getDriveClient, getValidAccessToken } from "./drive";
 import { getCurrentSession } from "./auth";
 import { verifySignedMediaToken } from "./media-token";
 import { checkMediaRateLimit } from "./media-rate-limit";
@@ -70,52 +70,36 @@ async function fetchGoogleDriveStream(
     return { signal: controller.signal, cleanup: () => clearTimeout(timeoutId) };
   };
 
-  // Tier 1: Try authenticated Google Drive API v3 (OAuth2 / Service Account) if configured
-  const driveClientResult = getDriveClient(photographerId);
-  if ("drive" in driveClientResult && driveClientResult.drive) {
-    try {
-      const authClient = driveClientResult.drive.context?._options?.auth;
-      let accessToken: string | null = null;
-      if (authClient) {
-        if (typeof authClient.getAccessToken === "function") {
-          const tokenRes = await authClient.getAccessToken();
-          accessToken = typeof tokenRes === "string" ? tokenRes : tokenRes?.token || null;
-        } else if (typeof authClient.authorize === "function") {
-          const authCreds = await authClient.authorize();
-          accessToken = authCreds?.access_token || null;
-        } else if (authClient.credentials?.access_token) {
-          accessToken = authClient.credentials.access_token;
+  // Tier 1: Try authenticated Google Drive API v3 (OAuth2 / Service Account) with proactive token refresh
+  try {
+    const { token: accessToken, authType } = await getValidAccessToken(photographerId);
+    if (accessToken) {
+      const driveApiUrl = `https://www.googleapis.com/drive/v3/files/${driveFileId}?alt=media&supportsAllDrives=true&acknowledgeAbuse=true`;
+      const apiHeaders: Record<string, string> = {
+        ...fetchHeaders,
+        Authorization: `Bearer ${accessToken}`,
+      };
+
+      const { signal, cleanup } = createTimedSignal(CONNECTION_TIMEOUT_MS);
+      try {
+        const apiStart = Date.now();
+        const apiRes = await fetch(driveApiUrl, { headers: apiHeaders, signal });
+        cleanup();
+        stageTiming["tier1_api"] = Date.now() - apiStart;
+
+        const apiType = apiRes.headers.get("content-type") || "";
+        console.log(`[VideoStream:API] Drive API v3 (${authType}) status: ${apiRes.status} | Content-Type: ${apiType} | Range: ${upstreamRangeHeader || "none"}`);
+
+        if ((apiRes.ok || apiRes.status === 206) && !apiType.includes("text/html") && !apiType.includes("application/json")) {
+          return { response: apiRes, stageTiming };
         }
+      } catch (e: any) {
+        cleanup();
+        console.warn(`[VideoStream:API] Drive API v3 fetch error (${authType}):`, e.message);
       }
-
-      if (accessToken) {
-        const driveApiUrl = `https://www.googleapis.com/drive/v3/files/${driveFileId}?alt=media&supportsAllDrives=true`;
-        const apiHeaders: Record<string, string> = {
-          ...fetchHeaders,
-          Authorization: `Bearer ${accessToken}`,
-        };
-
-        const { signal, cleanup } = createTimedSignal(CONNECTION_TIMEOUT_MS);
-        try {
-          const apiStart = Date.now();
-          const apiRes = await fetch(driveApiUrl, { headers: apiHeaders, signal });
-          cleanup();
-          stageTiming["tier1_api"] = Date.now() - apiStart;
-
-          const apiType = apiRes.headers.get("content-type") || "";
-          console.log(`[VideoStream:API] Drive API v3 status: ${apiRes.status} | Content-Type: ${apiType} | Range: ${upstreamRangeHeader || "none"}`);
-
-          if ((apiRes.ok || apiRes.status === 206) && !apiType.includes("text/html") && !apiType.includes("application/json")) {
-            return { response: apiRes, stageTiming };
-          }
-        } catch (e: any) {
-          cleanup();
-          console.warn("[VideoStream:API] Drive API v3 fetch error:", e.message);
-        }
-      }
-    } catch (e: any) {
-      console.warn("[VideoStream:API] OAuth access token retrieval error:", e.message);
     }
+  } catch (authErr: any) {
+    console.warn("[VideoStream:API] Access token retrieval error:", authErr.message);
   }
 
   // Tier 2: Direct confirmed stream with fast session cache

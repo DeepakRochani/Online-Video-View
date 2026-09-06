@@ -68,6 +68,7 @@ export default function VideoModal({
   const activeTokenRef = useRef<number>(0);
   const hasRecordedPlayRef = useRef<boolean>(false);
   const hasRecordedCompleteRef = useRef<boolean>(false);
+  const retryCountRef = useRef<number>(0);
 
   const [playerState, setPlayerState] = useState<PlayerState>("loading");
   const [errorMessage, setErrorMessage] = useState<string>("");
@@ -240,6 +241,7 @@ export default function VideoModal({
     setShowControls(true);
     hasRecordedPlayRef.current = false;
     hasRecordedCompleteRef.current = false;
+    retryCountRef.current = 0;
 
     // Slow loading watchdog: informational notice after 10s.
     if (slowTimerRef.current) clearTimeout(slowTimerRef.current);
@@ -344,6 +346,7 @@ export default function VideoModal({
 
   const handleRetry = () => {
     activeTokenRef.current += 1;
+    retryCountRef.current = 0;
     setErrorMessage("");
     setIsSlowLoading(false);
     setPlayerState("loading");
@@ -672,7 +675,21 @@ export default function VideoModal({
             }}
             onError={(e) => {
               const mediaErr = e.currentTarget.error;
-              if (mediaErr?.code === 1) return; // Aborted cleanly
+              console.error("[HTML5 Video Error] Code:", mediaErr?.code);
+              console.error("[HTML5 Video Error] Message:", mediaErr?.message);
+              console.error("[HTML5 Video Error] Stream Source:", e.currentTarget.src);
+
+              if (mediaErr?.code === 1) return; // MEDIA_ERR_ABORTED - Clean abort / component unmount
+
+              // Auto-retry once silently after 1 second if this is the first failure
+              if (retryCountRef.current < 1) {
+                retryCountRef.current += 1;
+                console.warn(`[HTML5 Video] Attempting automatic stream recovery (retry ${retryCountRef.current}/1)...`);
+                setTimeout(() => {
+                  setRetryKey((prev) => prev + 1);
+                }, 1000);
+                return;
+              }
 
               let clientMessage = "Unable to play this video.";
               if (mediaErr?.code === 2) {
