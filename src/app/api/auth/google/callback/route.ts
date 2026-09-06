@@ -2,7 +2,7 @@ export const dynamic = "force-dynamic";
 
 import { NextRequest, NextResponse } from "next/server";
 import { createSessionCookie, COOKIE_NAME } from "@/lib/auth";
-import { getOrCreateGooglePhotographerAccount } from "@/lib/db";
+import { getOrCreateGooglePhotographerAccount, saveGoogleDriveTokens } from "@/lib/db";
 import { dispatchNotification } from "@/lib/notifications";
 
 export async function GET(request: NextRequest) {
@@ -108,6 +108,24 @@ export async function GET(request: NextRequest) {
     }
 
     const photographer = result.photographer;
+
+    // Save Google Drive OAuth tokens to photographer account
+    if (accessToken) {
+      const expiresIn = tokens.expires_in;
+      const refreshToken = tokens.refresh_token;
+      const expiryDate = expiresIn ? Date.now() + expiresIn * 1000 : undefined;
+      saveGoogleDriveTokens(
+        photographer.id,
+        {
+          accessToken,
+          refreshToken: refreshToken || undefined,
+          expiryDate,
+          scope: tokens.scope,
+          tokenType: tokens.token_type,
+        },
+        photographer.email
+      );
+    }
 
     // Dispatch welcome email if new account
     if (result.isNewAccount) {

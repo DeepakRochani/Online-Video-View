@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const result = await scanDriveFolder(targetUrl);
+    const result = await scanDriveFolder(targetUrl, session.photographerId);
 
     if (!result.success) {
       return NextResponse.json(

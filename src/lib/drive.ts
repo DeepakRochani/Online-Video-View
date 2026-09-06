@@ -1,5 +1,5 @@
 import { google } from "googleapis";
-import { DriveVideoFile, DriveMediaFile, DriveEventCategory, getPhotographerById } from "./db";
+import { DriveVideoFile, DriveMediaFile, DriveEventCategory, getPhotographerById, saveGoogleDriveTokens } from "./db";
 import {
   isVideoFile,
   isPhotoFile,
@@ -48,6 +48,16 @@ export function getDriveClient(photographerId?: string): { drive: any; authType:
           access_token: tokens.accessToken,
           refresh_token: tokens.refreshToken,
           expiry_date: tokens.expiryDate,
+        });
+        oauth2Client.on("tokens", (newTokens) => {
+          if (newTokens.access_token) {
+            saveGoogleDriveTokens(photographerId, {
+              ...tokens,
+              accessToken: newTokens.access_token,
+              refreshToken: newTokens.refresh_token || tokens.refreshToken,
+              expiryDate: newTokens.expiry_date || (Date.now() + 3600 * 1000),
+            });
+          }
         });
         const drive = google.drive({ version: "v3", auth: oauth2Client });
         return { drive, authType: `Photographer OAuth2 (${photographer.email})`, accountEmail: photographer.email };
@@ -206,23 +216,39 @@ export async function scanDriveFolder(folderUrlOrId: string, photographerId?: st
     console.log(`Authenticated Google account / mode:\n${accountEmail || authType}`);
 
     try {
-      // 1. Fetch Root Folder Info
+      let isSingleFile = false;
       try {
         const folderRes = await drive.files.get({
           fileId: folderId,
-          fields: "id, name, mimeType",
+          fields: "id, name, mimeType, size, createdTime, modifiedTime, thumbnailLink, webViewLink, webContentLink",
           supportsAllDrives: true,
         });
         if (folderRes.data?.name) {
           rootFolderName = folderRes.data.name;
         }
+        if (folderRes.data?.mimeType && folderRes.data.mimeType !== "application/vnd.google-apps.folder") {
+          isSingleFile = true;
+          rawFiles.push({
+            id: folderRes.data.id || folderId,
+            name: folderRes.data.name || "Wedding Video",
+            mimeType: folderRes.data.mimeType,
+            size: folderRes.data.size,
+            createdTime: folderRes.data.createdTime,
+            modifiedTime: folderRes.data.modifiedTime,
+            thumbnailLink: folderRes.data.thumbnailLink,
+            webViewLink: folderRes.data.webViewLink,
+            webContentLink: folderRes.data.webContentLink,
+            eventName: "Main Highlights",
+          });
+        }
       } catch (fErr: any) {
         console.warn(`[Drive Scan] Info: Could not get metadata for root folder directly (${fErr?.message || fErr}), continuing query.`);
       }
 
-      // 2. Query Root Items
-      const rootQuery = `'${folderId}' in parents and trashed = false`;
-      console.log(`\n[ROOT QUERY]\n${rootQuery}`);
+      if (!isSingleFile) {
+        // 2. Query Root Items
+        const rootQuery = `'${folderId}' in parents and trashed = false`;
+        console.log(`\n[ROOT QUERY]\n${rootQuery}`);
 
       let rootPageToken: string | undefined = undefined;
       const rootItems: any[] = [];
@@ -326,6 +352,7 @@ export async function scanDriveFolder(folderUrlOrId: string, photographerId?: st
 
         console.log(`\n[EVENT ITEMS FOUND]\n${eventItemCount}`);
       }
+    }
     } catch (apiErr: any) {
       console.warn(`[Drive Scan] Drive API v3 encountered error (${apiErr?.message || apiErr}), trying public direct extractor...`);
       return await scanViaPublicFallback(folderId, rootFolderName);

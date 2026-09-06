@@ -36,10 +36,10 @@ export async function GET(request: NextRequest) {
   googleAuthUrl.searchParams.set("client_id", googleClientId);
   googleAuthUrl.searchParams.set("redirect_uri", redirectUri);
   googleAuthUrl.searchParams.set("response_type", "code");
-  googleAuthUrl.searchParams.set("scope", "openid email profile");
+  googleAuthUrl.searchParams.set("scope", "openid email profile https://www.googleapis.com/auth/drive.readonly");
   googleAuthUrl.searchParams.set("state", state);
   googleAuthUrl.searchParams.set("access_type", "offline");
-  googleAuthUrl.searchParams.set("prompt", "select_account");
+  googleAuthUrl.searchParams.set("prompt", "consent");
 
   const response = NextResponse.redirect(googleAuthUrl.toString());
 
