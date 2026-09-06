@@ -580,7 +580,7 @@ export default function VideoModal({
             src={streamUrl}
             className="w-full h-full object-contain cursor-pointer"
             playsInline
-            preload="metadata"
+            preload="auto"
             autoPlay
             onLoadStart={() => {
               if (process.env.NODE_ENV !== "production") {
@@ -602,7 +602,7 @@ export default function VideoModal({
                 setDuration(vid.duration);
                 vid.playbackRate = playbackRate;
               }
-              setPlayerState((prev) => (prev === "loading" ? "metadata" : prev));
+              setPlayerState((prev) => (prev === "loading" || prev === "metadata" ? "ready" : prev));
             }}
             onLoadedData={() => {
               if (process.env.NODE_ENV !== "production") {

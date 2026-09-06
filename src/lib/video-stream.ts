@@ -1,4 +1,5 @@
 import { NextRequest } from "next/server";
+import { Readable } from "stream";
 import { getVideoRecord, isProjectExpired } from "./db";
 import { getDriveClient, getValidAccessToken } from "./drive";
 import { getCurrentSession } from "./auth";
@@ -6,8 +7,8 @@ import { verifySignedMediaToken } from "./media-token";
 import { checkMediaRateLimit } from "./media-rate-limit";
 import { recordMediaMetric } from "./media-metrics";
 
-const DEFAULT_STREAM_CHUNK_SIZE = 16 * 1024 * 1024; // 16MB chunk size for smooth 4K/FHD playback & rapid seeking
-const CONNECTION_TIMEOUT_MS = 15000; // 15s connection/handshake timeout
+const DEFAULT_STREAM_CHUNK_SIZE = 16 * 1024 * 1024; // 16MB chunk size for smooth playback & rapid seeking
+const CONNECTION_TIMEOUT_MS = 15000; // 15s connection timeout
 
 interface DriveSessionCache {
   uuid: string;
@@ -48,7 +49,6 @@ async function fetchGoogleDriveStream(
     fetchHeaders["Range"] = upstreamRangeHeader;
   }
 
-  // Helper to create a linked abort controller that aborts if either client disconnects or handshake times out
   const createTimedSignal = (timeoutMs: number) => {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => {
@@ -60,10 +60,14 @@ async function fetchGoogleDriveStream(
         clearTimeout(timeoutId);
         controller.abort(clientSignal.reason);
       } else {
-        clientSignal.addEventListener("abort", () => {
-          clearTimeout(timeoutId);
-          controller.abort(clientSignal.reason);
-        }, { once: true });
+        clientSignal.addEventListener(
+          "abort",
+          () => {
+            clearTimeout(timeoutId);
+            controller.abort(clientSignal.reason);
+          },
+          { once: true }
+        );
       }
     }
 
@@ -88,9 +92,15 @@ async function fetchGoogleDriveStream(
         stageTiming["tier1_api"] = Date.now() - apiStart;
 
         const apiType = apiRes.headers.get("content-type") || "";
-        console.log(`[VideoStream:API] Drive API v3 (${authType}) status: ${apiRes.status} | Content-Type: ${apiType} | Range: ${upstreamRangeHeader || "none"}`);
+        console.log(
+          `[VideoStream:API] Drive API v3 (${authType}) status: ${apiRes.status} | Content-Type: ${apiType} | Range: ${upstreamRangeHeader || "none"}`
+        );
 
-        if ((apiRes.ok || apiRes.status === 206) && !apiType.includes("text/html") && !apiType.includes("application/json")) {
+        if (
+          (apiRes.ok || apiRes.status === 206) &&
+          !apiType.includes("text/html") &&
+          !apiType.includes("application/json")
+        ) {
           return { response: apiRes, stageTiming };
         }
       } catch (e: any) {
@@ -121,7 +131,9 @@ async function fetchGoogleDriveStream(
       stageTiming["tier2_cached"] = Date.now() - fastStart;
 
       const fastType = fastRes.headers.get("content-type") || "";
-      console.log(`[VideoStream:Cache] Cached Drive request status: ${fastRes.status} | Content-Type: ${fastType} | Range: ${upstreamRangeHeader || "none"}`);
+      console.log(
+        `[VideoStream:Cache] Cached Drive request status: ${fastRes.status} | Content-Type: ${fastType} | Range: ${upstreamRangeHeader || "none"}`
+      );
 
       if ((fastRes.ok || fastRes.status === 206) && !fastType.includes("text/html")) {
         return { response: fastRes, fromCache: true, stageTiming };
@@ -202,7 +214,9 @@ async function fetchGoogleDriveStream(
         stageTiming["handshake_confirmed"] = Date.now() - confirmStart;
 
         const confirmedType = confirmedRes.headers.get("content-type") || "";
-        console.log(`[VideoStream:Confirmed] status: ${confirmedRes.status} | Content-Type: ${confirmedType} | Content-Range: ${confirmedRes.headers.get("content-range") || "none"}`);
+        console.log(
+          `[VideoStream:Confirmed] status: ${confirmedRes.status} | Content-Type: ${confirmedType} | Content-Range: ${confirmedRes.headers.get("content-range") || "none"}`
+        );
 
         return { response: confirmedRes, stageTiming };
       } catch (err: any) {
@@ -264,8 +278,8 @@ export async function handleVideoStream(
   const { video, project } = record;
   const driveFileId = video.driveFileId || video.id;
   const fileName = video.name || "Wedding Video.mp4";
-  const storedMimeType = video.mimeType || "video/mp4";
-  const totalSize = parseInt(video.size || "0", 10);
+  let storedMimeType = video.mimeType || "video/mp4";
+  let totalSize = parseInt(video.size || "0", 10);
 
   // 2. Authorization validation
   const session = await getCurrentSession(request);
@@ -321,53 +335,61 @@ export async function handleVideoStream(
     return new Response("Video downloads are disabled for this wedding gallery by the photographer.", { status: 403 });
   }
 
-  // 3. Parse & normalize byte ranges for HTTP 206 Partial Content
-  let start = 0;
-  let end = 0;
-  let isRangeRequest = false;
+  // 3. Obtain Google Drive Client if available (OAuth / Service Account / API Key)
+  const driveClientRes = getDriveClient(project.photographerId);
+  const hasDriveClient = !("error" in driveClientRes) && !!driveClientRes.drive;
 
-  if (rawRange && !isDownload) {
-    isRangeRequest = true;
-    const match = rawRange.match(/bytes=(\d*)-(\d*)/);
-    if (match) {
-      const rawStart = match[1];
-      const rawEnd = match[2];
-
-      if (rawStart !== "") {
-        start = parseInt(rawStart, 10);
-        if (rawEnd !== "") {
-          end = parseInt(rawEnd, 10);
-        } else {
-          // Open-ended range (e.g. bytes=0- or bytes=1000000-)
-          if (totalSize > 0) {
-            end = Math.min(totalSize - 1, start + DEFAULT_STREAM_CHUNK_SIZE - 1);
-          } else {
-            end = start + DEFAULT_STREAM_CHUNK_SIZE - 1;
-          }
-        }
-      } else if (rawEnd !== "") {
-        // Suffix range (e.g. bytes=-500000)
-        const suffix = parseInt(rawEnd, 10);
-        if (totalSize > 0) {
-          start = Math.max(0, totalSize - suffix);
-          end = totalSize - 1;
-        } else {
-          start = 0;
-          end = suffix;
-        }
-      }
-    }
-  } else if (!isDownload) {
-    // Non-range request (initial probe): request starting chunk
-    start = 0;
-    if (totalSize > 0) {
-      end = Math.min(totalSize - 1, DEFAULT_STREAM_CHUNK_SIZE - 1);
-    } else {
-      end = DEFAULT_STREAM_CHUNK_SIZE - 1;
+  // If totalSize is unknown or 0, query file metadata probe from Google Drive API
+  if (totalSize <= 0 && hasDriveClient) {
+    try {
+      const meta = await driveClientRes.drive.files.get({
+        fileId: driveFileId,
+        fields: "id, name, size, mimeType",
+        supportsAllDrives: true,
+      });
+      if (meta.data.size) totalSize = parseInt(meta.data.size, 10);
+      if (meta.data.mimeType) storedMimeType = meta.data.mimeType;
+    } catch (e: any) {
+      console.warn("[VideoStream] Metadata probe failed:", e.message);
     }
   }
 
-  // Validate range against known file size (HTTP 416)
+  // 4. Parse & normalize byte ranges for strict HTTP 206 Partial Content
+  let start = 0;
+  let end = totalSize > 0 ? totalSize - 1 : DEFAULT_STREAM_CHUNK_SIZE - 1;
+
+  if (rawRange && !isDownload) {
+    const parts = rawRange.replace(/bytes=/, "").split("-");
+    const rawStart = parts[0]?.trim();
+    const rawEnd = parts[1]?.trim();
+
+    if (rawStart !== "" && rawStart !== undefined) {
+      start = parseInt(rawStart, 10);
+      if (rawEnd !== "" && rawEnd !== undefined) {
+        end = parseInt(rawEnd, 10);
+      } else if (totalSize > 0) {
+        end = Math.min(totalSize - 1, start + DEFAULT_STREAM_CHUNK_SIZE - 1);
+      } else {
+        end = start + DEFAULT_STREAM_CHUNK_SIZE - 1;
+      }
+    } else if (rawEnd !== "" && rawEnd !== undefined) {
+      // Suffix range (e.g. bytes=-500000)
+      const suffix = parseInt(rawEnd, 10);
+      if (totalSize > 0) {
+        start = Math.max(0, totalSize - suffix);
+        end = totalSize - 1;
+      } else {
+        start = 0;
+        end = suffix;
+      }
+    }
+  } else if (!isDownload) {
+    // Non-range request (initial metadata probe)
+    start = 0;
+    end = totalSize > 0 ? Math.min(totalSize - 1, DEFAULT_STREAM_CHUNK_SIZE - 1) : DEFAULT_STREAM_CHUNK_SIZE - 1;
+  }
+
+  // Validate range bounds against known file size (HTTP 416)
   if (totalSize > 0 && start >= totalSize) {
     return new Response("Requested range not satisfiable", {
       status: 416,
@@ -378,12 +400,72 @@ export async function handleVideoStream(
     });
   }
 
-  // Google Drive requires explicit start and end bounds in range header
+  const chunkSize = end - start + 1;
   const upstreamRangeHeader = isDownload ? undefined : `bytes=${start}-${end}`;
 
-  console.log(`[VideoStream] INCOMING | videoId: ${videoIdOrDriveFileId} | driveId: ${driveFileId} | clientRange: ${rawRange || "none"} | upstreamRange: ${upstreamRangeHeader || "full"}`);
+  console.log(
+    `[VideoStream] INCOMING | videoId: ${videoIdOrDriveFileId} | driveId: ${driveFileId} | clientRange: ${rawRange || "none"} | upstreamRange: ${upstreamRangeHeader || "full"}`
+  );
 
-  // 4. Fetch media stream from Google Drive
+  // 5. Try direct streaming via googleapis drive.files.get if authenticated client is ready
+  if (hasDriveClient) {
+    try {
+      const drive = driveClientRes.drive;
+      const driveRes = await drive.files.get(
+        {
+          fileId: driveFileId,
+          alt: "media",
+          acknowledgeAbuse: true,
+          supportsAllDrives: true,
+        },
+        {
+          responseType: "stream",
+          headers: upstreamRangeHeader ? { Range: upstreamRangeHeader } : undefined,
+        }
+      );
+
+      const upstreamStatus = driveRes.status;
+      const accurateMime = getAccurateMimeType(fileName, storedMimeType, driveRes.headers["content-type"]);
+
+      if (upstreamStatus === 200 || upstreamStatus === 206) {
+        const responseHeaders = new Headers();
+        responseHeaders.set("Content-Type", accurateMime);
+        responseHeaders.set("Accept-Ranges", "bytes");
+        responseHeaders.set("Content-Range", `bytes ${start}-${end}/${totalSize > 0 ? totalSize : "*"}`);
+        responseHeaders.set("Content-Length", chunkSize.toString());
+        responseHeaders.set("Cache-Control", "no-cache, no-store, must-revalidate");
+        responseHeaders.set("Pragma", "no-cache");
+        responseHeaders.set("Expires", "0");
+
+        if (isDownload) {
+          responseHeaders.set("Content-Disposition", `attachment; filename="${encodeURIComponent(fileName)}"`);
+        } else {
+          responseHeaders.set("Content-Disposition", `inline; filename="${encodeURIComponent(fileName)}"`);
+        }
+
+        console.log(
+          `[VideoStream:Googleapis] Status: 206 | Content-Type: ${accurateMime} | Range: bytes ${start}-${end}/${totalSize || "*"} | Length: ${chunkSize} in ${Date.now() - reqStartTime}ms`
+        );
+
+        recordMediaMetric(isDownload ? "DOWNLOAD" : "VIDEO", {
+          bytes: chunkSize,
+          isCacheHit: false,
+          isDriveOrigin: true,
+        });
+
+        // Convert Node stream to Web ReadableStream
+        const webStream = Readable.toWeb(driveRes.data as any);
+        return new Response(webStream as any, {
+          status: isDownload ? 200 : 206,
+          headers: responseHeaders,
+        });
+      }
+    } catch (apiErr: any) {
+      console.warn(`[VideoStream:Googleapis] drive.files.get stream failed, trying fetch fallback:`, apiErr.message);
+    }
+  }
+
+  // 6. Fallback stream fetcher (OAuth fetch / usercontent confirmed session)
   let streamResult: { response: globalThis.Response; fromCache?: boolean; stageTiming?: Record<string, number> };
   try {
     streamResult = await fetchGoogleDriveStream(
@@ -406,10 +488,16 @@ export async function handleVideoStream(
   const upstreamLength = driveResponse.headers.get("content-length") || "";
   const upstreamRange = driveResponse.headers.get("content-range") || "";
 
-  console.log(`[VideoStream] UPSTREAM | Status: ${upstreamStatus} | Content-Type: ${upstreamType} | Content-Length: ${upstreamLength} | Content-Range: ${upstreamRange}`);
+  console.log(
+    `[VideoStream] UPSTREAM | Status: ${upstreamStatus} | Content-Type: ${upstreamType} | Content-Length: ${upstreamLength} | Content-Range: ${upstreamRange}`
+  );
 
-  // 5. Detect HTML error responses from Google Drive
-  if (upstreamType.includes("text/html") || upstreamType.includes("application/json") || (!driveResponse.ok && upstreamStatus !== 206)) {
+  // 7. Detect HTML error responses from Google Drive
+  if (
+    upstreamType.includes("text/html") ||
+    upstreamType.includes("application/json") ||
+    (!driveResponse.ok && upstreamStatus !== 206)
+  ) {
     console.error(`[VideoStream:ERROR] Upstream returned non-video response: Status ${upstreamStatus}, Content-Type "${upstreamType}"`);
 
     if (upstreamStatus === 401) {
@@ -424,13 +512,12 @@ export async function handleVideoStream(
     return new Response("Unable to retrieve video media stream from Google Drive.", { status: 502, headers: { "Content-Type": "text/plain" } });
   }
 
-  // 6. Build downstream response headers
+  // 8. Build downstream response headers
   const responseHeaders = new Headers();
   const accurateMime = getAccurateMimeType(fileName, storedMimeType, upstreamType);
   responseHeaders.set("Content-Type", accurateMime);
   responseHeaders.set("Accept-Ranges", "bytes");
 
-  // Determine effective range and length
   const effectiveRange =
     upstreamRange ||
     (isDownload ? undefined : `bytes ${start}-${end}/${totalSize > 0 ? totalSize : "*"}`);
@@ -441,9 +528,9 @@ export async function handleVideoStream(
       ? totalSize > 0
         ? totalSize.toString()
         : undefined
-      : (end - start + 1).toString());
+      : chunkSize.toString());
 
-  if (isRangeRequest && effectiveRange) {
+  if (!isDownload && effectiveRange) {
     responseHeaders.set("Content-Range", effectiveRange);
   }
   if (effectiveLength) {
@@ -457,13 +544,15 @@ export async function handleVideoStream(
   }
 
   // Cache headers
-  responseHeaders.set("Cache-Control", "private, no-cache, no-store, must-revalidate");
+  responseHeaders.set("Cache-Control", "no-cache, no-store, must-revalidate");
   responseHeaders.set("Pragma", "no-cache");
   responseHeaders.set("Expires", "0");
 
-  const downstreamStatus = isRangeRequest ? 206 : upstreamStatus === 206 && !isRangeRequest ? 200 : upstreamStatus;
+  const downstreamStatus = isDownload ? (upstreamStatus === 206 ? 200 : upstreamStatus) : 206;
 
-  console.log(`[VideoStream] RESPONSE | Status: ${downstreamStatus} | Content-Type: ${accurateMime} | Content-Range: ${responseHeaders.get("Content-Range") || "none"} | Content-Length: ${responseHeaders.get("Content-Length") || "unknown"} in ${Date.now() - reqStartTime}ms`);
+  console.log(
+    `[VideoStream] RESPONSE | Status: ${downstreamStatus} | Content-Type: ${accurateMime} | Content-Range: ${responseHeaders.get("Content-Range") || "none"} | Content-Length: ${responseHeaders.get("Content-Length") || "unknown"} in ${Date.now() - reqStartTime}ms`
+  );
 
   const proxiedBytes = effectiveLength ? parseInt(effectiveLength, 10) : 0;
   recordMediaMetric(isDownload ? "DOWNLOAD" : "VIDEO", {
@@ -477,3 +566,4 @@ export async function handleVideoStream(
     headers: responseHeaders,
   });
 }
+
